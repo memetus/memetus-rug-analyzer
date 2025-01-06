@@ -7,7 +7,28 @@
     "start": "node ./dist/main.js",
     "dev": "npx ts-node -r tsconfig-paths/register ./main.ts"
   },
-  "keywords": [],
+  "keywords": [
+    "solana",
+    "rugcheck",
+    "blockchain",
+    "typescript",
+    "rugcheck",
+    "defi",
+    "solana-rugcheck",
+    "memecoin",
+    "solana-defi",
+    "security",
+    "smartcontracts",
+    "dApp",
+    "cryptocurrency",
+    "raydium",
+    "pump.fun",
+    "solana-development",
+    "solana-security",
+    "web3",
+    "crypto",
+    "solana-dapp"
+  ],
   "author": "",
   "license": "ISC",
   "description": "",
@@ -19,5 +40,13 @@
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.7.2"
+  },
+  "dependencies": {
+    "@raydium-io/raydium-sdk-v2": "0.1.101-alpha",
+    "@solana/spl-token": "^0.4.9",
+    "@solana/web3.js": "^1.98.0",
+    "axios": "^1.7.9",
+    "helius-sdk": "^1.4.0",
+    "validator": "^13.12.0"
   }
 }
