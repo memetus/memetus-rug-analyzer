@@ -35,6 +35,7 @@
   "packageManager": "pnpm@9.14.4+sha512.c8180b3fbe4e4bca02c94234717896b5529740a6cbadf19fa78254270403ea2f27d4e1d46a08a0f56c89b63dc8ebfd3ee53326da720273794e6200fcf0d184ab",
   "devDependencies": {
     "@types/node": "^22.10.5",
+    "@types/winston": "^2.4.4",
     "dotenv": "^16.4.7",
     "nodemon": "^3.1.9",
     "ts-node": "^10.9.2",
@@ -47,6 +48,9 @@
     "@solana/web3.js": "^1.98.0",
     "axios": "^1.7.9",
     "helius-sdk": "^1.4.0",
-    "validator": "^13.12.0"
+    "inquirer": "^12.3.2",
+    "validator": "^13.12.0",
+    "winston": "^3.17.0",
+    "winston-daily-rotate-file": "^5.0.0"
   }
 }
