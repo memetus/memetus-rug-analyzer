@@ -9,8 +9,10 @@
     "baseUrl": "./",
     "paths": {
       "@/*": ["./*"]
-    }
+    },
+    "moduleResolution": "node"
   },
-  "include": ["**/*.ts", "./src/**/*", "./module/**/*", "./types/**/*"],
+  "types": ["node"],
+  "include": ["**/*.ts"],
   "exclude": ["node_modules"]
 }
