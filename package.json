@@ -47,8 +47,13 @@
     "@solana/spl-token": "^0.4.9",
     "@solana/web3.js": "^1.98.0",
     "axios": "^1.7.9",
+    "cheerio": "^1.0.0",
+    "dns": "^0.2.2",
     "helius-sdk": "^1.4.0",
     "inquirer": "^12.3.2",
+    "puppeteer": "^24.1.0",
+    "puppeteer-core": "^24.1.0",
+    "telegram": "^2.26.16",
     "validator": "^13.12.0",
     "winston": "^3.17.0",
     "winston-daily-rotate-file": "^5.0.0"
