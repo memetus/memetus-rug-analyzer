@@ -1,10 +1,10 @@
 import { Connection } from "@solana/web3.js";
-import { nodeEndpoint } from "@/config/rpc";
+import { nodeEndpoint } from "@/src/config/rpc";
 
 /**
  * TODO: should update to use the connection pool
  */
-export const createConnection = async () => {
+export const createConnection = () => {
   let connection: Connection | null = null;
 
   const endpoints = [
@@ -16,8 +16,7 @@ export const createConnection = async () => {
   for (const endpoint of endpoints) {
     try {
       connection = new Connection(endpoint);
-      await connection.getVersion();
-      break;
+      return connection;
     } catch (e) {
       console.log(`Failed to connect to ${endpoint}`);
     }
