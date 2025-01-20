@@ -6,4 +6,7 @@ export const DEX_ADDRESS = {
   JUPITER_AUTORITY_V12: "6U91aKa8pmMxkJwBCfPTmUEfZi6dHe7DcFq2ALvB2tbB",
 };
 
+export const PUMPFUN_MINT_AUTHORITY =
+  "TSLvdd1pWpHVjahSpsvCXUbgwsL3JAcvokwaKt1eokM";
+
 export const SOLANA_ADDRESS_REGEX = /[1-9A-HJ-NP-Za-km-z]{32,44}/g;
