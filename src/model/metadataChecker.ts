@@ -2,6 +2,7 @@ import { BaseChecker } from "@/src/model/baseChecker";
 import { Connection, PublicKey } from "@solana/web3.js";
 import { AddressChecker } from "../module/addressChecker";
 import { getMint } from "@solana/spl-token";
+import { PUMPFUN_MINT_AUTHORITY } from "@/src/constant/address";
 
 interface IMetadataChecker {}
 
@@ -22,9 +23,7 @@ export class MetadataChecker extends BaseChecker implements IMetadataChecker {
     this.connection = connection;
   }
 
-  public async check() {
-    this.getBaseMetadata();
-  }
+  public async check() {}
 
   public async getBaseMetadata() {
     try {
@@ -46,6 +45,7 @@ export class MetadataChecker extends BaseChecker implements IMetadataChecker {
         mutability: metadata.isMutable,
         mintability: mintInfo.mintAuthority === null ? false : true,
         freezability: mintInfo.freezeAuthority === null ? false : true,
+        pumpfun: metadata.updateAuthority === PUMPFUN_MINT_AUTHORITY,
       };
     } catch (error) {
       console.error(error);
