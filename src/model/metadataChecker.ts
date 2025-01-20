@@ -40,6 +40,7 @@ export class MetadataChecker extends BaseChecker implements IMetadataChecker {
       return {
         name: metadata.name,
         symbol: metadata.symbol,
+        address: this.address,
         primarySold: metadata.primarySaleHappened,
         initialized: mintInfo.isInitialized,
         mutability: metadata.isMutable,
