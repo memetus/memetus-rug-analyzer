@@ -3,7 +3,7 @@ import axios from "axios";
 import { getEnv } from "../utils/env";
 import validator from "validator";
 import * as cheerio from "cheerio";
-import { BaseMetadata } from "../data/baseMetadata";
+import { BaseMetadata } from "@/src/data/baseMetadata";
 
 interface IUrlChecker {}
 

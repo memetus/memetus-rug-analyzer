@@ -1,5 +1,5 @@
 import axios from "axios";
-import { DexScreenerResponseShape } from "../types/dex";
+import { DexScreenerResponseShape } from "@/src/types/dex";
 
 interface IDexScreenerGetter {}
 

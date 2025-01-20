@@ -10,7 +10,7 @@ import { DexType } from "@/src/types/dex";
 import { Connection, PublicKey } from "@solana/web3.js";
 import { METADATA_PROGRAM_ID } from "@raydium-io/raydium-sdk-v2";
 import { fetchMetadataFromSeeds } from "@metaplex-foundation/mpl-token-metadata";
-import { createUmiEndpoint } from "../config/chain";
+import { createUmiEndpoint } from "@/src/config/chain";
 
 interface IAddressChecker {}
 

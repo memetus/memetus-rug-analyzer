@@ -1,6 +1,6 @@
 import { BaseChecker } from "@/src/model/baseChecker";
-import { DexScreenerGetter } from "../module/dexScreenerGetter";
-import { UrlChecker } from "../module/urlChecker";
+import { DexScreenerGetter } from "@/src/module/dexScreenerGetter";
+import { UrlChecker } from "@/src/module/urlChecker";
 
 interface IReferenceChecker {}
 
