@@ -26,11 +26,15 @@ export class LiquidityChecker extends BaseChecker implements ILiquidityChecker {
 
   private async getPoolInfo() {
     const dexList: DexScreenerResponseShape[] = await this.getDexPoolList();
+    const pairList: string[] = [];
     const totalLiquidity = dexList.reduce((acc, dex) => {
       return dex.liquidity.usd + acc;
     }, 0);
 
-    return dexList.map((dex) => {
+    const result = dexList.map((dex) => {
+      if (!pairList.includes(dex.quoteToken.address)) {
+        pairList.push(dex.quoteToken.address);
+      }
       return {
         name: dex.dexId,
         pair: dex.pairAddress,
@@ -38,6 +42,13 @@ export class LiquidityChecker extends BaseChecker implements ILiquidityChecker {
         liquidityPercentage: (dex.liquidity.usd / totalLiquidity) * 100,
       };
     });
+
+    return {
+      pairType: pairList,
+      pairTypeCount: pairList.length,
+      totalDexLiquidity: totalLiquidity,
+      dexList: result,
+    };
   }
 
   private async checkTokenLocked(pair: string) {
