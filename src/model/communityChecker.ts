@@ -41,4 +41,10 @@ export class CommunityChecker extends BaseChecker implements ICommunityChecker {
       console.log(community);
     }
   }
+
+  public async handleTwitter() {}
+
+  public async handleTelegram() {}
+
+  public async handleDiscord() {}
 }
