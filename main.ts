@@ -1,3 +1,3 @@
-import { createLogger } from "@/src/config/log";
+const main = () => {};
 
-export const logger = createLogger("homo-memetus-bot");
+main();
