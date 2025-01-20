@@ -1,7 +1,8 @@
 import { BaseChecker } from "@/src/model/baseChecker";
-import { Connection, PublicKey } from "@solana/web3.js";
+import { Connection, ParsedAccountData, PublicKey } from "@solana/web3.js";
 import { DexScreenerGetter } from "@/src/module/dexScreenerGetter";
 import { DexScreenerResponseShape } from "@/src/types/dex";
+import { LIQUIDITY_STATE_LAYOUT_V4 } from "@raydium-io/raydium-sdk";
 
 interface ILiquidityChecker {}
 
@@ -21,9 +22,7 @@ export class LiquidityChecker extends BaseChecker implements ILiquidityChecker {
     this.connection = connection;
   }
 
-  public async check() {
-    this.getPoolInfo();
-  }
+  public async check() {}
 
   private async getPoolInfo() {
     const dexList: DexScreenerResponseShape[] = await this.getDexPoolList();
@@ -39,6 +38,36 @@ export class LiquidityChecker extends BaseChecker implements ILiquidityChecker {
         liquidityPercentage: (dex.liquidity.usd / totalLiquidity) * 100,
       };
     });
+  }
+
+  private async checkTokenLocked(pair: string) {
+    const acc = await this.connection.getMultipleAccountsInfo([
+      new PublicKey(pair),
+    ]);
+    const parsed = acc.map(
+      (v) => v && LIQUIDITY_STATE_LAYOUT_V4.decode(v.data)
+    );
+    if (parsed && parsed[0]) {
+      const lpMint = parsed[0].lpMint;
+      let lpReserve = parsed[0]?.lpReserve.toNumber() ?? 0;
+      const accInfo = await this.connection.getParsedAccountInfo(
+        new PublicKey(lpMint)
+      );
+
+      const mintInfo = (accInfo?.value?.data as ParsedAccountData).parsed?.info;
+
+      lpReserve = lpReserve / Math.pow(10, mintInfo?.decimals);
+      const actualSupply = mintInfo?.supply / Math.pow(10, mintInfo?.decimals);
+      const burnAmt = lpReserve - actualSupply;
+      const burnPct = (burnAmt / lpReserve) * 100;
+
+      return {
+        burnAmount: burnAmt,
+        burnPercentage: burnPct,
+        isLocked: burnPct === 100 ? true : false,
+        pair,
+      };
+    }
   }
 
   private async getDexPoolList() {
