@@ -73,4 +73,4 @@ export const createLogger = (labelText: string) => {
   return logger;
 };
 
-export const logger = createLogger("homo-memetus-bot");
+export const logger = createLogger("homo-memetus-rug-analyzer");
