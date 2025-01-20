@@ -1,5 +1,5 @@
 import { Helius } from "helius-sdk";
-import { getEnv } from "../utils/env";
+import { getEnv } from "@/src/utils/env";
 import axios from "axios";
 
 interface IHeliusModule {}

@@ -75,6 +75,9 @@ importers:
       '@types/node':
         specifier: ^22.10.5
         version: 22.10.7
+      '@types/validator':
+        specifier: ^13.12.2
+        version: 13.12.2
       dotenv:
         specifier: ^16.4.7
         version: 16.4.7
@@ -901,6 +904,9 @@ packages:
 
   '@types/uuid@8.3.4':
     resolution: {integrity: sha512-c/I8ZRb51j+pYGAu5CrFMRxqZ2ke4y2grEBO5AUjgSkSk+qT2Ea+OdWElz/OiMf5MNpn2b17kuVBwZLQJXzihw==}
+
+  '@types/validator@13.12.2':
+    resolution: {integrity: sha512-6SlHBzUW8Jhf3liqrGGXyTJSIFe4nqlJ5A5KaMZ2l/vbM3Wh3KSybots/wfWVzNLK4D1NZluDlSQIbIEPx6oyA==}
 
   '@types/ws@7.4.7':
     resolution: {integrity: sha512-JQbbmxZTZehdc2iszGKs5oC3NFnjeay7mtAWrdt7qNtAVK0g19muApzAy4bm9byz79xa2ZnO/BOBC2R8RC5Lww==}
@@ -4438,6 +4444,8 @@ snapshots:
   '@types/triple-beam@1.3.5': {}
 
   '@types/uuid@8.3.4': {}
+
+  '@types/validator@13.12.2': {}
 
   '@types/ws@7.4.7':
     dependencies:

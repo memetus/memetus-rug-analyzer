@@ -1,4 +1,5 @@
 import axios from "axios";
+import { DexScreenerResponseShape } from "@/src/types/dex";
 
 interface IDexScreenerGetter {}
 
@@ -74,5 +75,17 @@ export class DexScreenerGetter implements IDexScreenerGetter {
       console.error(error);
       throw new Error("Failed to get token search address");
     }
+  }
+
+  public async getTokenReference(address: string) {
+    const response: DexScreenerResponseShape[] =
+      await this.getTokenSearchAddress(address);
+
+    if (response.length === 0) {
+      throw new Error("Failed to get token reference");
+    }
+
+    const reference = response[0].info.websites;
+    return reference;
   }
 }
