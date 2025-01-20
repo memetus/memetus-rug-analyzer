@@ -77,7 +77,7 @@ export class DexScreenerGetter implements IDexScreenerGetter {
     }
   }
 
-  public async getTokenReference(address: string) {
+  public async getTokenWebsiteData(address: string) {
     const response: DexScreenerResponseShape[] =
       await this.getTokenSearchAddress(address);
 
@@ -85,7 +85,19 @@ export class DexScreenerGetter implements IDexScreenerGetter {
       throw new Error("Failed to get token reference");
     }
 
-    const reference = response[0].info.websites;
-    return reference;
+    const websites = response[0].info.websites;
+    return websites;
+  }
+
+  public async getTokenCommunity(address: string) {
+    const response: DexScreenerResponseShape[] =
+      await this.getTokenSearchAddress(address);
+
+    if (response.length === 0) {
+      throw new Error("Failed to get token reference");
+    }
+
+    const community = response[0].info.socials;
+    return community;
   }
 }
