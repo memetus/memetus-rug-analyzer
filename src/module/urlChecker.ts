@@ -1,6 +1,9 @@
 import dns from "dns";
 import axios from "axios";
 import { getEnv } from "../utils/env";
+import validator from "validator";
+import * as cheerio from "cheerio";
+import { BaseMetadata } from "../data/baseMetadata";
 
 interface IUrlChecker {}
 
@@ -30,7 +33,7 @@ export class UrlChecker implements IUrlChecker {
     }
   }
 
-  public getIpAddress() {
+  public async getIpAddress() {
     const domain = this.getHostname();
     return new Promise((resolve, reject) => {
       dns.lookup(domain, (err, address) => {
@@ -51,8 +54,6 @@ export class UrlChecker implements IUrlChecker {
     const address = await this.getIpAddress();
     const apiKey = getEnv("IPINFO_API_KEY");
 
-    console.log(address);
-    console.log(apiKey);
     if (!apiKey) {
       throw new Error("IPINFO API key not found");
     }
@@ -61,7 +62,6 @@ export class UrlChecker implements IUrlChecker {
         `https://ipinfo.io/${address}?token=${apiKey}`
       );
 
-      console.log(res.data);
       return res.data;
     } catch (error) {
       throw new Error("Failed to get IP info");
@@ -69,9 +69,41 @@ export class UrlChecker implements IUrlChecker {
   }
 
   public checkValidUrl() {
-    if (this.url.startsWith("http://") || this.url.startsWith("https://")) {
+    if (
+      this.url.startsWith("http://") ||
+      this.url.startsWith("https://") ||
+      validator.isURL(this.url)
+    ) {
       return true;
     }
     return false;
+  }
+
+  public async getUrlMetadata() {
+    const isValidUrl = this.checkValidUrl();
+    if (!isValidUrl) {
+      throw new Error("Invalid URL");
+    }
+
+    const baseMetadata = new BaseMetadata();
+
+    try {
+      const response = await axios.get(this.url, {});
+      const $ = cheerio.load(response.data);
+      $("meta").each((i, meta) => {
+        baseMetadata.name = $('meta[name="application-name"]').attr("content");
+        baseMetadata.description = $('meta[name="description"]').attr(
+          "content"
+        );
+        baseMetadata.keywords = $('meta[name="keywords"]').attr("content");
+        baseMetadata.canonical = $('link[rel="canonical"]').attr("href");
+        baseMetadata.author = $('meta[name="author"]').attr("content");
+        baseMetadata.generator = $('meta[name="generator"]').attr("content");
+      });
+
+      return baseMetadata;
+    } catch (err) {
+      throw new Error("Invalid URL");
+    }
   }
 }
