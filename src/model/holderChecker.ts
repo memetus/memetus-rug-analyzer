@@ -4,6 +4,8 @@ import { DexSupplyShape } from "@/src/types/dex";
 import { AddressChecker } from "@/src/module/addressChecker";
 import { TopHolderSupplyShape } from "@/src/types/holder";
 import { TOKEN_PROGRAM_ID } from "@solana/spl-token";
+import { logger } from "../config/log";
+import { HeliusModule } from "../module/heliusModule";
 
 interface IHolderChecker {}
 
@@ -70,7 +72,7 @@ export class HolderChecker extends BaseChecker implements IHolderChecker {
     return creator;
   }
 
-  private async getHolders(range?: number) {
+  public async getTopHolders(range?: number) {
     try {
       const holders = (
         await this.connection.getTokenLargestAccounts(this.address)
@@ -87,9 +89,9 @@ export class HolderChecker extends BaseChecker implements IHolderChecker {
     }
   }
 
-  private async getHolderData() {
+  public async getHolderData() {
     const totalSupply = await this.getTokenSupply();
-    const holders = await this.getHolders(20);
+    const holders = await this.getTopHolders(20);
 
     const dexSupplys: DexSupplyShape[] = [];
     const topHolderSupplys: TopHolderSupplyShape[] = [];
@@ -162,5 +164,31 @@ export class HolderChecker extends BaseChecker implements IHolderChecker {
     }
 
     return holderTokenData;
+  }
+
+  public async getHolderCount() {
+    try {
+      const helius = new HeliusModule();
+      const total = [];
+      let cursor: string | null | undefined = undefined;
+      while (cursor !== null) {
+        const holderData = await helius.getAllHolders(
+          this.address.toBase58(),
+          cursor
+        );
+        total.push(...holderData.result.token_accounts);
+        cursor =
+          "cursor" in holderData.result ? holderData.result.cursor : null;
+      }
+
+      return {
+        count: total.length,
+        holders: total,
+      };
+    } catch (error) {
+      console.log(error);
+      logger.error("Failed to get holder count", error);
+      throw new Error("Failed to get holder count");
+    }
   }
 }
