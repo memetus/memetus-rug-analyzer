@@ -1,10 +1,6 @@
 import { BaseChecker } from "@/src/model/baseChecker";
-import { DexScreenerGetter } from "@/src/module/dexScreenerGetter";
-import { BaseCommunity } from "@/src/data/baseCommunity";
-import { TwitterChecker } from "@/src/module/twitterChecker";
-import { sampleDiscord, sampleTelegram, sampleTwitter } from "@/main";
-import { TelegramChecker } from "@/src/module/telegramChecker";
-import { DiscordChecker } from "@/src/module/discordChecker";
+import { DexScreenerGetter } from "../module/dexScreenerGetter";
+import { BaseCommunity } from "../data/baseCommunity";
 
 interface ICommunityChecker {}
 
@@ -22,9 +18,7 @@ export class CommunityChecker extends BaseChecker implements ICommunityChecker {
     this.address = address;
   }
 
-  public async check() {
-    await this.handleTelegram();
-  }
+  public async check() {}
 
   public async getCommunity() {
     const communties = await new DexScreenerGetter().getTokenCommunity(
@@ -48,17 +42,9 @@ export class CommunityChecker extends BaseChecker implements ICommunityChecker {
     }
   }
 
-  public async handleTwitter() {
-    const twitterChecker = new TwitterChecker(sampleTwitter).check();
-  }
+  public async handleTwitter() {}
 
-  public async handleTelegram() {
-    const telegramChecker = await new TelegramChecker(sampleTelegram).check();
-  }
+  public async handleTelegram() {}
 
-  public async handleDiscord() {
-    const discordChecker = await new DiscordChecker(sampleDiscord).check();
-
-    return discordChecker;
-  }
+  public async handleDiscord() {}
 }
