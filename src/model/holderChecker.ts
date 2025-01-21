@@ -4,8 +4,8 @@ import { DexSupplyShape } from "@/src/types/dex";
 import { AddressChecker } from "@/src/module/addressChecker";
 import { TopHolderSupplyShape } from "@/src/types/holder";
 import { TOKEN_PROGRAM_ID } from "@solana/spl-token";
-import { logger } from "../config/log";
-import { HeliusModule } from "../module/heliusModule";
+import { logger } from "@/src/config/log";
+import { HeliusModule } from "@/src/module/heliusModule";
 
 interface IHolderChecker {}
 

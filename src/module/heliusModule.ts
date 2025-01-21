@@ -1,7 +1,7 @@
 import { Helius } from "helius-sdk";
 import { getEnv } from "@/src/utils/env";
 import axios from "axios";
-import { logger } from "../config/log";
+import { logger } from "@/src/config/log";
 
 interface IHeliusModule {}
 

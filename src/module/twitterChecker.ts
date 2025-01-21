@@ -1,7 +1,7 @@
 import { parseTwitterHandle } from "@/src/lib/parseTwitterHandle";
 import { TwitterApi } from "twitter-api-v2";
 import { createTwitterClient } from "@/src/config/twitter";
-import { logger } from "../config/log";
+import { logger } from "@/src/config/log";
 
 interface ITwitterChecker {}
 
