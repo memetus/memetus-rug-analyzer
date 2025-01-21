@@ -29,6 +29,36 @@ export type DexScreenerResponseShape = {
     base: number;
     quote: number;
   };
+  txns: {
+    m5: {
+      buy: number;
+      sell: number;
+    };
+    h1: {
+      buy: number;
+      sell: number;
+    };
+    h6: {
+      buy: number;
+      sell: number;
+    };
+    h24: {
+      buy: number;
+      sell: number;
+    };
+  };
+  volume: {
+    m5: number;
+    h1: number;
+    h6: number;
+    h24: number;
+  };
+  priceChange: {
+    m5: number;
+    h1: number;
+    h6: number;
+    h24: number;
+  };
   fdv: number;
   marketCap: number;
   pairCreatedAt: number;
