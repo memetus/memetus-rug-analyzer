@@ -24,7 +24,7 @@ export class LiquidityChecker extends BaseChecker implements ILiquidityChecker {
 
   public async check() {}
 
-  private async getPoolInfo() {
+  public async getPoolInfo() {
     const dexList: DexScreenerResponseShape[] = await this.getDexPoolList();
     const pairList: string[] = [];
     const totalLiquidity = dexList.reduce((acc, dex) => {
