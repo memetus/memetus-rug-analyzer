@@ -3,9 +3,7 @@ import { Connection, ParsedAccountData, PublicKey } from "@solana/web3.js";
 import { DexSupplyShape } from "@/src/types/dex";
 import { AddressChecker } from "@/src/module/addressChecker";
 import { TopHolderSupplyShape } from "@/src/types/holder";
-import { createUmiEndpoint } from "../config/chain";
 import { TOKEN_PROGRAM_ID } from "@solana/spl-token";
-import { parseTokenAccountData } from "../lib/parseAccount";
 
 interface IHolderChecker {}
 

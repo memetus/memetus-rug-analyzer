@@ -1,7 +1,7 @@
 import { BaseChecker } from "@/src/model/baseChecker";
 import { Connection, PublicKey } from "@solana/web3.js";
 import { AddressChecker } from "@/src/module/addressChecker";
-import { getMint, TOKEN_PROGRAM_ID } from "@solana/spl-token";
+import { getMint } from "@solana/spl-token";
 import { PUMPFUN_MINT_AUTHORITY } from "@/src/constant/address";
 import { parseTokenAccountData } from "@/src/lib/parseAccount";
 

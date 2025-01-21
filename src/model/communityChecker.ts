@@ -1,6 +1,6 @@
 import { BaseChecker } from "@/src/model/baseChecker";
-import { DexScreenerGetter } from "../module/dexScreenerGetter";
-import { BaseCommunity } from "../data/baseCommunity";
+import { DexScreenerGetter } from "@/src/module/dexScreenerGetter";
+import { BaseCommunity } from "@/src/data/baseCommunity";
 
 interface ICommunityChecker {}
 
@@ -43,8 +43,4 @@ export class CommunityChecker extends BaseChecker implements ICommunityChecker {
   }
 
   public async handleTwitter() {}
-
-  public async handleTelegram() {}
-
-  public async handleDiscord() {}
 }

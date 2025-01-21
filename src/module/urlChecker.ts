@@ -1,6 +1,6 @@
 import dns from "dns";
 import axios from "axios";
-import { getEnv } from "../utils/env";
+import { getEnv } from "@/src/utils/env";
 import validator from "validator";
 import * as cheerio from "cheerio";
 import { BaseMetadata } from "@/src/data/baseMetadata";

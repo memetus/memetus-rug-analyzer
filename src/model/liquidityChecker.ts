@@ -51,7 +51,7 @@ export class LiquidityChecker extends BaseChecker implements ILiquidityChecker {
     };
   }
 
-  private async checkTokenLocked(pair: string) {
+  public async checkTokenLocked(pair: string) {
     const acc = await this.connection.getMultipleAccountsInfo([
       new PublicKey(pair),
     ]);
