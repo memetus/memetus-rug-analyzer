@@ -1,7 +1,8 @@
 import { BaseChecker } from "@/src/model/baseChecker";
 import { Connection } from "@solana/web3.js";
-import { DexScreenerGetter } from "../module/dexScreenerGetter";
-import { DexScreenerResponseShape } from "../types/dex";
+import { DexScreenerGetter } from "@/src/module/dexScreenerGetter";
+import { DexScreenerResponseShape } from "@/src/types/dex";
+import { BaseGrowth } from "@/src/data/baseGrowth";
 
 interface IMarketChecker {}
 
@@ -38,6 +39,78 @@ export class MarketChecker extends BaseChecker implements IMarketChecker {
       priceChange: pool.priceChange,
       marketCap: pool.marketCap,
     };
+  }
+
+  public async checkPrice(pool: DexScreenerResponseShape) {
+    const { priceChange } = pool;
+
+    return priceChange;
+  }
+
+  public async checkVolume(pool: DexScreenerResponseShape) {
+    const volumeIncrease = this.getVolumeIncrease(pool);
+
+    return volumeIncrease;
+  }
+
+  public async checkTransactions(pool: DexScreenerResponseShape) {
+    return pool.txns;
+  }
+
+  public async checkPriceVolume(pool: DexScreenerResponseShape) {
+    const volumeIncrease = this.getVolumeIncrease(pool);
+    const { priceChange } = pool;
+
+    const baseGrowth = new BaseGrowth();
+
+    if (volumeIncrease.h24 && priceChange.h24) {
+      baseGrowth.h24 = {
+        volume: volumeIncrease.h24,
+        price: priceChange.h24,
+        gap: volumeIncrease.h24 - priceChange.h24,
+        faster: volumeIncrease.h24 > priceChange.h24 ? "volume" : "price",
+      };
+    }
+    if (volumeIncrease.h6 && priceChange.h6) {
+      baseGrowth.h6 = {
+        volume: volumeIncrease.h6,
+        price: priceChange.h6,
+        gap: volumeIncrease.h6 - priceChange.h6,
+        faster: volumeIncrease.h6 > priceChange.h6 ? "volume" : "price",
+      };
+    }
+    if (volumeIncrease.h1 && priceChange.h1) {
+      baseGrowth.h1 = {
+        volume: volumeIncrease.h1,
+        price: priceChange.h1,
+        gap: volumeIncrease.h1 - priceChange.h1,
+        faster: volumeIncrease.h1 > priceChange.h1 ? "volume" : "price",
+      };
+    }
+
+    return baseGrowth;
+  }
+
+  public getVolumeIncrease(pool: DexScreenerResponseShape) {
+    const { volume } = pool;
+
+    function calculateGrowthRate(
+      current: number,
+      previous: number
+    ): number | null {
+      if (previous === 0) {
+        return null;
+      }
+      return (current / previous) * 100;
+    }
+
+    const growthRates = {
+      h24: calculateGrowthRate(volume.h6, volume.h24),
+      h6: calculateGrowthRate(volume.h1, volume.h6),
+      h1: calculateGrowthRate(volume.m5, volume.h1),
+    };
+
+    return growthRates;
   }
 
   public async getLargePool() {
