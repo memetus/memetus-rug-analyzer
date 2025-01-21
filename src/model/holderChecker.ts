@@ -3,6 +3,9 @@ import { Connection, ParsedAccountData, PublicKey } from "@solana/web3.js";
 import { DexSupplyShape } from "@/src/types/dex";
 import { AddressChecker } from "@/src/module/addressChecker";
 import { TopHolderSupplyShape } from "@/src/types/holder";
+import { createUmiEndpoint } from "../config/chain";
+import { TOKEN_PROGRAM_ID } from "@solana/spl-token";
+import { parseTokenAccountData } from "../lib/parseAccount";
 
 interface IHolderChecker {}
 
@@ -39,9 +42,39 @@ export class HolderChecker extends BaseChecker implements IHolderChecker {
     }
   }
 
+  public async getTokenCreaetionSignature() {
+    const pda = await new AddressChecker(
+      this.address.toBase58()
+    ).getMetaplexPda();
+
+    if (!pda) throw new Error("Failed to get pda");
+    const signatures = await this.connection.getSignaturesForAddress(pda, {});
+
+    if (!signatures || signatures.length === 0 || !signatures[0]) {
+      throw new Error("No signatures found");
+    }
+
+    return signatures[signatures.length - 1].signature;
+  }
+
+  public async getTokenCreator() {
+    const signature = await this.getTokenCreaetionSignature();
+
+    const transaction = await this.connection.getParsedTransaction(signature, {
+      maxSupportedTransactionVersion: 0,
+    });
+
+    if (!transaction) throw new Error("Failed to get transaction");
+
+    const creator =
+      transaction.transaction.message.accountKeys[0].pubkey.toBase58();
+
+    return creator;
+  }
+
   private async getHolders(range?: number) {
     try {
-      const holders = await (
+      const holders = (
         await this.connection.getTokenLargestAccounts(this.address)
       ).value;
 
@@ -104,5 +137,32 @@ export class HolderChecker extends BaseChecker implements IHolderChecker {
       dexSupplys,
       topHolderSupplys,
     };
+  }
+
+  public async getTopHolderValidation() {
+    const holderData = await this.getHolderData();
+    const holderTokenData = [];
+
+    for (const holder of holderData.topHolderSupplys) {
+      const tokens = await this.connection.getTokenAccountsByOwner(
+        new PublicKey(holder.address),
+        {
+          programId: new PublicKey(TOKEN_PROGRAM_ID),
+        }
+      );
+
+      if (tokens && tokens.value.length !== 0) {
+        holderTokenData.push({
+          address: holder.address,
+          isValid: true,
+        });
+      } else
+        holderTokenData.push({
+          address: holder.address,
+          isValid: false,
+        });
+    }
+
+    return holderTokenData;
   }
 }
