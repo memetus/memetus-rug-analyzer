@@ -176,7 +176,7 @@ export class HolderChecker extends BaseChecker implements IHolderChecker {
     const holderData = await this.getHolderData();
     const holderTokenData = [];
 
-    for (const holder of holderData.topHolderSupplys) {
+    for (const holder of holderData.top50.holders) {
       const tokens = await this.connection.getTokenAccountsByOwner(
         new PublicKey(holder.address),
         {
