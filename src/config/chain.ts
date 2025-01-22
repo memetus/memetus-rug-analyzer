@@ -9,9 +9,9 @@ export const createConnection = () => {
   let connection: Connection | null = null;
 
   const endpoints = [
+    nodeEndpoint["quickNode"],
     nodeEndpoint["instantNode"],
     nodeEndpoint["helius"],
-    nodeEndpoint["quickNode"],
   ];
 
   for (const endpoint of endpoints) {
