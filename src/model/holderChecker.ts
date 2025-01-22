@@ -72,7 +72,7 @@ export class HolderChecker extends BaseChecker implements IHolderChecker {
     return creator;
   }
 
-  public async getTopHolders(range?: number) {
+  public async getTopHolders(range = 50) {
     try {
       const holders = (
         await this.connection.getTokenLargestAccounts(this.address)
@@ -91,12 +91,14 @@ export class HolderChecker extends BaseChecker implements IHolderChecker {
 
   public async getHolderData() {
     const totalSupply = await this.getTokenSupply();
-    const holders = await this.getTopHolders(20);
+    const holders = await this.getTopHolders(50);
 
     const dexSupplys: DexSupplyShape[] = [];
-    const topHolderSupplys: TopHolderSupplyShape[] = [];
+    const top50Supplys: TopHolderSupplyShape[] = [];
+    const top20Supplys: TopHolderSupplyShape[] = [];
+    const top10Supplys: TopHolderSupplyShape[] = [];
 
-    for (const holder of holders) {
+    holders.forEach(async (holder, index) => {
       const account = await this.connection.getParsedAccountInfo(
         holder.address
       );
@@ -105,11 +107,27 @@ export class HolderChecker extends BaseChecker implements IHolderChecker {
 
       const isDexAddress = new AddressChecker(address).isDexAddress();
       if (holder.uiAmount && address && !isDexAddress.isDex) {
-        topHolderSupplys.push({
-          address,
-          amount: holder.uiAmount,
-          percentage: (holder.uiAmount / totalSupply) * 100,
-        });
+        if (index < 10) {
+          top10Supplys.push({
+            address,
+            amount: holder.uiAmount,
+            percentage: (holder.uiAmount / totalSupply) * 100,
+          });
+        }
+        if (index < 20) {
+          top20Supplys.push({
+            address,
+            amount: holder.uiAmount,
+            percentage: (holder.uiAmount / totalSupply) * 100,
+          });
+        }
+        if (index < 50) {
+          top50Supplys.push({
+            address,
+            amount: holder.uiAmount,
+            percentage: (holder.uiAmount / totalSupply) * 100,
+          });
+        }
       } else if (
         holder.uiAmount &&
         address &&
@@ -121,21 +139,36 @@ export class HolderChecker extends BaseChecker implements IHolderChecker {
           amount: holder.uiAmount,
         });
       }
-    }
+    });
 
     const dexPercentage =
       (dexSupplys.reduce((acc, cur) => acc + cur.amount, 0) / totalSupply) *
       100;
-    const topHolderPercentage =
-      (topHolderSupplys.reduce((acc, cur) => acc + cur.amount, 0) /
-        totalSupply) *
+    const top10HolderPercentage =
+      (top10Supplys.reduce((acc, cur) => acc + cur.amount, 0) / totalSupply) *
+      100;
+    const top20HolderPercentage =
+      (top10Supplys.reduce((acc, cur) => acc + cur.amount, 0) / totalSupply) *
+      100;
+    const top50HolderPercentage =
+      (top10Supplys.reduce((acc, cur) => acc + cur.amount, 0) / totalSupply) *
       100;
 
     return {
       dexPercentage,
-      topHolderPercentage,
+      top10: {
+        percentage: top10HolderPercentage,
+        holders: top10Supplys,
+      },
+      top20: {
+        percentage: top20HolderPercentage,
+        holders: top20Supplys,
+      },
+      top50: {
+        percentage: top50HolderPercentage,
+        holders: top50Supplys,
+      },
       dexSupplys,
-      topHolderSupplys,
     };
   }
 
