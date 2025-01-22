@@ -1,9 +1,17 @@
 import { BaseChecker } from "@/src/model/baseChecker";
-import { Connection, PublicKey } from "@solana/web3.js";
+import { Connection, ParsedTransaction, PublicKey } from "@solana/web3.js";
 import { AddressChecker } from "@/src/module/addressChecker";
 import { getMint } from "@solana/spl-token";
-import { PUMPFUN_MINT_AUTHORITY } from "@/src/constant/address";
+import {
+  DEX_ADDRESS,
+  PUMPFUN_MINT_AUTHORITY,
+  SYSTEM_PROGRAM_ID,
+  TIMELOCK_ADDRESS,
+} from "@/src/constant/address";
 import { parseTokenAccountData } from "@/src/lib/parseAccount";
+import { logger } from "@/src/config/log";
+import { LockCheckerShape } from "@/src/types/lock";
+import { TransactionChecker } from "@/src/module/transactionChecker";
 
 interface IMetadataChecker {}
 
@@ -56,19 +64,132 @@ export class MetadataChecker extends BaseChecker implements IMetadataChecker {
     return { signature, creator };
   }
 
+  public async isCreatorLocked() {
+    try {
+      const { token, signature, address } = await this.getCreatorInfo();
+      const signatures = await this.connection.getSignaturesForAddress(
+        new PublicKey(token),
+        {
+          until: signature,
+        }
+      );
+
+      console.log(signatures);
+
+      if (!signatures || signatures.length === 0) {
+        console.log("No signatures found");
+        logger.error("No signatures found");
+        throw new Error("No signatures found");
+      }
+
+      const sigs = signatures.map((sig) => sig.signature);
+      const txDetails = await this.connection.getParsedTransactions(sigs, {
+        maxSupportedTransactionVersion: 0,
+      });
+
+      for (const tx of txDetails) {
+        if (tx && tx.transaction.message.instructions) {
+          for (const instruction of tx.transaction.message.instructions) {
+            if (
+              instruction.programId.toBase58() === TIMELOCK_ADDRESS.STREAMFLOW
+            ) {
+              return this.isStreamFlowLock(address, tx.transaction);
+            }
+          }
+        }
+      }
+    } catch (error) {
+      console.error(error);
+      logger.error("Failed to check lock", error);
+      throw new Error("Failed to check lock");
+    }
+  }
+
+  public async getCreatorTransaction() {
+    const { token, signature, address } = await this.getCreatorInfo();
+    const signatures = await this.connection.getSignaturesForAddress(
+      new PublicKey(token),
+      {
+        until: signature,
+      }
+    );
+
+    console.log(address);
+    console.log(token);
+    console.log(signature);
+    if (!signatures || signatures.length === 0) {
+      console.log("No signatures found");
+      logger.error("No signatures found");
+      throw new Error("No signatures found");
+    }
+
+    const sigs = signatures.map((sig) => sig.signature);
+    const txDetails = await this.connection.getParsedTransactions(sigs, {
+      maxSupportedTransactionVersion: 0,
+    });
+
+    if (!txDetails) {
+      console.log("Failed to get transaction details");
+      logger.error("Failed to get transaction details");
+      throw new Error("Failed to get transaction details");
+    }
+
+    const transactionChecker = new TransactionChecker();
+    const transfers = transactionChecker.parseTransfer(txDetails, address);
+
+    return [];
+  }
+
+  public async isStreamFlowLock(creator: string, tx: ParsedTransaction) {
+    try {
+      const checker: LockCheckerShape = {
+        programId: [],
+        token: null,
+        amount: 0,
+      };
+      const ins = tx.message.instructions;
+
+      for (const instruction of ins) {
+        if (
+          instruction.programId.toBase58() === TIMELOCK_ADDRESS.STREAMFLOW ||
+          instruction.programId.toBase58() === SYSTEM_PROGRAM_ID
+        ) {
+          checker.programId.push(instruction.programId.toBase58());
+        }
+      }
+
+      checker.token = tx.message.accountKeys[3].pubkey.toBase58();
+      const balance = await this.connection.getTokenAccountsByOwner(
+        new PublicKey(checker.token),
+        {
+          mint: this.address,
+        }
+      );
+
+      const parsed = parseTokenAccountData(balance.value[0].account.data);
+      checker.amount = parseFloat(parsed.amount.toString().slice(0, -6));
+
+      return checker;
+    } catch (error) {
+      console.error(error);
+      logger.error("Failed to check lock", error);
+      throw new Error("Failed to check lock");
+    }
+  }
+
   public async getCreatorInfo() {
     const { signature, creator } = await this.getTokenCreator();
 
-    const balance = await this.connection.getTokenAccountsByOwner(
+    const tokenInfo = await this.connection.getTokenAccountsByOwner(
       new PublicKey(creator),
       {
         mint: this.address,
       }
     );
 
-    if (!balance) throw new Error("Failed to get creator balance");
+    if (!tokenInfo) throw new Error("Failed to get creator balance");
 
-    const parsed = parseTokenAccountData(balance.value[0].account.data);
+    const parsed = parseTokenAccountData(tokenInfo.value[0].account.data);
 
     if (!parsed) throw new Error("Failed to parse creator balance");
 
@@ -76,7 +197,7 @@ export class MetadataChecker extends BaseChecker implements IMetadataChecker {
       address: creator,
       signature: signature,
       mint: this.address.toBase58(),
-      token: balance.value[0].pubkey.toBase58(),
+      token: tokenInfo.value[0].pubkey.toBase58(),
       balance: parseFloat(parsed.amount.toString().slice(0, -6)),
     };
   }
