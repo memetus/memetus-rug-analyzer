@@ -68,11 +68,12 @@ export class LiquidityChecker extends BaseChecker implements ILiquidityChecker {
       const mintInfo = (accInfo?.value?.data as ParsedAccountData).parsed?.info;
 
       lpReserve = lpReserve / Math.pow(10, mintInfo?.decimals);
-      const actualSupply = mintInfo?.supply / Math.pow(10, mintInfo?.decimals);
-      const burnAmt = lpReserve - actualSupply;
+      const supply = mintInfo?.supply / Math.pow(10, mintInfo?.decimals);
+      const burnAmt = lpReserve - supply;
       const burnPct = (burnAmt / lpReserve) * 100;
 
       return {
+        supply: supply,
         burnAmount: burnAmt,
         burnPercentage: burnPct,
         isLocked: burnPct === 100 ? true : false,
