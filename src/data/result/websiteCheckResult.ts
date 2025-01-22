@@ -13,7 +13,23 @@ export class WebsiteCheckResult
   extends BaseCheckResult
   implements IWebsiteCheckResult
 {
+  total: number;
+  urls: {
+    url: string;
+    isValid: boolean;
+    name: string;
+    description: string;
+    keywords: string;
+    canonical: string;
+    autor: string;
+    generator: string;
+    ipAddress: string;
+    location: string;
+    company: string;
+  }[];
   constructor(score: number) {
     super(score);
+    this.total = 0;
+    this.urls = [];
   }
 }
