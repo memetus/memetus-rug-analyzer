@@ -52,18 +52,42 @@ export class TwitterChecker implements ITwitterChecker {
     }
   }
 
-  public async getUserMentions(userId: string, nextToken?: string) {
-    try {
-      const mentions = await this.client.v2.userMentionTimeline(userId, {
-        max_results: 30,
-      });
+  public async getUserMentions(userId: string, all: boolean = false) {
+    if (!all) {
+      try {
+        const mentions = await this.client.v2.userMentionTimeline(userId, {
+          max_results: 100,
+        });
 
-      return mentions.data;
-    } catch (error) {
-      console.log(error);
-      logger.error("Failed to get mentions", error);
-      throw new Error("Failed to get mentions");
+        return mentions.data;
+      } catch (error) {
+        console.log(error);
+        logger.error("Failed to get mentions", error);
+        throw new Error("Failed to get mentions");
+      }
     }
+
+    let nextToken: string | null | undefined = undefined;
+    const mentionList = [];
+    while (all && nextToken !== null) {
+      try {
+        const mentions = await this.client.v2.userMentionTimeline(userId, {
+          max_results: 100,
+          pagination_token: nextToken,
+        });
+
+        mentionList.push([...mentions.data.data]);
+        nextToken = mentions.data.meta.next_token
+          ? mentions.data.meta.next_token
+          : null;
+      } catch (error) {
+        console.log(error);
+        logger.error("Failed to get mentions", error);
+        throw new Error("Failed to get mentions");
+      }
+    }
+
+    return mentionList;
   }
 
   public async getUserTweets(username?: string) {
