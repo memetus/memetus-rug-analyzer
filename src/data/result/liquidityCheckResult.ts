@@ -1,4 +1,5 @@
-import { BaseCheckResult } from "./baseCheckResult";
+import { BaseCheckResult } from "@/src/data/result/baseCheckResult";
+import { LiquidityLockedInfo, LPInfo } from "@/src/types/liquidity";
 
 interface ILiquidityCheckResult {}
 
@@ -13,7 +14,19 @@ export class LiquidityCheckResult
   extends BaseCheckResult
   implements ILiquidityCheckResult
 {
+  totalLiquidity: number;
+  totalLpCount: number;
+  totalLockedLiquidity: number;
+  lpLockedInfoList: LiquidityLockedInfo[];
+  lpList: LPInfo[];
+
   constructor(score: number) {
     super(score);
+
+    this.totalLiquidity = 0;
+    this.totalLpCount = 0;
+    this.totalLockedLiquidity = 0;
+    this.lpLockedInfoList = [];
+    this.lpList = [];
   }
 }
