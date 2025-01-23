@@ -8,19 +8,13 @@ import { createUmi } from "@metaplex-foundation/umi-bundle-defaults";
 export const createConnection = () => {
   let connection: Connection | null = null;
 
-  const endpoints = [
-    nodeEndpoint["quickNode"],
-    nodeEndpoint["instantNode"],
-    nodeEndpoint["helius"],
-  ];
+  const endpoint = nodeEndpoint["helius"];
 
-  for (const endpoint of endpoints) {
-    try {
-      connection = new Connection(endpoint, "confirmed");
-      return connection;
-    } catch (e) {
-      console.log(`Failed to connect to ${endpoint}`);
-    }
+  try {
+    connection = new Connection(endpoint, "confirmed");
+    return connection;
+  } catch (e) {
+    console.log(`Failed to connect to ${endpoint}`);
   }
 
   if (!connection) {
@@ -31,12 +25,7 @@ export const createConnection = () => {
 };
 
 export const createUmiEndpoint = () => {
-  const endpoints = [
-    nodeEndpoint["instantNode"],
-    nodeEndpoint["helius"],
-    nodeEndpoint["quickNode"],
-  ];
-
+  const endpoints = nodeEndpoint["helius"];
   for (const endpoint of endpoints) {
     try {
       return createUmi(endpoint);
