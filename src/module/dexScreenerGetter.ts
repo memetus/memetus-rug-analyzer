@@ -90,14 +90,23 @@ export class DexScreenerGetter implements IDexScreenerGetter {
   }
 
   public async getTokenCommunity(address: string) {
-    const response: DexScreenerResponseShape[] =
-      await this.getTokenSearchAddress(address);
+    try {
+      const response: DexScreenerResponseShape[] =
+        await this.getTokenSearchAddress(address);
 
-    if (response.length === 0) {
-      throw new Error("Failed to get token reference");
+      if (
+        response.length === 0 ||
+        !response[0].info ||
+        !("socials" in response[0].info)
+      ) {
+        return [];
+      }
+
+      const community = response[0].info.socials;
+      return community;
+    } catch (error) {
+      console.error(error);
+      throw new Error("Failed to get token community");
     }
-
-    const community = response[0].info.socials;
-    return community;
   }
 }
