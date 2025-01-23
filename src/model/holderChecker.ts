@@ -2,10 +2,12 @@ import { BaseChecker } from "@/src/model/baseChecker";
 import { Connection, ParsedAccountData, PublicKey } from "@solana/web3.js";
 import { DexSupplyShape } from "@/src/types/dex";
 import { AddressChecker } from "@/src/module/addressChecker";
-import { TopHolderSupplyShape } from "@/src/types/holder";
+import { HolderData, TopHolderSupplyShape } from "@/src/types/holder";
 import { TOKEN_PROGRAM_ID } from "@solana/spl-token";
 import { logger } from "@/src/config/log";
 import { HeliusModule } from "@/src/module/heliusModule";
+import { HolderCheckResult } from "@/src/data/result/holderCheckResult";
+import { parseTokenAccountData } from "@/src/lib/parseAccount";
 
 interface IHolderChecker {}
 
@@ -25,7 +27,29 @@ export class HolderChecker extends BaseChecker implements IHolderChecker {
     this.connection = connection;
   }
 
-  async check() {}
+  public async check() {
+    const checkResult = new HolderCheckResult();
+    const totalSupply = await this.getTokenSupply();
+    const { count } = await this.getHolderCount();
+    const holderData = await this.getHolderData(totalSupply, 10);
+    const holderValidation = await this.getTopHolderValidation(
+      holderData.top10
+    );
+    const { balance, percentage } = await this.getCreatorInfo(totalSupply);
+
+    const data: HolderData = {
+      totalHolderCount: count,
+      topHolderValidation: holderValidation,
+      creatorBalance: balance,
+      creatorPercentage: percentage,
+      ...holderData,
+    };
+
+    return checkResult.setDate({ holderData: data }).then(async () => {
+      const score = await checkResult.getScore();
+      return score;
+    });
+  }
 
   private async getTokenSupply() {
     try {
@@ -40,6 +64,49 @@ export class HolderChecker extends BaseChecker implements IHolderChecker {
       console.error(error);
       throw new Error("Failed to get token supply");
     }
+  }
+
+  public async getTokenCreator() {
+    const signature = await this.getTokenCreaetionSignature();
+
+    const transaction = await this.connection.getParsedTransaction(signature, {
+      maxSupportedTransactionVersion: 0,
+    });
+
+    if (!transaction) throw new Error("Failed to get transaction");
+
+    const creator =
+      transaction.transaction.message.accountKeys[0].pubkey.toBase58();
+
+    return { signature, creator };
+  }
+
+  public async getCreatorInfo(totalSupply: number) {
+    const { signature, creator } = await this.getTokenCreator();
+
+    const tokenInfo = await this.connection.getTokenAccountsByOwner(
+      new PublicKey(creator),
+      {
+        mint: this.address,
+      }
+    );
+
+    if (!tokenInfo) throw new Error("Failed to get creator balance");
+
+    const parsed = parseTokenAccountData(tokenInfo.value[0].account.data);
+
+    if (!parsed) throw new Error("Failed to parse creator balance");
+
+    const balance = parseFloat(parsed.amount.toString().slice(0, -6));
+    const percentage = (balance / totalSupply) * 100;
+    return {
+      address: creator,
+      signature: signature,
+      mint: this.address.toBase58(),
+      token: tokenInfo.value[0].pubkey.toBase58(),
+      balance,
+      percentage,
+    };
   }
 
   public async getTokenCreaetionSignature() {
@@ -57,7 +124,7 @@ export class HolderChecker extends BaseChecker implements IHolderChecker {
     return signatures[signatures.length - 1].signature;
   }
 
-  public async getTokenCreator() {
+  public async getLecagyCreator() {
     const signature = await this.getTokenCreaetionSignature();
 
     const transaction = await this.connection.getParsedTransaction(signature, {
@@ -89,57 +156,58 @@ export class HolderChecker extends BaseChecker implements IHolderChecker {
     }
   }
 
-  public async getHolderData() {
-    const totalSupply = await this.getTokenSupply();
-    const holders = await this.getTopHolders(50);
+  public async getHolderData(totalSupply: number, slice: number = 50) {
+    const holders = await this.getTopHolders(slice);
 
     const dexSupplys: DexSupplyShape[] = [];
     const top50Supplys: TopHolderSupplyShape[] = [];
     const top20Supplys: TopHolderSupplyShape[] = [];
     const top10Supplys: TopHolderSupplyShape[] = [];
 
-    holders.forEach(async (holder, index) => {
-      const account = await this.connection.getParsedAccountInfo(
-        holder.address
-      );
-      const address = (account.value?.data as ParsedAccountData)?.parsed?.info
-        ?.owner;
+    await Promise.all(
+      holders.map(async (holder, index) => {
+        const account = await this.connection.getParsedAccountInfo(
+          holder.address
+        );
+        const address = (account.value?.data as ParsedAccountData)?.parsed?.info
+          ?.owner;
 
-      const isDexAddress = new AddressChecker(address).isDexAddress();
-      if (holder.uiAmount && address && !isDexAddress.isDex) {
-        if (index < 10) {
-          top10Supplys.push({
-            address,
+        const isDexAddress = new AddressChecker(address).isDexAddress();
+        if (holder.uiAmount && address && !isDexAddress.isDex) {
+          if (index < 10) {
+            top10Supplys.push({
+              address,
+              amount: holder.uiAmount,
+              percentage: (holder.uiAmount / totalSupply) * 100,
+            });
+          }
+          if (index < 20) {
+            top20Supplys.push({
+              address,
+              amount: holder.uiAmount,
+              percentage: (holder.uiAmount / totalSupply) * 100,
+            });
+          }
+          if (index < 50) {
+            top50Supplys.push({
+              address,
+              amount: holder.uiAmount,
+              percentage: (holder.uiAmount / totalSupply) * 100,
+            });
+          }
+        } else if (
+          holder.uiAmount &&
+          address &&
+          isDexAddress.isDex &&
+          isDexAddress.name
+        ) {
+          dexSupplys.push({
+            name: isDexAddress.name,
             amount: holder.uiAmount,
-            percentage: (holder.uiAmount / totalSupply) * 100,
           });
         }
-        if (index < 20) {
-          top20Supplys.push({
-            address,
-            amount: holder.uiAmount,
-            percentage: (holder.uiAmount / totalSupply) * 100,
-          });
-        }
-        if (index < 50) {
-          top50Supplys.push({
-            address,
-            amount: holder.uiAmount,
-            percentage: (holder.uiAmount / totalSupply) * 100,
-          });
-        }
-      } else if (
-        holder.uiAmount &&
-        address &&
-        isDexAddress.isDex &&
-        isDexAddress.name
-      ) {
-        dexSupplys.push({
-          name: isDexAddress.name,
-          amount: holder.uiAmount,
-        });
-      }
-    });
+      })
+    );
 
     const dexPercentage =
       (dexSupplys.reduce((acc, cur) => acc + cur.amount, 0) / totalSupply) *
@@ -172,11 +240,14 @@ export class HolderChecker extends BaseChecker implements IHolderChecker {
     };
   }
 
-  public async getTopHolderValidation() {
-    const holderData = await this.getHolderData();
+  public async getTopHolderValidation({
+    holders,
+  }: {
+    holders: { address: string }[];
+  }) {
     const holderTokenData = [];
 
-    for (const holder of holderData.top50.holders) {
+    for (const holder of holders) {
       const tokens = await this.connection.getTokenAccountsByOwner(
         new PublicKey(holder.address),
         {
