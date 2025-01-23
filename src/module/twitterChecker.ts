@@ -21,8 +21,6 @@ export class TwitterChecker implements ITwitterChecker {
     this.client = createTwitterClient();
   }
 
-  public async check() {}
-
   public async searchUsername(username?: string) {
     try {
       const account = username || this.account;
@@ -49,6 +47,38 @@ export class TwitterChecker implements ITwitterChecker {
       console.log(error);
       logger.error("Failed to get user data", error);
       throw new Error("Failed to get user data");
+    }
+  }
+
+  public async getTweet(tweetId: string) {
+    try {
+      const tweet = await this.client.v2.singleTweet(tweetId, {
+        "tweet.fields": [
+          "attachments",
+          "author_id",
+          "context_annotations",
+          "conversation_id",
+          "created_at",
+          "entities",
+          "geo",
+          "id",
+          "in_reply_to_user_id",
+          "lang",
+          "public_metrics",
+          "possibly_sensitive",
+          "referenced_tweets",
+          "reply_settings",
+          "source",
+          "text",
+          "withheld",
+        ],
+      });
+
+      return tweet.data;
+    } catch (error) {
+      console.log(error);
+      logger.error("Failed to get tweet", error);
+      throw new Error("Failed to get tweet");
     }
   }
 
