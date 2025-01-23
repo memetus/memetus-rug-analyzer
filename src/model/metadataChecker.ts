@@ -3,7 +3,6 @@ import { Connection, ParsedTransaction, PublicKey } from "@solana/web3.js";
 import { AddressChecker } from "@/src/module/addressChecker";
 import { getMint } from "@solana/spl-token";
 import {
-  DEX_ADDRESS,
   PUMPFUN_MINT_AUTHORITY,
   SYSTEM_PROGRAM_ID,
   TIMELOCK_ADDRESS,
