@@ -1,4 +1,4 @@
-import { Txn, Volume, DataChangeShpae } from "@/src/types/market";
+import { Txn, Volume, DataChangeShpae, MarketData } from "@/src/types/market";
 import { BaseCheckResult } from "@/src/data/result/baseCheckResult";
 import { BaseGrowth } from "@/src/data/baseGrowth";
 
@@ -68,5 +68,95 @@ export class MarketCheckResult
     this.marketCap = 0;
     this.fdv = 0;
     this.marketGrowth = new BaseGrowth();
+  }
+
+  public async setData({ data }: { data: MarketData }) {
+    this.priceNative = data.priceNative;
+    this.priceUsd = data.priceUsd;
+    this.m5Txns = data.m5Txns;
+    this.h1Txns = data.h1Txns;
+    this.h6Txns = data.h6Txns;
+    this.h24Txns = data.h24Txns;
+    this.volume = data.volume;
+    this.priceChange = data.priceChange;
+    this.marketCap = data.marketCap;
+    this.fdv = data.fdv;
+    this.volumeChange = data.volumeChange;
+    this.marketGrowth = data.marketGrowth;
+  }
+
+  public async getScore() {
+    if (
+      this.h24Txns.buy > this.h24Txns.sell &&
+      this.h6Txns.buy > this.h6Txns.sell &&
+      this.h1Txns.buy > this.h1Txns.sell
+    ) {
+      this.score += 10;
+      if (this.h24Txns.buy > this.h24Txns.sell * 1.5) {
+        this.score += 10;
+      }
+      if (this.h24Txns.buy < this.h6Txns.buy) {
+        this.score += 10;
+      }
+      if (this.h6Txns.buy < this.h1Txns.buy) {
+        this.score += 10;
+      }
+    } else if (
+      this.h24Txns.buy < this.h24Txns.sell &&
+      this.h6Txns.buy < this.h6Txns.sell &&
+      this.h1Txns.buy < this.h1Txns.sell
+    ) {
+      this.score -= 10;
+      if (this.h24Txns.buy * 1.5 < this.h24Txns.sell) {
+        this.score -= 10;
+      }
+      if (this.h24Txns.sell < this.h6Txns.sell) {
+        this.score -= 10;
+      }
+      if (this.h6Txns.sell < this.h1Txns.sell) {
+        this.score -= 10;
+      }
+    }
+
+    if (this.volume.h24 > this.volume.h6 && this.volume.h6 > this.volume.h1) {
+      this.score -= 10;
+      if (this.volume.h24 > this.volume.h6 * 1.5) {
+        this.score -= 10;
+      }
+      if (this.volume.h6 > this.volume.h1 * 1.5) {
+        this.score -= 10;
+      }
+    } else if (
+      this.volume.h24 < this.volume.h6 &&
+      this.volume.h6 < this.volume.h1
+    ) {
+      this.score += 10;
+      if (this.volume.h24 * 1.5 < this.volume.h6) {
+        this.score += 10;
+      }
+      if (this.volume.h6 * 1.5 < this.volume.h1) {
+        this.score += 10;
+      }
+    }
+
+    if (this.priceChange.h24 > 0) {
+      if (this.priceChange.h24 < this.priceChange.h6) {
+        this.score += 10;
+      }
+      if (this.priceChange.h6 < this.priceChange.h1) {
+        this.score += 10;
+      }
+    } else if (this.priceChange.h24 < 0) {
+      if (this.priceChange.h24 > this.priceChange.h6) {
+        this.score -= 10;
+      }
+      if (this.priceChange.h6 > this.priceChange.h1) {
+        this.score -= 10;
+      }
+    }
+
+    if (this.score > 100) return 100;
+    else if (this.score < -100) return -100;
+    return this.score;
   }
 }
