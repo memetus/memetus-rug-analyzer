@@ -19,7 +19,8 @@ export class HolderCheckResult
   top50Percentage: number;
   topHolderValidation: number;
 
-  constructor(score: number) {
+  constructor() {
+    const score = 0;
     super(score);
     this.holderCount = 0;
     this.top10Percentage = 0;

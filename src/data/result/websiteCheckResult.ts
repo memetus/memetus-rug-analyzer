@@ -27,7 +27,8 @@ export class WebsiteCheckResult
     location: string;
     company: string;
   }[];
-  constructor(score: number) {
+  constructor() {
+    const score = 0;
     super(score);
     this.total = 0;
     this.urls = [];

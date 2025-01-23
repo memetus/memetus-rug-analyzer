@@ -20,7 +20,8 @@ export class LiquidityCheckResult
   lpLockedInfoList: LiquidityLockedInfo[];
   lpList: LPInfo[];
 
-  constructor(score: number) {
+  constructor() {
+    const score = 0;
     super(score);
 
     this.totalLiquidity = 0;

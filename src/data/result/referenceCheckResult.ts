@@ -13,7 +13,8 @@ export class ReferenceCheckResult
   extends BaseCheckResult
   implements IReferenceCheckResult
 {
-  constructor(score: number) {
+  constructor() {
+    const score = 0;
     super(score);
   }
 }

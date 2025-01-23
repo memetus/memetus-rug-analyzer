@@ -28,7 +28,8 @@ export class MarketCheckResult
   fdv: number;
   marketGrowth: BaseGrowth;
 
-  constructor(score: number) {
+  constructor() {
+    const score = 0;
     super(score);
     this.priceNative = 0;
     this.priceUsd = 0;

@@ -26,7 +26,8 @@ export class MetadataCheckResult
   isCreatorLocked: boolean;
   isCreatorSold: boolean;
 
-  constructor(score: number) {
+  constructor() {
+    const score = 0;
     super(score);
     this.name = undefined;
     this.symbol = undefined;

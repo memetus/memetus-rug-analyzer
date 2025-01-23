@@ -16,7 +16,7 @@ export class BaseCheckResult implements IBaseCheckResult {
     this.score = score;
   }
 
-  public async getScore() {
+  public async _getScore() {
     return this.score;
   }
 }
