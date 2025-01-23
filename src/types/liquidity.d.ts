@@ -19,6 +19,6 @@ export type LiquidityData = {
   totalLockedLiquidity: number;
   totalLockedLiquidityPercentage: number;
   lpLockedInfoList: (LiquidityLockedInfo | undefined)[];
-  lpList: LPInfo[];
-  marketCap: number;
+  lpList: (LPInfo | undefined)[];
+  marketCap: number | undefined;
 };
