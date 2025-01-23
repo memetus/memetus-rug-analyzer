@@ -12,3 +12,13 @@ export type LiquidityLockedInfo = {
   isLocked: boolean;
   pair: string;
 };
+
+export type LiquidityData = {
+  totalLiquidity: number;
+  totalLpCount: number;
+  totalLockedLiquidity: number;
+  totalLockedLiquidityPercentage: number;
+  lpLockedInfoList: (LiquidityLockedInfo | undefined)[];
+  lpList: LPInfo[];
+  marketCap: number;
+};
