@@ -7,8 +7,9 @@ interface IMarketCheckResult {}
 /**
  * MarketCheckResult
  * @implements {IMarketCheckResult}
- * @description This class is responsible for checking the market of a project.
- * It should check if the project has a market.
+ * @description This class is responsible for checking the market related data of a project.
+ * The purpose of this class is to check the trend of the price, volume, and transactions of a project.
+ * This class usually return nagaive score.
  */
 
 export class MarketCheckResult
