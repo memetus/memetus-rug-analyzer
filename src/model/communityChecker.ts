@@ -2,8 +2,9 @@ import { BaseChecker } from "@/src/model/baseChecker";
 import { DexScreenerGetter } from "@/src/module/dexScreenerGetter";
 import { BaseCommunity } from "@/src/data/baseCommunity";
 import { TwitterChecker } from "@/src/module/twitterChecker";
-import { TwitterApi } from "twitter-api-v2";
-import { createTwitterClient } from "@/src/config/twitter";
+import { CommunityCheckResult } from "../data/result/communityCheckResult";
+import { DiscordChecker } from "@/src/module/discordChecker";
+import { TelegramChecker } from "@/src/module/telegramChecker";
 
 interface ICommunityChecker {}
 
@@ -21,7 +22,14 @@ export class CommunityChecker extends BaseChecker implements ICommunityChecker {
     this.address = address;
   }
 
-  public async check() {}
+  public async check() {
+    const checkResult = new CommunityCheckResult();
+    const data = await this.getCommunityInfo();
+    return checkResult.setData({ baseCommunity: data }).then(async () => {
+      const score = await checkResult.getScore();
+      return score;
+    });
+  }
 
   public async getCommunity() {
     const communties = await new DexScreenerGetter().getTokenCommunity(
@@ -33,21 +41,36 @@ export class CommunityChecker extends BaseChecker implements ICommunityChecker {
 
   public async getCommunityInfo() {
     const communities = await this.getCommunity();
-
     const baseCommunity = new BaseCommunity();
+    if (communities.length === 0) return baseCommunity;
 
     for (const com of communities) {
-      switch (com.type) {
-        case "twitter":
-          const twitter = await this.handleTwitter(com.url);
-          baseCommunity.twitter = twitter;
+      if (com.type === "twitter") {
+        const twitter = this.handleTwitter(com.url);
+        baseCommunity.twitter = twitter;
+      } else if (com.type === "discord") {
+        const discord = this.handleDiscord(com.url);
+        baseCommunity.discord = discord;
+      } else if (com.type === "telegram") {
+        const telegram = this.handleTelegram(com.url);
+        baseCommunity.telegram = telegram;
       }
     }
+    return baseCommunity;
   }
 
-  public async handleTwitter(handle: string) {
+  public handleTwitter(handle: string) {
     const twitterChecker = new TwitterChecker(handle);
-
     return twitterChecker;
+  }
+
+  public handleDiscord(handle: string) {
+    const discordChecker = new DiscordChecker(handle);
+    return discordChecker;
+  }
+
+  public handleTelegram(handle: string) {
+    const telegramChecker = new TelegramChecker(handle);
+    return telegramChecker;
   }
 }
