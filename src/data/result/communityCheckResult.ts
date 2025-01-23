@@ -81,7 +81,6 @@ export class CommunityCheckResult
     if (this.score === -100) return this._getScore();
 
     this.score += this.isTwitterVerified ? 20 : -20;
-    console.log("verified", this.score);
     this.score +=
       this.twitterFollowers > 10000
         ? 20
@@ -92,7 +91,6 @@ export class CommunityCheckResult
         : this.twitterFollowers > 500
         ? 5
         : 0;
-    console.log("followers", this.score);
     this.score +=
       this.tweetCount > 1000
         ? 20
@@ -104,7 +102,6 @@ export class CommunityCheckResult
         ? 5
         : 0;
 
-    console.log("tweet", this.score);
     this.score +=
       this.mediaCount > 100
         ? 20
@@ -116,7 +113,6 @@ export class CommunityCheckResult
         ? 5
         : 0;
 
-    console.log("media", this.score);
     this.score +=
       this.descriptionPoint > 5 ? 5 : this.descriptionPoint > 3 ? 3 : 0;
     this.score += this.urlPoint.length > 0 ? 5 : 0;
