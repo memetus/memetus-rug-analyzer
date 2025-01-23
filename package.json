@@ -47,6 +47,7 @@
     "@langchain/community": "^0.3.26",
     "@langchain/core": "^0.3.33",
     "@langchain/langgraph": "^0.2.41",
+    "@langchain/openai": "^0.3.17",
     "@metaplex-foundation/mpl-token-metadata": "^3.3.0",
     "@metaplex-foundation/umi": "^1.0.0",
     "@metaplex-foundation/umi-bundle-defaults": "^1.0.0",

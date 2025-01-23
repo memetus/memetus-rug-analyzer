@@ -20,6 +20,9 @@ importers:
       '@langchain/langgraph':
         specifier: ^0.2.41
         version: 0.2.41(@langchain/core@0.3.33(openai@4.80.0(ws@7.5.10(bufferutil@4.0.9)(utf-8-validate@5.0.10))(zod@3.24.1)))
+      '@langchain/openai':
+        specifier: ^0.3.17
+        version: 0.3.17(@langchain/core@0.3.33(openai@4.80.0(ws@7.5.10(bufferutil@4.0.9)(utf-8-validate@5.0.10))(zod@3.24.1)))(ws@7.5.10(bufferutil@4.0.9)(utf-8-validate@5.0.10))
       '@metaplex-foundation/mpl-token-metadata':
         specifier: ^3.3.0
         version: 3.3.0(@metaplex-foundation/umi@1.0.0)
