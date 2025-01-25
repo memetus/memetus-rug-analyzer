@@ -1,0 +1,661 @@
+{
+  "address": "6AJcP7wuLwmRYLBNbi825wgguaPsWzPBEHcHndpRpump",
+  "creatorAddress": "DY1dDr3m63AJnVuyHzWVQUQPmC3u1pdHi1tQ5KUstdG7",
+  "creatorTokenAddress": "4BSUFKNxCEHEHxQvre84xqFfUUjmB4z33LCzKJCNtgFT",
+  "creatorBalance": 0,
+  "creatorPercentage": 0,
+  "creatorLock": { "isLocked": true, "lockAmount": "49999999" },
+  "creatorSignature": "2MB6wfF39iobhzw6JbjL5E36gUPXqSRQvP8Bk4HbJWhLv2wamWBUG7Tu2aZ4rcsZjxryamdpR2b7nBftKgtsk1Vt",
+  "tokenName": "Vine Coin",
+  "tokenSymbol": "VINE",
+  "totalSupply": 999992171.08895,
+  "initialized": true,
+  "primarySold": false,
+  "mutability": false,
+  "mintability": false,
+  "freezability": false,
+  "pumpfun": true,
+  "metadataPda": "895AYR4LWKnR9hF2QGjHUVSBSZ6p6tfd1ujeCMsuo5uC",
+  "isTwitterExist": true,
+  "isTelegramExist": false,
+  "isDiscordExist": false,
+  "isTwitterVerified": true,
+  "twitterFollowers": 119244,
+  "tweetCount": 2588,
+  "mediaCount": 273,
+  "twitterHashTags": [],
+  "twitterCashTags": [],
+  "twitterMentions": [
+    { "start": 8, "end": 17, "username": "hqtrivia" },
+    { "start": 18, "end": 23, "username": "vine" },
+    { "start": 24, "end": 33, "username": "bighuman" }
+  ],
+  "twitterLastUpdated": "2025-01-25T04:38:04.000Z",
+  "createTwitterAccountAt": "2007-05-27T00:46:22.000Z",
+  "totalHolder": 113933,
+  "topHolders": [
+    {
+      "percentage": 5000039.144861612,
+      "address": "CvAN3FYtSDQ6vrnJBmNJWWCzoeCzQs2BX85NVuoFcg87",
+      "balance": 49999999999999
+    },
+    {
+      "percentage": 2931437.403747482,
+      "address": "ASTyfSima4LLAdDgoFGkgqoKowG1LZFDr9fAQrg7iaJZ",
+      "balance": 29314144537848
+    },
+    {
+      "percentage": 2888840.0036695264,
+      "address": "u6PJ8DtQuPFnfmwHbGFULQ4u4EgjDiyYKjVEsynXq2w",
+      "balance": 28888173871981
+    },
+    {
+      "percentage": 2602912.614049726,
+      "address": "6EAaPqnwT54YnYfCRyupN8rK25i2hbguBFcbfVQ8hGWj",
+      "balance": 26028922360784
+    },
+    {
+      "percentage": 2053254.5988792176,
+      "address": "Fnz5CaHjX8SBuJAL6cKwLVY6QnAT7o5HNxz47qbYzMMW",
+      "balance": 20532385241316
+    },
+    {
+      "percentage": 1478631.9208747842,
+      "address": "AfGiE2ewhDARAaJZgGfoPUfXsG93KPYavjEDbe5vBhrk",
+      "balance": 14786203447970
+    },
+    {
+      "percentage": 1395965.146664462,
+      "address": "A77HErqtfN1hLLpvZ9pCtu66FEtM8BveoaKbbMoZ4RiR",
+      "balance": 13959542177775
+    },
+    {
+      "percentage": 1380742.8197315184,
+      "address": "6Ge32v1gWV4KR8tGiEBPHqd2y3pDs7xMtm7YMrW3gMrw",
+      "balance": 13807320100188
+    },
+    {
+      "percentage": 1192689.9313610827,
+      "address": "J9HqxT4U39B45YcXxL4B1GZzdhSrXFr2N2Lam4bXrQeB",
+      "balance": 11926805938977
+    },
+    {
+      "percentage": 1167058.3445560697,
+      "address": "FAYfNAK7e56rv34ZkxPn9xAptWS1YECrA6zNh97aMAGY",
+      "balance": 11670492077601
+    },
+    {
+      "percentage": 1143773.1904827696,
+      "address": "9W263tnZPFb2JEp8QUiAmpypEVZRUuhBodUM9bQTCfU5",
+      "balance": 11437642359842
+    },
+    {
+      "percentage": 1054518.4408927744,
+      "address": "6rg2rfZ6Sim6j63LXvaLgbWicVGWhJUYHkCxgSHZBCqs",
+      "balance": 10545101851617
+    },
+    {
+      "percentage": 993596.0003224062,
+      "address": "2BocdyQGg3apZetbQNdPqGDESRMxBsYmTCUCmEcgrejv",
+      "balance": 9935882215477
+    },
+    {
+      "percentage": 925640.7309898472,
+      "address": "6eBx4MP9f9VbjrZrDYJitR6QfYhZ1NVg3c7wkZiwCowS",
+      "balance": 9256334842309
+    },
+    {
+      "percentage": 915815.0833062255,
+      "address": "8quVxKzc21GybehhMKwhiuuVks9eg1carGoBUuqpZJ1a",
+      "balance": 9158079134714
+    },
+    {
+      "percentage": 847388.3576954771,
+      "address": "3EqUQwk7wuZWJA1LahJqzZajGKbQwcvQAkLydkHxrU3s",
+      "balance": 8473817235674
+    },
+    {
+      "percentage": 680105.3244840901,
+      "address": "8ai8kRH3zrtG3N6dXSsUdb4WD1iCMnjRQXpmYCVvUoZE",
+      "balance": 6801000000000
+    },
+    {
+      "percentage": 677808.547982831,
+      "address": "CCMJ8aCwkDwDyZXV3KVANxpZiwBgg9u4UCeCX1hTTdrM",
+      "balance": 6778032414800
+    },
+    {
+      "percentage": 643352.385776802,
+      "address": "2SrC4FhX3kZCwA9G9RUDZ826zZKLQfFECB4TawRas74V",
+      "balance": 6433473490282
+    },
+    {
+      "percentage": 526568.429728598,
+      "address": "HHRbo3xaKL8fsvytHpX9ehNCpivJc4vPb5zWjUMjrYNc",
+      "balance": 5265643072712
+    },
+    {
+      "percentage": 511149.1976637018,
+      "address": "65qGwfc7kw5pTvBzSqm1Cvgh7FYNkXVpDrxJzHNJmEC5",
+      "balance": 5111451959221
+    },
+    {
+      "percentage": 467592.076548375,
+      "address": "HpJ6bsNhW4ftV1E1KtSwvr9yQ55ZbHaxMVvgney6gpoY",
+      "balance": 4675884158116
+    },
+    {
+      "percentage": 465412.3165999282,
+      "address": "9YGd2uCJj9XuLtrFmyi4jVJb7zqhya7Vbk4KGHpZrYNJ",
+      "balance": 4654086729283
+    },
+    {
+      "percentage": 461074.2848083632,
+      "address": "GGeEroxtu3xWZGsbqqpNBtVRhkMDQh9WwYAGWbgAeQt7",
+      "balance": 4610706750988
+    },
+    {
+      "percentage": 452268.91837953264,
+      "address": "AVAZvHLR2PcWpDf8BXY4rVxNHYRBytycHkcB5z5QNXYm",
+      "balance": 4522653776064
+    },
+    {
+      "percentage": 392221.0638062204,
+      "address": "52AYS4VdJkMtLMpr6vTAaa18qZmHEBPg8EHnxbYvi5uZ",
+      "balance": 3922179931424
+    },
+    {
+      "percentage": 380610.23314276,
+      "address": "CskQrvhZQYsjuzkwqKTS2cxAoBph7rcBj3tDHLHWZ5Dn",
+      "balance": 3806072533791
+    },
+    {
+      "percentage": 376534.52101397223,
+      "address": "2ovj9YxBE4NGyZEFBLyHAb7wxJHgHo1rtjdGLeG3JGDT",
+      "balance": 3765315731587
+    },
+    {
+      "percentage": 355216.80987390794,
+      "address": "EiuLXiogQws7CLoYspvG7Xg9vd5jqmkfc8Fgx3vwqnvF",
+      "balance": 3552140289131
+    },
+    {
+      "percentage": 351179.8385840188,
+      "address": "3y1jvCpZ4HbHYNvuPcJ4vRHub9TBSYXc3yrBFRjKmgrH",
+      "balance": 3511770892283
+    },
+    {
+      "percentage": 332895.74413276976,
+      "address": "8ZniDsMmxUhK616ekXRf2gge1dZ5aGsViyhSbwH3GaH8",
+      "balance": 3328931379216
+    },
+    {
+      "percentage": 324386.4315339183,
+      "address": "3ZvDVJLq3yoCWMMjBU7dDdPySNPi8FJbWiiDy3bAPtKF",
+      "balance": 3243838919414
+    },
+    {
+      "percentage": 302345.5235057099,
+      "address": "CdFjn99C4VUjpqayV4fnf2w5JUiF254LJTamkhdwEqqT",
+      "balance": 3023431564695
+    },
+    {
+      "percentage": 296992.86247430276,
+      "address": "7BqxS73oFpGGfjTHikqM149qG3d4etueYVKWTmq4g2AY",
+      "balance": 2969905373436
+    },
+    {
+      "percentage": 294699.0369040464,
+      "address": "kCVKJ3nuDH1twVXUJCWXsnPTswiHgEV3heYhd1g81E2",
+      "balance": 2946967297315
+    },
+    {
+      "percentage": 292947.23474224313,
+      "address": "GdsGUHWuKf3gFNjDY8FNJvf6jU5yJ6icyLpxsZFHGJre",
+      "balance": 2929449412844
+    },
+    {
+      "percentage": 288009.73343228456,
+      "address": "31cQSKeQ86Rr2Apf4xNpFPNQwwGQrUtPJHx7cZJ4cnKk",
+      "balance": 2880074786297
+    },
+    {
+      "percentage": 287043.0314306606,
+      "address": "4E2zbwMuheneS3FniPhPwhJyauwvnuHx6SZR9ag8LmW3",
+      "balance": 2870407841963
+    },
+    {
+      "percentage": 277634.0229256699,
+      "address": "FRqj7Vav9twL2m5sB4WWfdhYcuGUGYYJnxKucNnsgaMQ",
+      "balance": 2776318493536
+    },
+    {
+      "percentage": 276820.80671867257,
+      "address": "9KojyjpTxnDFmjSoxAzEiCBpLMqXKx1Ji7MY6Q3fGTw7",
+      "balance": 2768186395132
+    },
+    {
+      "percentage": 263049.45564068994,
+      "address": "HJ8YtiyRAKXgKhe4kLRp6rqkxU9ZYHQ5F4mywzBULLE8",
+      "balance": 2630473962499
+    },
+    {
+      "percentage": 250515.27522330638,
+      "address": "9DYbNzkjgZzZh7vN6j8oHBwt37JMeHsDRHCWAM2nqqJJ",
+      "balance": 2505133139615
+    },
+    {
+      "percentage": 246608.63867709637,
+      "address": "5sTQ5ih7xtctBhMXHr3f1aWdaXazWrWfoehqWdqWnTFP",
+      "balance": 2466067080000
+    },
+    {
+      "percentage": 226865.40699689166,
+      "address": "32QeW9Ej8X5Z1Ka1CMcz1u2FHom9C35vdJHJTwnukwqN",
+      "balance": 2268636308878
+    },
+    {
+      "percentage": 214520.18024500957,
+      "address": "EVZWT6SkCyPXG6yn2JTzYTCbfL9paXJZh4ZLvxpqAiSS",
+      "balance": 2145185007856
+    },
+    {
+      "percentage": 214085.89425982322,
+      "address": "pDR9u4jC1xPquZLaZBypdCVHd171aXM7jNKUceSdDMx",
+      "balance": 2140842182004
+    },
+    {
+      "percentage": 212486.1813745133,
+      "address": "BCjpgg9U8kYAQX9h2CyoV155dZZ34ntvgiJSUarvkYx3",
+      "balance": 2124845178391
+    },
+    {
+      "percentage": 202303.0722909581,
+      "address": "954TSh1y87WpiGiAstcTMo8JZWe21UjF2xF9jwhWkQ8C",
+      "balance": 2023014884782
+    },
+    {
+      "percentage": 202005.10566100385,
+      "address": "G8AJCLJGpSe7GH4NCFrcUBe6ycE65ueKHhXVC2AZvtFA",
+      "balance": 2020035241810
+    }
+  ],
+  "top10Validation": [
+    {
+      "address": "CvAN3FYtSDQ6vrnJBmNJWWCzoeCzQs2BX85NVuoFcg87",
+      "validation": true
+    },
+    {
+      "address": "ASTyfSima4LLAdDgoFGkgqoKowG1LZFDr9fAQrg7iaJZ",
+      "validation": true
+    },
+    {
+      "address": "u6PJ8DtQuPFnfmwHbGFULQ4u4EgjDiyYKjVEsynXq2w",
+      "validation": true
+    },
+    {
+      "address": "6EAaPqnwT54YnYfCRyupN8rK25i2hbguBFcbfVQ8hGWj",
+      "validation": true
+    },
+    {
+      "address": "Fnz5CaHjX8SBuJAL6cKwLVY6QnAT7o5HNxz47qbYzMMW",
+      "validation": true
+    },
+    {
+      "address": "5Q544fKrFoe6tsEbD7S8EmxGTJYAKtTVhAW5Q5pge4j1",
+      "validation": true
+    },
+    {
+      "address": "AfGiE2ewhDARAaJZgGfoPUfXsG93KPYavjEDbe5vBhrk",
+      "validation": true
+    },
+    {
+      "address": "A77HErqtfN1hLLpvZ9pCtu66FEtM8BveoaKbbMoZ4RiR",
+      "validation": true
+    },
+    {
+      "address": "6Ge32v1gWV4KR8tGiEBPHqd2y3pDs7xMtm7YMrW3gMrw",
+      "validation": true
+    },
+    {
+      "address": "J9HqxT4U39B45YcXxL4B1GZzdhSrXFr2N2Lam4bXrQeB",
+      "validation": true
+    }
+  ],
+  "totalLiquidity": 20837694.869999997,
+  "totalLpCount": 30,
+  "totalLockedLiquidity": 4043.1492074919997,
+  "totalLockedLiquidityPercentage": 71.97832821355034,
+  "lpLockedInfoList": [
+    {
+      "supply": 1574.026556158,
+      "burnAmount": 4043.1492074919997,
+      "burnPercentage": 71.97832821355034,
+      "isLocked": false,
+      "pair": "58fzJMbX5PatnfJPqWWsqkVFPRKptkbb5r2vCw4Qq3z9"
+    }
+  ],
+  "lpList": [
+    {
+      "name": "raydium",
+      "pair": "58fzJMbX5PatnfJPqWWsqkVFPRKptkbb5r2vCw4Qq3z9",
+      "liquidity": 9967854.26,
+      "lpPercentage": 100
+    },
+    {
+      "name": "meteora",
+      "pair": "6eBx4MP9f9VbjrZrDYJitR6QfYhZ1NVg3c7wkZiwCowS",
+      "liquidity": 3924020.87,
+      "lpPercentage": 28.246876921071205
+    },
+    {
+      "name": "raydium",
+      "pair": "GdsGUHWuKf3gFNjDY8FNJvf6jU5yJ6icyLpxsZFHGJre",
+      "liquidity": 1531399.74,
+      "lpPercentage": 9.92914768690756
+    },
+    {
+      "name": "meteora",
+      "pair": "EVZWT6SkCyPXG6yn2JTzYTCbfL9paXJZh4ZLvxpqAiSS",
+      "liquidity": 921960.47,
+      "lpPercentage": 5.64054570535171
+    },
+    {
+      "name": "meteora",
+      "pair": "HJ8YtiyRAKXgKhe4kLRp6rqkxU9ZYHQ5F4mywzBULLE8",
+      "liquidity": 799276.79,
+      "lpPercentage": 4.6619978681189815
+    },
+    {
+      "name": "orca",
+      "pair": "3tYQYxLB1vb8oo4Azrs1MGXJcgWKH3KmZ6p51HbU7X6i",
+      "liquidity": 788038.41,
+      "lpPercentage": 4.3944580456763065
+    },
+    {
+      "name": "raydium",
+      "pair": "7UC3r5sZfxNWJjhKa6RWupSajELV2SNqUE5UxKYKE1qk",
+      "liquidity": 675081.01,
+      "lpPercentage": 3.6279792416676475
+    },
+    {
+      "name": "orca",
+      "pair": "8HwsY8kyGdKJihAJj4NEH1awqGzqt9rkxm4tGADouAGY",
+      "liquidity": 538172,
+      "lpPercentage": 2.8109136218521367
+    },
+    {
+      "name": "meteora",
+      "pair": "73sWxVfZD5fWcMLgBN7L7ppx197qbGS5Si1fEajzE5AL",
+      "liquidity": 453011.87,
+      "lpPercentage": 2.311424748343285
+    },
+    {
+      "name": "meteora",
+      "pair": "C54GgFwrA3BXrJRXBTsrJdg859cXyjMVBGP6ZLPErL79",
+      "liquidity": 342764.92,
+      "lpPercentage": 1.718845317953371
+    },
+    {
+      "name": "raydium",
+      "pair": "6M9jCgMMKWjfzAEZNi6pAjvzLngSGYsC3DPAXNnFfmQs",
+      "liquidity": 340241.58,
+      "lpPercentage": 1.6775691125878893
+    },
+    {
+      "name": "meteora",
+      "pair": "HQPhDoFvNbNVCN51KCPc51s8gGeoPjnUM7Sp6ZtkJtoD",
+      "liquidity": 122711.95,
+      "lpPercentage": 0.6013955073995522
+    },
+    {
+      "name": "meteora",
+      "pair": "6c69ghAh4AVUCPPY14iC8vazt861aFK3fBtrHWVQqTCz",
+      "liquidity": 93354.72,
+      "lpPercentage": 0.45543578593525763
+    },
+    {
+      "name": "meteora",
+      "pair": "HDMoELsey59oTidjA7hWT7s96Dw7Sagx1GtVGWP2EC75",
+      "liquidity": 81675.34,
+      "lpPercentage": 0.396875950714083
+    },
+    {
+      "name": "meteora",
+      "pair": "6N8ogrBHUDytkGaddLYodtCCPPb3Xcs6dtE8dceKfNEj",
+      "liquidity": 45155.47,
+      "lpPercentage": 0.21893859074756675
+    },
+    {
+      "name": "orca",
+      "pair": "8YYpqq6UdxBk1jV3meGHzseGEWSn1HjktE3kP2XDAkAC",
+      "liquidity": 44162.45,
+      "lpPercentage": 0.21366637208775763
+    },
+    {
+      "name": "orca",
+      "pair": "6Hnc83kkwp7F11ytRqSshc9HVeEXMH82aHn3HW9BCkH6",
+      "liquidity": 27037.93,
+      "lpPercentage": 0.13064377078871728
+    },
+    {
+      "name": "meteora",
+      "pair": "E5x59EgzZ8bgDAk8UCcvU5ULwjkM9Yms2KD1gRYirWQg",
+      "liquidity": 26551.72,
+      "lpPercentage": 0.1281300833252443
+    },
+    {
+      "name": "meteora",
+      "pair": "wEoQZgjDTYvkUm2647p2oT3VrsBNhiQUh7Kv41umicW",
+      "liquidity": 25120.82,
+      "lpPercentage": 0.12107824181500017
+    },
+    {
+      "name": "orca",
+      "pair": "29khq9MxAQdoytRZZC9h8i6tNp8jGsL1FXU7yb7iEto5",
+      "liquidity": 18135.35,
+      "lpPercentage": 0.08733308212550589
+    },
+    {
+      "name": "meteora",
+      "pair": "43z76u1h9Y7VnoYs1JpxxRUykNA4u9cEVBAajosCBroT",
+      "liquidity": 17439.05,
+      "lpPercentage": 0.08390949384637376
+    },
+    {
+      "name": "meteora",
+      "pair": "28vW6inHBVJ9EHGGqQenNimEyeqWcGWJgcVQKRgGzEqV",
+      "liquidity": 16596.81,
+      "lpPercentage": 0.0797932629188886
+    },
+    {
+      "name": "meteora",
+      "pair": "F9qn9YUKTPmsjkzPan9jdm2tZitZg3x96wLnCL4hBNtc",
+      "liquidity": 16160.16,
+      "lpPercentage": 0.07763364355415737
+    },
+    {
+      "name": "meteora",
+      "pair": "H7YoDDnaGgdh6yaXU2o7KKMW6kBC9FV5WBriBUuGPm1P",
+      "liquidity": 7367.04,
+      "lpPercentage": 0.03537884619449868
+    },
+    {
+      "name": "raydium",
+      "pair": "6Jp7hZUunimvm5f4fytyTpu77hY8Yu27gR6ADkU1z3bK",
+      "liquidity": 4931.84,
+      "lpPercentage": 0.02367864076459214
+    },
+    {
+      "name": "raydium",
+      "pair": "6Yy1FWNR5PVouY9Z2ME6dzLtCXNREYhJHgykKqsEjq2P",
+      "liquidity": 2076.12,
+      "lpPercentage": 0.009966827796841353
+    },
+    {
+      "name": "meteora",
+      "pair": "8ZCVbqxWNt1bJzRrtQYAoJpZX37WCoFEoKpMztEbtAPc",
+      "liquidity": 2071.12,
+      "lpPercentage": 0.009941835801156988
+    },
+    {
+      "name": "meteora",
+      "pair": "9TDvfK3K8VazGAMPiv6N1bJ7hofetRraeRpezm5radwQ",
+      "liquidity": 1998.95,
+      "lpPercentage": 0.009594483149582115
+    },
+    {
+      "name": "meteora",
+      "pair": "2g8ZsjvpSg15AYc9iAgUSzwpz8wdMjBbhdGX1iS8EM9V",
+      "liquidity": 1966.57,
+      "lpPercentage": 0.009438175998101487
+    },
+    {
+      "name": "raydium",
+      "pair": "BQK9HUepiKVE2oNbybhYPbDBS7Lqdrpms4v249fkeQq7",
+      "liquidity": 1359.54,
+      "lpPercentage": 0.006524426086866874
+    }
+  ],
+  "largestLp": {
+    "chainId": "solana",
+    "dexId": "raydium",
+    "url": "https://dexscreener.com/solana/58fzjmbx5patnfjpqwwsqkvfprkptkbb5r2vcw4qq3z9",
+    "pairAddress": "58fzJMbX5PatnfJPqWWsqkVFPRKptkbb5r2vCw4Qq3z9",
+    "baseToken": {
+      "address": "6AJcP7wuLwmRYLBNbi825wgguaPsWzPBEHcHndpRpump",
+      "name": "Vine Coin",
+      "symbol": "VINE"
+    },
+    "quoteToken": {
+      "address": "So11111111111111111111111111111111111111112",
+      "name": "Wrapped SOL",
+      "symbol": "SOL"
+    },
+    "priceNative": "0.001011",
+    "priceUsd": "0.2517",
+    "txns": {
+      "m5": { "buys": 339, "sells": 156 },
+      "h1": { "buys": 2439, "sells": 2216 },
+      "h6": { "buys": 31485, "sells": 29627 },
+      "h24": { "buys": 157351, "sells": 140365 }
+    },
+    "volume": {
+      "h24": 457593672.72,
+      "h6": 77639523.9,
+      "h1": 5489422.75,
+      "m5": 1184655.93
+    },
+    "priceChange": { "m5": -3.56, "h1": -4.07, "h6": -3.56, "h24": 28.48 },
+    "liquidity": { "usd": 9967854.26, "base": 19823160, "quote": 20004 },
+    "fdv": 251733438,
+    "marketCap": 251733438,
+    "pairCreatedAt": 1737591763000,
+    "info": {
+      "imageUrl": "https://dd.dexscreener.com/ds-data/tokens/solana/6AJcP7wuLwmRYLBNbi825wgguaPsWzPBEHcHndpRpump.png?key=511489",
+      "header": "https://dd.dexscreener.com/ds-data/tokens/solana/6AJcP7wuLwmRYLBNbi825wgguaPsWzPBEHcHndpRpump/header.png?key=511489",
+      "openGraph": "https://cdn.dexscreener.com/token-images/og/solana/6AJcP7wuLwmRYLBNbi825wgguaPsWzPBEHcHndpRpump?timestamp=1737809100000",
+      "websites": [{ "label": "Website", "url": "https://www.vineco.in/" }],
+      "socials": [{ "type": "twitter", "url": "https://x.com/rus" }]
+    }
+  },
+  "priceNative": 0.001011,
+  "priceUsd": 0,
+  "m5Txns": { "buys": 339, "sells": 156 },
+  "h1Txns": { "buys": 2439, "sells": 2216 },
+  "h6Txns": { "buys": 31485, "sells": 29627 },
+  "h24Txns": { "buys": 157351, "sells": 140365 },
+  "volume": {
+    "h24": 457593672.72,
+    "h6": 77639523.9,
+    "h1": 5489422.75,
+    "m5": 1184655.93
+  },
+  "volumeChange": {
+    "h24": 16.96691377712894,
+    "h6": 7.070397233592515,
+    "h1": 21.580701358808625
+  },
+  "priceChange": { "m5": -3.56, "h1": -4.07, "h6": -3.56, "h24": 28.48 },
+  "marketCap": 251733438,
+  "fdv": 251733438,
+  "marketGrowth": {
+    "h24": {
+      "volume": 16.96691377712894,
+      "price": 28.48,
+      "gap": -11.51308622287106,
+      "faster": "price"
+    },
+    "h6": {
+      "volume": 7.070397233592515,
+      "price": -3.56,
+      "gap": 10.630397233592515,
+      "faster": "volume"
+    },
+    "h1": {
+      "volume": 21.580701358808625,
+      "price": -4.07,
+      "gap": 25.650701358808625,
+      "faster": "volume"
+    }
+  },
+  "urls": [{ "label": "Website", "url": "https://www.vineco.in/" }],
+  "creatorTransfer": [],
+  "creatorSellCount": 0,
+  "githubShape": [],
+  "websiteShape": [
+    {
+      "label": "Website",
+      "url": "https://www.vineco.in/",
+      "ip": "52.197.0.54",
+      "hostname": "ec2-52-197-0-54.ap-northeast-1.compute.amazonaws.com",
+      "city": "Tokyo",
+      "region": "Tokyo",
+      "country": "JP",
+      "loc": "35.6895,139.6917",
+      "postal": "101-8656",
+      "timezone": "Asia/Tokyo",
+      "asn": {
+        "asn": "AS16509",
+        "name": "Amazon.com, Inc.",
+        "domain": "amazon.com",
+        "route": "52.196.0.0/14",
+        "type": "hosting"
+      },
+      "company": {
+        "name": "Amazon Data Services Japan",
+        "domain": "amazon.com",
+        "type": "hosting"
+      },
+      "privacy": {
+        "vpn": false,
+        "proxy": false,
+        "tor": false,
+        "relay": false,
+        "hosting": true,
+        "service": ""
+      },
+      "abuse": {
+        "address": "US, WA, Seattle, Amazon Web Services Elastic Compute Cloud, EC2, 410 Terry Avenue North, 98109-5210",
+        "country": "US",
+        "email": "trustandsafety@support.aws.com",
+        "name": "Amazon EC2 Abuse",
+        "network": "52.196.0.0/14",
+        "phone": "+1-206-555-0000"
+      },
+      "domains": {
+        "ip": "52.197.0.54",
+        "total": 9,
+        "domains": [
+          "joinit.co",
+          "hasacon.com",
+          "oneroute.cloud",
+          "elevenarts.net",
+          "gmpremiumhotelhanoi.com"
+        ]
+      },
+      "description": "Do it for the vine.",
+      "generator": "Webflow"
+    }
+  ]
+}
