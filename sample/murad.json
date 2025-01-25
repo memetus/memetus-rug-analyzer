@@ -1,1 +1,589 @@
-{"address":"FtPqJ2YTKmPyBxp3Npg18RE9Z77SQu9jrkRVYLzpump","creatorAddress":"Cx3CBLZrBiAZUCz5KCidKKsPhuExmHVWrz67ymE1a3gk","creatorTokenAddress":"7qKyqrtJVubw9SWwPDRCDXoMMS7ZeBGeK8C27pakGFfp","creatorBalance":0,"creatorPercentage":0,"creatorLock":{"isLocked":false,"lockAmount":"0"},"creatorSignature":"3BkaMSJEfBhNNd8pfKXrDk5Sd5M6bKxbXvriN5X82gAhhnVbCWxcQkJJzJETVyGLe5mPm4zqtCMPL5rF3FS7AZRj","tokenName":"Murad 💹🧲 ","tokenSymbol":"Murad ","totalSupply":999979736.394509,"initialized":true,"primarySold":false,"mutability":false,"mintability":false,"freezability":false,"pumpfun":true,"metadataPda":"3QqMMVNruCR17GRE7w3pRQrGExFQ9FTqemjJeMnqfHhZ","isTwitterExist":false,"isTelegramExist":true,"isDiscordExist":false,"totalHolder":21597,"topHolders":[{"percentage":12000243.168193357,"address":"7QZGS7MQ4S6hRmE8iXoFTXgQ2hXVUCho2ZhgeWvLNPZT","balance":120000000000000},{"percentage":4716688.949125889,"address":"Ah7SnagSabPNPvkcciYwqqyCR1ymMVW3C9tFvJea1kzV","balance":47165933720018},{"percentage":3577994.1435940755,"address":"4JU1YDGTGzNvB4fEZ3DYALhp5dcBPpavrp76HdzHttQx","balance":35779216405323},{"percentage":2828586.7501723026,"address":"3W6EDbHnqTZqadDyLVDbcmkm5Rm4aqnakCDUan9Rwxh3","balance":28285294328063},{"percentage":2533646.484177309,"address":"BCjpgg9U8kYAQX9h2CyoV155dZZ34ntvgiJSUarvkYx3","balance":25335951433645},{"percentage":1567297.0915934513,"address":"HootWsSBg7ezoi9PkrhfL9aaP7eXiWwGBGhNpybF1eRT","balance":15672653325035},{"percentage":1217196.5016424144,"address":"uLp9a6jiCmtqQWY9kpsqnahc1oz2rv28D48oLLpJek4","balance":12171718368527},{"percentage":1158392.5720874846,"address":"8LgBQfpSeeJt11ZmNAUfoxFMnx2T5D4aHJY9y3ATinkq","balance":11583690988774},{"percentage":1130710.3388368308,"address":"9dwCLTknPDvQmT4HfYWCE9WGYFemYSMDz1EALzzMGzBc","balance":11306874265686},{"percentage":1000020.2640161131,"address":"5eRJAQWioj5cwGEmeJ2khBW7JxPdqQUQfAPkybzr5sHA","balance":10000000000000},{"percentage":1000020.2640161131,"address":"Eb7tBAyzQmFNuiDDEh3bYPoDpJaLigGn167YAoMUV1p3","balance":10000000000000},{"percentage":866343.9663483535,"address":"C5EgqEeJ5xJLMTxrTP61X2d5UQZ8hwGjMEeYkZQHB9wZ","balance":8663264110960},{"percentage":807432.852966493,"address":"8qt1shWAisPJocWm4p3ZHQNg2HFKyRbQcE4Ug9kxEtCV","balance":8074164914657},{"percentage":730967.7829587805,"address":"AtpJLtuXRVnKPPx6TYba95TpmaCenn9hDjbVy9wdW8eq","balance":7309529709160},{"percentage":655446.3488071328,"address":"BSjyWuGpp4FpXDTZbmZP93PjQfXNLGqTGzvvnLxUtuXx","balance":6554330671009},{"percentage":590279.7411615043,"address":"BX3AH1JF2mYEswxU1YT78vtkpNy9wQESpGp755U21f1r","balance":5902677799657},{"percentage":573645.9329986778,"address":"7iRo63BzGA3BoXyNhrhR3WNzBzRN1WP4bDik4Q5t9fDR","balance":5736343088638},{"percentage":558319.090154381,"address":"5Le4W7JWJCCno91fwrg6xQqFeVzwhrZN3tS2inE8VBdq","balance":5583077765966},{"percentage":500070.30469127203,"address":"ABhAseymMDhxBNQr399vZJYzbpHMDpFyqsJ76LFj2YJT","balance":5000601714639},{"percentage":500010.13200805656,"address":"EHBbn7rEkQXGBCJsEx8G5rKF2Ps44Tts8gsebikZJXCV","balance":5000000000000},{"percentage":462818.4759931115,"address":"FmhPZZPsNdAuYfoPvLEYuHhmtncuK1LkPLezGjy9HoDV","balance":4628090976221},{"percentage":426739.7422365841,"address":"2yLbG7k9FCbv6bNmfScoVuv722oPvRaS7riDvrwPC6Rt","balance":4267310949508},{"percentage":415933.15940145275,"address":"8jVFRUB4LSSasLo4TT5rCpHH5ZvsmjufPC8yYdXEUEaL","balance":4159247310960},{"percentage":389684.60996090213,"address":"CQumri6FETekxcMqwYuSLwfDnnzw6oYMX7S9yzxs2ZFx","balance":3896767135457},{"percentage":382323.6462591377,"address":"Eu4T2fYfZiW8Dq2B1hhpMmDqksfk89ujeifPztBmuRqS","balance":3823158990036},{"percentage":379052.9343912227,"address":"HGZuVUbCLjinbxBygNLbYAfn5fJoxkzzckaPhUgWS8rg","balance":3790452534121},{"percentage":332062.917381656,"address":"2mDb4NYGpCu3D13ZUvyiDVcTBdjdgNFbDEq5qqdM6CfN","balance":3320561885897},{"percentage":318385.47889313835,"address":"F5nA4LhJ4JrgmyAsSz3Sx7Chg2tccF6m2DBjzeJYdC9P","balance":3183790272554},{"percentage":305676.9646508194,"address":"C64bupR9dwjDPCM2H7fHhg1ViLkdKJBTzhknrUhtx1b2","balance":3056707705334},{"percentage":279702.30623898853,"address":"Aho4HG56odMf8sbuPGqvUpWJtji8CT1vCPe15kEtMiQp","balance":2796966384618},{"percentage":275494.6525621544,"address":"4eNgNkrX46DL6RtnTA4mor1NAykQuaoBkcouPbKqNtD6","balance":2754890700472},{"percentage":269858.2413235407,"address":"FSgpB9GQpy8nkpuE7rHMhXHyTP45BdwP4Kduw6yc1YpH","balance":2698527730226},{"percentage":268499.1884413293,"address":"G1LR5wArC2yUe71NLT6s1obYeJuc1nWCrDShUDqTLy98","balance":2684937476797},{"percentage":262525.4299527439,"address":"2Bo9REqXTppZzPaiDfgXXnopofsuayuX5aj58n1xfLsn","balance":2625201102410},{"percentage":257392.26927240097,"address":"7FSSXP7VmwJJMMmks99Kpa5adwggmsTiUUJk1bHAou6Z","balance":2573870535770},{"percentage":251490.45335063146,"address":"5f7gisB6fFuvVRbbtk5FgFqQz9hq45y9489pb5UamrR3","balance":2514853572473},{"percentage":251071.48717386613,"address":"68Hq4wdkWM6UGmQUqq489ytwxWgYj6sRiLjNJ89EBJT3","balance":2510663995603},{"percentage":250005.06600402828,"address":"DvuqsdGGfmddRUaQuQTgcBGPPpsdLfwhzBryBdkN38KD","balance":2500000000000},{"percentage":249865.87323068082,"address":"9tfALBfnTzZsK2MH24n4XkmZYwDRppq5RHVm3comx89V","balance":2498608100472},{"percentage":227453.7085036166,"address":"9a23MK7WKkxyb6oJVDrkN7ybmQKwzn4oKKaq6y7vA1U9","balance":2274490994714},{"percentage":225853.4463336353,"address":"Ei6rghb9cBu8fDe3Zzp6yxKW2oJDZaExcSgZ9ryQZ3Fg","balance":2258488697285},{"percentage":218497.3572016472,"address":"Eh1wW6F7JtpqtFTMSJupUJ7uSuaeZG1g7FE7Guyvc6cB","balance":2184929296574},{"percentage":216658.79576066346,"address":"7vMhhBAx15gszkqkS1SvqbzWzeMTqpP1XhQYgC68YUck","balance":2166544054723},{"percentage":216363.0190717613,"address":"C2xyVt9gS24Xd8w2EbJMVzsp2nUFaT6SFHQtvtoSAkPF","balance":2163586347769},{"percentage":213634.17558035336,"address":"J2CDVi67A9RLXtdnif2zM7LD1vxEy2dmbezbiMVKgRKd","balance":2136298465817},{"percentage":212600.80945992994,"address":"F9v1q1tuM2tfLX4uNzNZJQxqLk2VfLhaNTChAZXnraSt","balance":2125965014010},{"percentage":211823.79524442044,"address":"EtUyt5wHEFjaTf3H7mvC1jtkR8h5AuETLt2L6magDwxw","balance":2118195029306},{"percentage":209021.03220373593,"address":"EgdyksPEvfjsCUxMs1GhAhS9G6uEu8UBxw8tgaCqnPY5","balance":2090167966840},{"percentage":205298.5088627915,"address":"7oSx6zVPNpK86GMjvE7EHHrgYVEwNQwLTdGmJ9XfdL9r","balance":2052943487748}],"top10Validation":[{"address":"7QZGS7MQ4S6hRmE8iXoFTXgQ2hXVUCho2ZhgeWvLNPZT","validation":true},{"address":"Ah7SnagSabPNPvkcciYwqqyCR1ymMVW3C9tFvJea1kzV","validation":true},{"address":"4JU1YDGTGzNvB4fEZ3DYALhp5dcBPpavrp76HdzHttQx","validation":true},{"address":"3W6EDbHnqTZqadDyLVDbcmkm5Rm4aqnakCDUan9Rwxh3","validation":true},{"address":"5Q544fKrFoe6tsEbD7S8EmxGTJYAKtTVhAW5Q5pge4j1","validation":true},{"address":"BCjpgg9U8kYAQX9h2CyoV155dZZ34ntvgiJSUarvkYx3","validation":true},{"address":"HootWsSBg7ezoi9PkrhfL9aaP7eXiWwGBGhNpybF1eRT","validation":true},{"address":"uLp9a6jiCmtqQWY9kpsqnahc1oz2rv28D48oLLpJek4","validation":true},{"address":"8LgBQfpSeeJt11ZmNAUfoxFMnx2T5D4aHJY9y3ATinkq","validation":true},{"address":"9dwCLTknPDvQmT4HfYWCE9WGYFemYSMDz1EALzzMGzBc","validation":true}],"totalLiquidity":1516293.2799999998,"totalLpCount":29,"totalLockedLiquidity":4043.044496168,"totalLockedLiquidityPercentage":99.82783509321318,"lpLockedInfoList":[{"supply":6.972708345,"burnAmount":4043.044496168,"burnPercentage":99.82783509321318,"isLocked":true,"pair":"6Cq3AMNb9PLi4RKVpqEgza9Lwt5XEVup8hNB5iF8GGtp"}],"lpList":[{"name":"raydium","pair":"6Cq3AMNb9PLi4RKVpqEgza9Lwt5XEVup8hNB5iF8GGtp","liquidity":955602.47,"lpPercentage":100},{"name":"meteora","pair":"G1LR5wArC2yUe71NLT6s1obYeJuc1nWCrDShUDqTLy98","liquidity":186226.28,"lpPercentage":16.309475479576076},{"name":"meteora","pair":"4qc9TjB1dfmwPZECoe9W6Vby5yhUipBYqZft2WAYEEju","liquidity":129418.23,"lpPercentage":10.180415925157202},{"name":"meteora","pair":"EgdyksPEvfjsCUxMs1GhAhS9G6uEu8UBxw8tgaCqnPY5","liquidity":88583.13,"lpPercentage":6.514279199186141},{"name":"raydium","pair":"ZsncMFAsH4WuaXa47UmTgVivv8wR2MErr9EUWdqkVMq","liquidity":64349.93,"lpPercentage":4.5183844873995005},{"name":"meteora","pair":"2X7FqB8A81LmaSCtDfGvZe6173Be5LeZV9tZYF5s7vzi","liquidity":46314.94,"lpPercentage":3.1496156484668867},{"name":"meteora","pair":"34eMt6e1Q9eBbpks6Z6dKmnTKDm2FN9wvGBXw4JLBTvM","liquidity":24144.12,"lpPercentage":1.6153812649488428},{"name":"meteora","pair":"AmkmZoieoQidpj6etGCzER9GoLfCBur28GECogtuA9S","liquidity":10495.14,"lpPercentage":0.6972892995909787},{"name":"meteora","pair":"CmCEQPtuttW7wK5oqGJwYu7ZJc3TgfaoQwe7JL362nuV","liquidity":5140.53,"lpPercentage":0.34037051416809405},{"name":"meteora","pair":"88H48XWBWehzRZCsaU25t5SHP3Y1GE1NWZd9yoKSz1cr","liquidity":1187.7,"lpPercentage":0.07857952304961964},{"name":"meteora","pair":"7E9Gy67kM6YFuAG5Fc2qLqr1CWPaiQigrKjtAwia9nhk","liquidity":1136.84,"lpPercentage":0.07515804036694952},{"name":"meteora","pair":"HZMXH7RBZGb1ErL533tJsiM27pZnYNv2ruvQMoJeKi8n","liquidity":825.49,"lpPercentage":0.05454450065837431},{"name":"meteora","pair":"SxWnUxRDppqUw2jeiAcMCkGAKJQMiQNFaEgmiZzgndj","liquidity":492.76,"lpPercentage":0.03254866797370393},{"name":"raydium","pair":"6tUzDsDpgy81EfN3AwLWmqrk7ePMJv15SNoum6dZ6GBB","liquidity":490.03,"lpPercentage":0.03235786740873374},{"name":"meteora","pair":"8rwdNoE91Er7Q1kKhWRUg5SumaTS6biPSpLS7xJYQFPR","liquidity":474.03,"lpPercentage":0.031291553989545404},{"name":"meteora","pair":"E4v2jnvRVGWNRaESKkmpXe6TsFiFe1ACGZfZAmwAynm8","liquidity":446.08,"lpPercentage":0.029437856907123125},{"name":"meteora","pair":"4hW2SC8NAzCywkoFSEsPVmSfkU1WXHczT1oNnT7ptdYe","liquidity":353.79,"lpPercentage":0.023341975364494293},{"name":"orca","pair":"H5N9Zv4EhrwEjs6kYhkYxuNpRrEmZp6FceFhdZPQfcx5","liquidity":204.25,"lpPercentage":0.013473970670111326},{"name":"meteora","pair":"92FxTqgP358utptc4seLWxSHCXr8PBS71FjfMemEQ5nU","liquidity":176.17,"lpPercentage":0.011620237856909155},{"name":"meteora","pair":"fKSdhwbeG41xLiWZa2J6g7TtS9vFFD777sbt6dt66Up","liquidity":122.45,"lpPercentage":0.00807619463902134},{"name":"meteora","pair":"EeLLWmwSEMEcFrUkJFnr1tCAZ7nzKBMcjJfwKqEL1G8","liquidity":104.53,"lpPercentage":0.006893805045290545},{"name":"orca","pair":"4WfywL6qje1fHFYbti5HZPcvwzYuF7VNQCas2Z92M4cZ","liquidity":2.59,"lpPercentage":0.0001708114854012106},{"name":"raydium","pair":"6TXbFa4mvUxiPy5r6o7aqcnhWgYYEtqrWM19vUjhB48L","liquidity":1.24,"lpPercentage":0.0000817784048979672},{"name":"raydium","pair":"8XQbej4jZdrTDv9sNZUqCzMSw1qyrbs3U6zhDdEengm6","liquidity":0.2,"lpPercentage":0.000013190063566345744},{"name":"raydium","pair":"GmgRgjC8BM1xroJyLxYBSkpWNaiAXXxLVf3yPTXYG8SD","liquidity":0.17,"lpPercentage":0.000011211552774404586},{"name":"raydium","pair":"EWeVqWSQbvGk1ScqGaqCzdeSPnBu5qG8Tqn1b9NLijMa","liquidity":0.14,"lpPercentage":0.000009233042608783529},{"name":"raydium","pair":"CCWLapRXt3pGz67GFp4E8jwAws6qSoft1ZBmRZNJPAtH","liquidity":0.05,"lpPercentage":0.000003297515108686626},{"name":"raydium","pair":"GhHXJvyBaJAiD7PqS3KBiwDeZpTRSygygeuQhjfJN6tk","liquidity":0,"lpPercentage":0}],"largestLp":{"chainId":"solana","dexId":"raydium","url":"https://dexscreener.com/solana/6cq3amnb9pli4rkvpqegza9lwt5xevup8hnb5if8ggtp","pairAddress":"6Cq3AMNb9PLi4RKVpqEgza9Lwt5XEVup8hNB5iF8GGtp","baseToken":{"address":"FtPqJ2YTKmPyBxp3Npg18RE9Z77SQu9jrkRVYLzpump","name":"Murad 💹🧲 ","symbol":"Murad "},"quoteToken":{"address":"So11111111111111111111111111111111111111112","name":"Wrapped SOL","symbol":"SOL"},"priceNative":"0.00006923","priceUsd":"0.01721","txns":{"m5":{"buys":134,"sells":92},"h1":{"buys":2932,"sells":2328},"h6":{"buys":18757,"sells":14819},"h24":{"buys":210065,"sells":118198}},"volume":{"h24":125121716.49,"h6":12710512.84,"h1":2013654.93,"m5":54955.79},"priceChange":{"m5":-5.56,"h1":-14.02,"h6":-1.06,"h24":308},"liquidity":{"usd":955602.47,"base":27728180,"quote":1924.6762},"fdv":17210107,"marketCap":17210107,"pairCreatedAt":1737716909000,"info":{"imageUrl":"https://dd.dexscreener.com/ds-data/tokens/solana/FtPqJ2YTKmPyBxp3Npg18RE9Z77SQu9jrkRVYLzpump.png?key=427e22","header":"https://dd.dexscreener.com/ds-data/tokens/solana/FtPqJ2YTKmPyBxp3Npg18RE9Z77SQu9jrkRVYLzpump/header.png?key=427e22","openGraph":"https://cdn.dexscreener.com/token-images/og/solana/FtPqJ2YTKmPyBxp3Npg18RE9Z77SQu9jrkRVYLzpump?timestamp=1737808800000","websites":[],"socials":[{"type":"telegram","url":"https://t.me/MuradCalls"}]}},"priceNative":0.00006923,"priceUsd":0,"m5Txns":{"buys":134,"sells":92},"h1Txns":{"buys":2932,"sells":2328},"h6Txns":{"buys":18757,"sells":14819},"h24Txns":{"buys":210065,"sells":118198},"volume":{"h24":125121716.49,"h6":12710512.84,"h1":2013654.93,"m5":54955.79},"volumeChange":{"h24":10.158518598181038,"h6":15.84243653539317,"h1":2.7291562810118615},"priceChange":{"m5":-5.56,"h1":-14.02,"h6":-1.06,"h24":308},"marketCap":17210107,"fdv":17210107,"marketGrowth":{"h24":{"volume":10.158518598181038,"price":308,"gap":-297.84148140181895,"faster":"price"},"h6":{"volume":15.84243653539317,"price":-1.06,"gap":16.90243653539317,"faster":"volume"},"h1":{"volume":2.7291562810118615,"price":-14.02,"gap":16.74915628101186,"faster":"volume"}},"urls":[],"creatorTransfer":[{"type":"send","from":"Cx3CBLZrBiAZUCz5KCidKKsPhuExmHVWrz67ymE1a3gk","to":"7QZGS7MQ4S6hRmE8iXoFTXgQ2hXVUCho2ZhgeWvLNPZT","amount":120000000}],"creatorSellCount":0,"githubShape":[],"websiteShape":[]}
+{
+  "address": "FtPqJ2YTKmPyBxp3Npg18RE9Z77SQu9jrkRVYLzpump",
+  "creatorAddress": "Cx3CBLZrBiAZUCz5KCidKKsPhuExmHVWrz67ymE1a3gk",
+  "creatorTokenAddress": "7qKyqrtJVubw9SWwPDRCDXoMMS7ZeBGeK8C27pakGFfp",
+  "creatorBalance": 0,
+  "creatorPercentage": 0,
+  "creatorLock": { "isLocked": false, "lockAmount": "0" },
+  "creatorSignature": "3BkaMSJEfBhNNd8pfKXrDk5Sd5M6bKxbXvriN5X82gAhhnVbCWxcQkJJzJETVyGLe5mPm4zqtCMPL5rF3FS7AZRj",
+  "tokenName": "Murad 💹🧲 ",
+  "tokenSymbol": "Murad ",
+  "totalSupply": 999979736.394509,
+  "initialized": true,
+  "primarySold": false,
+  "mutability": false,
+  "mintability": false,
+  "freezability": false,
+  "pumpfun": true,
+  "metadataPda": "3QqMMVNruCR17GRE7w3pRQrGExFQ9FTqemjJeMnqfHhZ",
+  "isTwitterExist": false,
+  "isTelegramExist": true,
+  "isDiscordExist": false,
+  "totalHolder": 21597,
+  "topHolders": [
+    {
+      "percentage": 12000243.168193357,
+      "address": "7QZGS7MQ4S6hRmE8iXoFTXgQ2hXVUCho2ZhgeWvLNPZT",
+      "balance": 120000000000000
+    },
+    {
+      "percentage": 4716688.949125889,
+      "address": "Ah7SnagSabPNPvkcciYwqqyCR1ymMVW3C9tFvJea1kzV",
+      "balance": 47165933720018
+    },
+    {
+      "percentage": 3577994.1435940755,
+      "address": "4JU1YDGTGzNvB4fEZ3DYALhp5dcBPpavrp76HdzHttQx",
+      "balance": 35779216405323
+    },
+    {
+      "percentage": 2828586.7501723026,
+      "address": "3W6EDbHnqTZqadDyLVDbcmkm5Rm4aqnakCDUan9Rwxh3",
+      "balance": 28285294328063
+    },
+    {
+      "percentage": 2533646.484177309,
+      "address": "BCjpgg9U8kYAQX9h2CyoV155dZZ34ntvgiJSUarvkYx3",
+      "balance": 25335951433645
+    },
+    {
+      "percentage": 1567297.0915934513,
+      "address": "HootWsSBg7ezoi9PkrhfL9aaP7eXiWwGBGhNpybF1eRT",
+      "balance": 15672653325035
+    },
+    {
+      "percentage": 1217196.5016424144,
+      "address": "uLp9a6jiCmtqQWY9kpsqnahc1oz2rv28D48oLLpJek4",
+      "balance": 12171718368527
+    },
+    {
+      "percentage": 1158392.5720874846,
+      "address": "8LgBQfpSeeJt11ZmNAUfoxFMnx2T5D4aHJY9y3ATinkq",
+      "balance": 11583690988774
+    },
+    {
+      "percentage": 1130710.3388368308,
+      "address": "9dwCLTknPDvQmT4HfYWCE9WGYFemYSMDz1EALzzMGzBc",
+      "balance": 11306874265686
+    },
+    {
+      "percentage": 1000020.2640161131,
+      "address": "5eRJAQWioj5cwGEmeJ2khBW7JxPdqQUQfAPkybzr5sHA",
+      "balance": 10000000000000
+    },
+    {
+      "percentage": 1000020.2640161131,
+      "address": "Eb7tBAyzQmFNuiDDEh3bYPoDpJaLigGn167YAoMUV1p3",
+      "balance": 10000000000000
+    },
+    {
+      "percentage": 866343.9663483535,
+      "address": "C5EgqEeJ5xJLMTxrTP61X2d5UQZ8hwGjMEeYkZQHB9wZ",
+      "balance": 8663264110960
+    },
+    {
+      "percentage": 807432.852966493,
+      "address": "8qt1shWAisPJocWm4p3ZHQNg2HFKyRbQcE4Ug9kxEtCV",
+      "balance": 8074164914657
+    },
+    {
+      "percentage": 730967.7829587805,
+      "address": "AtpJLtuXRVnKPPx6TYba95TpmaCenn9hDjbVy9wdW8eq",
+      "balance": 7309529709160
+    },
+    {
+      "percentage": 655446.3488071328,
+      "address": "BSjyWuGpp4FpXDTZbmZP93PjQfXNLGqTGzvvnLxUtuXx",
+      "balance": 6554330671009
+    },
+    {
+      "percentage": 590279.7411615043,
+      "address": "BX3AH1JF2mYEswxU1YT78vtkpNy9wQESpGp755U21f1r",
+      "balance": 5902677799657
+    },
+    {
+      "percentage": 573645.9329986778,
+      "address": "7iRo63BzGA3BoXyNhrhR3WNzBzRN1WP4bDik4Q5t9fDR",
+      "balance": 5736343088638
+    },
+    {
+      "percentage": 558319.090154381,
+      "address": "5Le4W7JWJCCno91fwrg6xQqFeVzwhrZN3tS2inE8VBdq",
+      "balance": 5583077765966
+    },
+    {
+      "percentage": 500070.30469127203,
+      "address": "ABhAseymMDhxBNQr399vZJYzbpHMDpFyqsJ76LFj2YJT",
+      "balance": 5000601714639
+    },
+    {
+      "percentage": 500010.13200805656,
+      "address": "EHBbn7rEkQXGBCJsEx8G5rKF2Ps44Tts8gsebikZJXCV",
+      "balance": 5000000000000
+    },
+    {
+      "percentage": 462818.4759931115,
+      "address": "FmhPZZPsNdAuYfoPvLEYuHhmtncuK1LkPLezGjy9HoDV",
+      "balance": 4628090976221
+    },
+    {
+      "percentage": 426739.7422365841,
+      "address": "2yLbG7k9FCbv6bNmfScoVuv722oPvRaS7riDvrwPC6Rt",
+      "balance": 4267310949508
+    },
+    {
+      "percentage": 415933.15940145275,
+      "address": "8jVFRUB4LSSasLo4TT5rCpHH5ZvsmjufPC8yYdXEUEaL",
+      "balance": 4159247310960
+    },
+    {
+      "percentage": 389684.60996090213,
+      "address": "CQumri6FETekxcMqwYuSLwfDnnzw6oYMX7S9yzxs2ZFx",
+      "balance": 3896767135457
+    },
+    {
+      "percentage": 382323.6462591377,
+      "address": "Eu4T2fYfZiW8Dq2B1hhpMmDqksfk89ujeifPztBmuRqS",
+      "balance": 3823158990036
+    },
+    {
+      "percentage": 379052.9343912227,
+      "address": "HGZuVUbCLjinbxBygNLbYAfn5fJoxkzzckaPhUgWS8rg",
+      "balance": 3790452534121
+    },
+    {
+      "percentage": 332062.917381656,
+      "address": "2mDb4NYGpCu3D13ZUvyiDVcTBdjdgNFbDEq5qqdM6CfN",
+      "balance": 3320561885897
+    },
+    {
+      "percentage": 318385.47889313835,
+      "address": "F5nA4LhJ4JrgmyAsSz3Sx7Chg2tccF6m2DBjzeJYdC9P",
+      "balance": 3183790272554
+    },
+    {
+      "percentage": 305676.9646508194,
+      "address": "C64bupR9dwjDPCM2H7fHhg1ViLkdKJBTzhknrUhtx1b2",
+      "balance": 3056707705334
+    },
+    {
+      "percentage": 279702.30623898853,
+      "address": "Aho4HG56odMf8sbuPGqvUpWJtji8CT1vCPe15kEtMiQp",
+      "balance": 2796966384618
+    },
+    {
+      "percentage": 275494.6525621544,
+      "address": "4eNgNkrX46DL6RtnTA4mor1NAykQuaoBkcouPbKqNtD6",
+      "balance": 2754890700472
+    },
+    {
+      "percentage": 269858.2413235407,
+      "address": "FSgpB9GQpy8nkpuE7rHMhXHyTP45BdwP4Kduw6yc1YpH",
+      "balance": 2698527730226
+    },
+    {
+      "percentage": 268499.1884413293,
+      "address": "G1LR5wArC2yUe71NLT6s1obYeJuc1nWCrDShUDqTLy98",
+      "balance": 2684937476797
+    },
+    {
+      "percentage": 262525.4299527439,
+      "address": "2Bo9REqXTppZzPaiDfgXXnopofsuayuX5aj58n1xfLsn",
+      "balance": 2625201102410
+    },
+    {
+      "percentage": 257392.26927240097,
+      "address": "7FSSXP7VmwJJMMmks99Kpa5adwggmsTiUUJk1bHAou6Z",
+      "balance": 2573870535770
+    },
+    {
+      "percentage": 251490.45335063146,
+      "address": "5f7gisB6fFuvVRbbtk5FgFqQz9hq45y9489pb5UamrR3",
+      "balance": 2514853572473
+    },
+    {
+      "percentage": 251071.48717386613,
+      "address": "68Hq4wdkWM6UGmQUqq489ytwxWgYj6sRiLjNJ89EBJT3",
+      "balance": 2510663995603
+    },
+    {
+      "percentage": 250005.06600402828,
+      "address": "DvuqsdGGfmddRUaQuQTgcBGPPpsdLfwhzBryBdkN38KD",
+      "balance": 2500000000000
+    },
+    {
+      "percentage": 249865.87323068082,
+      "address": "9tfALBfnTzZsK2MH24n4XkmZYwDRppq5RHVm3comx89V",
+      "balance": 2498608100472
+    },
+    {
+      "percentage": 227453.7085036166,
+      "address": "9a23MK7WKkxyb6oJVDrkN7ybmQKwzn4oKKaq6y7vA1U9",
+      "balance": 2274490994714
+    },
+    {
+      "percentage": 225853.4463336353,
+      "address": "Ei6rghb9cBu8fDe3Zzp6yxKW2oJDZaExcSgZ9ryQZ3Fg",
+      "balance": 2258488697285
+    },
+    {
+      "percentage": 218497.3572016472,
+      "address": "Eh1wW6F7JtpqtFTMSJupUJ7uSuaeZG1g7FE7Guyvc6cB",
+      "balance": 2184929296574
+    },
+    {
+      "percentage": 216658.79576066346,
+      "address": "7vMhhBAx15gszkqkS1SvqbzWzeMTqpP1XhQYgC68YUck",
+      "balance": 2166544054723
+    },
+    {
+      "percentage": 216363.0190717613,
+      "address": "C2xyVt9gS24Xd8w2EbJMVzsp2nUFaT6SFHQtvtoSAkPF",
+      "balance": 2163586347769
+    },
+    {
+      "percentage": 213634.17558035336,
+      "address": "J2CDVi67A9RLXtdnif2zM7LD1vxEy2dmbezbiMVKgRKd",
+      "balance": 2136298465817
+    },
+    {
+      "percentage": 212600.80945992994,
+      "address": "F9v1q1tuM2tfLX4uNzNZJQxqLk2VfLhaNTChAZXnraSt",
+      "balance": 2125965014010
+    },
+    {
+      "percentage": 211823.79524442044,
+      "address": "EtUyt5wHEFjaTf3H7mvC1jtkR8h5AuETLt2L6magDwxw",
+      "balance": 2118195029306
+    },
+    {
+      "percentage": 209021.03220373593,
+      "address": "EgdyksPEvfjsCUxMs1GhAhS9G6uEu8UBxw8tgaCqnPY5",
+      "balance": 2090167966840
+    },
+    {
+      "percentage": 205298.5088627915,
+      "address": "7oSx6zVPNpK86GMjvE7EHHrgYVEwNQwLTdGmJ9XfdL9r",
+      "balance": 2052943487748
+    }
+  ],
+  "top10Validation": [
+    {
+      "address": "7QZGS7MQ4S6hRmE8iXoFTXgQ2hXVUCho2ZhgeWvLNPZT",
+      "validation": true
+    },
+    {
+      "address": "Ah7SnagSabPNPvkcciYwqqyCR1ymMVW3C9tFvJea1kzV",
+      "validation": true
+    },
+    {
+      "address": "4JU1YDGTGzNvB4fEZ3DYALhp5dcBPpavrp76HdzHttQx",
+      "validation": true
+    },
+    {
+      "address": "3W6EDbHnqTZqadDyLVDbcmkm5Rm4aqnakCDUan9Rwxh3",
+      "validation": true
+    },
+    {
+      "address": "5Q544fKrFoe6tsEbD7S8EmxGTJYAKtTVhAW5Q5pge4j1",
+      "validation": true
+    },
+    {
+      "address": "BCjpgg9U8kYAQX9h2CyoV155dZZ34ntvgiJSUarvkYx3",
+      "validation": true
+    },
+    {
+      "address": "HootWsSBg7ezoi9PkrhfL9aaP7eXiWwGBGhNpybF1eRT",
+      "validation": true
+    },
+    {
+      "address": "uLp9a6jiCmtqQWY9kpsqnahc1oz2rv28D48oLLpJek4",
+      "validation": true
+    },
+    {
+      "address": "8LgBQfpSeeJt11ZmNAUfoxFMnx2T5D4aHJY9y3ATinkq",
+      "validation": true
+    },
+    {
+      "address": "9dwCLTknPDvQmT4HfYWCE9WGYFemYSMDz1EALzzMGzBc",
+      "validation": true
+    }
+  ],
+  "totalLiquidity": 1516293.2799999998,
+  "totalLpCount": 29,
+  "totalLockedLiquidity": 4043.044496168,
+  "totalLockedLiquidityPercentage": 99.82783509321318,
+  "lpLockedInfoList": [
+    {
+      "supply": 6.972708345,
+      "burnAmount": 4043.044496168,
+      "burnPercentage": 99.82783509321318,
+      "isLocked": true,
+      "pair": "6Cq3AMNb9PLi4RKVpqEgza9Lwt5XEVup8hNB5iF8GGtp"
+    }
+  ],
+  "lpList": [
+    {
+      "name": "raydium",
+      "pair": "6Cq3AMNb9PLi4RKVpqEgza9Lwt5XEVup8hNB5iF8GGtp",
+      "liquidity": 955602.47,
+      "lpPercentage": 100
+    },
+    {
+      "name": "meteora",
+      "pair": "G1LR5wArC2yUe71NLT6s1obYeJuc1nWCrDShUDqTLy98",
+      "liquidity": 186226.28,
+      "lpPercentage": 16.309475479576076
+    },
+    {
+      "name": "meteora",
+      "pair": "4qc9TjB1dfmwPZECoe9W6Vby5yhUipBYqZft2WAYEEju",
+      "liquidity": 129418.23,
+      "lpPercentage": 10.180415925157202
+    },
+    {
+      "name": "meteora",
+      "pair": "EgdyksPEvfjsCUxMs1GhAhS9G6uEu8UBxw8tgaCqnPY5",
+      "liquidity": 88583.13,
+      "lpPercentage": 6.514279199186141
+    },
+    {
+      "name": "raydium",
+      "pair": "ZsncMFAsH4WuaXa47UmTgVivv8wR2MErr9EUWdqkVMq",
+      "liquidity": 64349.93,
+      "lpPercentage": 4.5183844873995005
+    },
+    {
+      "name": "meteora",
+      "pair": "2X7FqB8A81LmaSCtDfGvZe6173Be5LeZV9tZYF5s7vzi",
+      "liquidity": 46314.94,
+      "lpPercentage": 3.1496156484668867
+    },
+    {
+      "name": "meteora",
+      "pair": "34eMt6e1Q9eBbpks6Z6dKmnTKDm2FN9wvGBXw4JLBTvM",
+      "liquidity": 24144.12,
+      "lpPercentage": 1.6153812649488428
+    },
+    {
+      "name": "meteora",
+      "pair": "AmkmZoieoQidpj6etGCzER9GoLfCBur28GECogtuA9S",
+      "liquidity": 10495.14,
+      "lpPercentage": 0.6972892995909787
+    },
+    {
+      "name": "meteora",
+      "pair": "CmCEQPtuttW7wK5oqGJwYu7ZJc3TgfaoQwe7JL362nuV",
+      "liquidity": 5140.53,
+      "lpPercentage": 0.34037051416809405
+    },
+    {
+      "name": "meteora",
+      "pair": "88H48XWBWehzRZCsaU25t5SHP3Y1GE1NWZd9yoKSz1cr",
+      "liquidity": 1187.7,
+      "lpPercentage": 0.07857952304961964
+    },
+    {
+      "name": "meteora",
+      "pair": "7E9Gy67kM6YFuAG5Fc2qLqr1CWPaiQigrKjtAwia9nhk",
+      "liquidity": 1136.84,
+      "lpPercentage": 0.07515804036694952
+    },
+    {
+      "name": "meteora",
+      "pair": "HZMXH7RBZGb1ErL533tJsiM27pZnYNv2ruvQMoJeKi8n",
+      "liquidity": 825.49,
+      "lpPercentage": 0.05454450065837431
+    },
+    {
+      "name": "meteora",
+      "pair": "SxWnUxRDppqUw2jeiAcMCkGAKJQMiQNFaEgmiZzgndj",
+      "liquidity": 492.76,
+      "lpPercentage": 0.03254866797370393
+    },
+    {
+      "name": "raydium",
+      "pair": "6tUzDsDpgy81EfN3AwLWmqrk7ePMJv15SNoum6dZ6GBB",
+      "liquidity": 490.03,
+      "lpPercentage": 0.03235786740873374
+    },
+    {
+      "name": "meteora",
+      "pair": "8rwdNoE91Er7Q1kKhWRUg5SumaTS6biPSpLS7xJYQFPR",
+      "liquidity": 474.03,
+      "lpPercentage": 0.031291553989545404
+    },
+    {
+      "name": "meteora",
+      "pair": "E4v2jnvRVGWNRaESKkmpXe6TsFiFe1ACGZfZAmwAynm8",
+      "liquidity": 446.08,
+      "lpPercentage": 0.029437856907123125
+    },
+    {
+      "name": "meteora",
+      "pair": "4hW2SC8NAzCywkoFSEsPVmSfkU1WXHczT1oNnT7ptdYe",
+      "liquidity": 353.79,
+      "lpPercentage": 0.023341975364494293
+    },
+    {
+      "name": "orca",
+      "pair": "H5N9Zv4EhrwEjs6kYhkYxuNpRrEmZp6FceFhdZPQfcx5",
+      "liquidity": 204.25,
+      "lpPercentage": 0.013473970670111326
+    },
+    {
+      "name": "meteora",
+      "pair": "92FxTqgP358utptc4seLWxSHCXr8PBS71FjfMemEQ5nU",
+      "liquidity": 176.17,
+      "lpPercentage": 0.011620237856909155
+    },
+    {
+      "name": "meteora",
+      "pair": "fKSdhwbeG41xLiWZa2J6g7TtS9vFFD777sbt6dt66Up",
+      "liquidity": 122.45,
+      "lpPercentage": 0.00807619463902134
+    },
+    {
+      "name": "meteora",
+      "pair": "EeLLWmwSEMEcFrUkJFnr1tCAZ7nzKBMcjJfwKqEL1G8",
+      "liquidity": 104.53,
+      "lpPercentage": 0.006893805045290545
+    },
+    {
+      "name": "orca",
+      "pair": "4WfywL6qje1fHFYbti5HZPcvwzYuF7VNQCas2Z92M4cZ",
+      "liquidity": 2.59,
+      "lpPercentage": 0.0001708114854012106
+    },
+    {
+      "name": "raydium",
+      "pair": "6TXbFa4mvUxiPy5r6o7aqcnhWgYYEtqrWM19vUjhB48L",
+      "liquidity": 1.24,
+      "lpPercentage": 0.0000817784048979672
+    },
+    {
+      "name": "raydium",
+      "pair": "8XQbej4jZdrTDv9sNZUqCzMSw1qyrbs3U6zhDdEengm6",
+      "liquidity": 0.2,
+      "lpPercentage": 0.000013190063566345744
+    },
+    {
+      "name": "raydium",
+      "pair": "GmgRgjC8BM1xroJyLxYBSkpWNaiAXXxLVf3yPTXYG8SD",
+      "liquidity": 0.17,
+      "lpPercentage": 0.000011211552774404586
+    },
+    {
+      "name": "raydium",
+      "pair": "EWeVqWSQbvGk1ScqGaqCzdeSPnBu5qG8Tqn1b9NLijMa",
+      "liquidity": 0.14,
+      "lpPercentage": 0.000009233042608783529
+    },
+    {
+      "name": "raydium",
+      "pair": "CCWLapRXt3pGz67GFp4E8jwAws6qSoft1ZBmRZNJPAtH",
+      "liquidity": 0.05,
+      "lpPercentage": 0.000003297515108686626
+    },
+    {
+      "name": "raydium",
+      "pair": "GhHXJvyBaJAiD7PqS3KBiwDeZpTRSygygeuQhjfJN6tk",
+      "liquidity": 0,
+      "lpPercentage": 0
+    }
+  ],
+  "largestLp": {
+    "chainId": "solana",
+    "dexId": "raydium",
+    "url": "https://dexscreener.com/solana/6cq3amnb9pli4rkvpqegza9lwt5xevup8hnb5if8ggtp",
+    "pairAddress": "6Cq3AMNb9PLi4RKVpqEgza9Lwt5XEVup8hNB5iF8GGtp",
+    "baseToken": {
+      "address": "FtPqJ2YTKmPyBxp3Npg18RE9Z77SQu9jrkRVYLzpump",
+      "name": "Murad 💹🧲 ",
+      "symbol": "Murad "
+    },
+    "quoteToken": {
+      "address": "So11111111111111111111111111111111111111112",
+      "name": "Wrapped SOL",
+      "symbol": "SOL"
+    },
+    "priceNative": "0.00006923",
+    "priceUsd": "0.01721",
+    "txns": {
+      "m5": { "buys": 134, "sells": 92 },
+      "h1": { "buys": 2932, "sells": 2328 },
+      "h6": { "buys": 18757, "sells": 14819 },
+      "h24": { "buys": 210065, "sells": 118198 }
+    },
+    "volume": {
+      "h24": 125121716.49,
+      "h6": 12710512.84,
+      "h1": 2013654.93,
+      "m5": 54955.79
+    },
+    "priceChange": { "m5": -5.56, "h1": -14.02, "h6": -1.06, "h24": 308 },
+    "liquidity": { "usd": 955602.47, "base": 27728180, "quote": 1924.6762 },
+    "fdv": 17210107,
+    "marketCap": 17210107,
+    "pairCreatedAt": 1737716909000,
+    "info": {
+      "imageUrl": "https://dd.dexscreener.com/ds-data/tokens/solana/FtPqJ2YTKmPyBxp3Npg18RE9Z77SQu9jrkRVYLzpump.png?key=427e22",
+      "header": "https://dd.dexscreener.com/ds-data/tokens/solana/FtPqJ2YTKmPyBxp3Npg18RE9Z77SQu9jrkRVYLzpump/header.png?key=427e22",
+      "openGraph": "https://cdn.dexscreener.com/token-images/og/solana/FtPqJ2YTKmPyBxp3Npg18RE9Z77SQu9jrkRVYLzpump?timestamp=1737808800000",
+      "websites": [],
+      "socials": [{ "type": "telegram", "url": "https://t.me/MuradCalls" }]
+    }
+  },
+  "priceNative": 0.00006923,
+  "priceUsd": 0,
+  "m5Txns": { "buys": 134, "sells": 92 },
+  "h1Txns": { "buys": 2932, "sells": 2328 },
+  "h6Txns": { "buys": 18757, "sells": 14819 },
+  "h24Txns": { "buys": 210065, "sells": 118198 },
+  "volume": {
+    "h24": 125121716.49,
+    "h6": 12710512.84,
+    "h1": 2013654.93,
+    "m5": 54955.79
+  },
+  "volumeChange": {
+    "h24": 10.158518598181038,
+    "h6": 15.84243653539317,
+    "h1": 2.7291562810118615
+  },
+  "priceChange": { "m5": -5.56, "h1": -14.02, "h6": -1.06, "h24": 308 },
+  "marketCap": 17210107,
+  "fdv": 17210107,
+  "marketGrowth": {
+    "h24": {
+      "volume": 10.158518598181038,
+      "price": 308,
+      "gap": -297.84148140181895,
+      "faster": "price"
+    },
+    "h6": {
+      "volume": 15.84243653539317,
+      "price": -1.06,
+      "gap": 16.90243653539317,
+      "faster": "volume"
+    },
+    "h1": {
+      "volume": 2.7291562810118615,
+      "price": -14.02,
+      "gap": 16.74915628101186,
+      "faster": "volume"
+    }
+  },
+  "urls": [],
+  "creatorTransfer": [
+    {
+      "type": "send",
+      "from": "Cx3CBLZrBiAZUCz5KCidKKsPhuExmHVWrz67ymE1a3gk",
+      "to": "7QZGS7MQ4S6hRmE8iXoFTXgQ2hXVUCho2ZhgeWvLNPZT",
+      "amount": 120000000
+    }
+  ],
+  "creatorSellCount": 0,
+  "githubShape": [],
+  "websiteShape": []
+}
