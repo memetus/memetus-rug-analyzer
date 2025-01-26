@@ -18,7 +18,18 @@ The data collected and evaluated in this module represents the minimum required 
 
 ### Checking Data
 
+```bash
+./src/types/provider.d.ts
+```
+
 #### Holder Data
+
+| Data Field        | Desctiption                                                                                |
+| ----------------- | ------------------------------------------------------------------------------------------ |
+| totalHolder       | Total holder count of given token address                                                  |
+| topHolder         | Top 10, 20, 50 (maximum) holders' addresses, balances, and percentages list of given token |
+| top10Validation   | Top 10 holders own other tokens or only hold of given token.                               |
+| creatorPercentage | The percentage of the token creator. If locked, it includes the locked amount.             |
 
 #### Liquidity Data
 
