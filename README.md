@@ -56,3 +56,9 @@ You can run the project using the following command:
 ```bash
 bash ./run.sh <TOKEN_ADDRESS>
 ```
+
+#### generate data used to analyze
+
+```bash
+bash ./run.sh <TOKEN_ADDRESS> --gen #or -g
+```
