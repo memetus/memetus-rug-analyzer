@@ -25,12 +25,10 @@ export const createConnection = () => {
 };
 
 export const createUmiEndpoint = () => {
-  const endpoints = nodeEndpoint["helius"];
-  for (const endpoint of endpoints) {
-    try {
-      return createUmi(endpoint);
-    } catch (e) {
-      console.log(`Failed to connect to ${endpoint}`);
-    }
+  const endpoint = nodeEndpoint["helius"];
+  try {
+    return createUmi(endpoint);
+  } catch (e) {
+    console.log(`Failed to connect to ${endpoint}`);
   }
 };
