@@ -13,28 +13,24 @@ interface IUrlChecker {}
  * @description This class is responsible for checking the URL of a project.
  */
 export class UrlChecker implements IUrlChecker {
-  url: string;
+  constructor() {}
 
-  constructor(url: string) {
-    this.url = url;
-  }
-
-  public getHostname() {
-    const isValidUrl = this.checkValidUrl();
+  public getHostname(url: string) {
+    const isValidUrl = this.checkValidUrl(url);
     if (!isValidUrl) {
       throw new Error("Invalid URL");
     }
 
     try {
-      const url = new URL(this.url);
-      return url.hostname;
+      const urlObj = new URL(url);
+      return urlObj.hostname;
     } catch (err) {
       throw new Error("Invalid URL");
     }
   }
 
-  public async getIpAddress() {
-    const domain = this.getHostname();
+  public async getIpAddress(url: string) {
+    const domain = this.getHostname(url);
     return new Promise((resolve, reject) => {
       dns.lookup(domain, (err, address) => {
         if (err) {
@@ -50,8 +46,8 @@ export class UrlChecker implements IUrlChecker {
     });
   }
 
-  public async getUrlInfo() {
-    const address = await this.getIpAddress();
+  public async getUrlInfo(url: string) {
+    const address = await this.getIpAddress(url);
     const apiKey = getEnv("IPINFO_API_KEY");
 
     if (!apiKey) {
@@ -68,19 +64,19 @@ export class UrlChecker implements IUrlChecker {
     }
   }
 
-  public checkValidUrl() {
+  public checkValidUrl(url: string) {
     if (
-      this.url.startsWith("http://") ||
-      this.url.startsWith("https://") ||
-      validator.isURL(this.url)
+      url.startsWith("http://") ||
+      url.startsWith("https://") ||
+      validator.isURL(url)
     ) {
       return true;
     }
     return false;
   }
 
-  public async getUrlMetadata() {
-    const isValidUrl = this.checkValidUrl();
+  public async getUrlMetadata(url: string) {
+    const isValidUrl = this.checkValidUrl(url);
     if (!isValidUrl) {
       throw new Error("Invalid URL");
     }
@@ -88,7 +84,7 @@ export class UrlChecker implements IUrlChecker {
     const baseMetadata = new BaseMetadata();
 
     try {
-      const response = await axios.get(this.url, {});
+      const response = await axios.get(url, {});
       const $ = cheerio.load(response.data);
       $("meta").each((i, meta) => {
         baseMetadata.name = $('meta[name="application-name"]').attr("content");
@@ -104,6 +100,37 @@ export class UrlChecker implements IUrlChecker {
       return baseMetadata;
     } catch (err) {
       throw new Error("Invalid URL");
+    }
+  }
+
+  public getUrlType(url: string) {
+    if (!this.checkValidUrl(url)) {
+      return null;
+    }
+    try {
+      const parsedUrl = new URL(url);
+
+      const hostname = parsedUrl.hostname.toLowerCase();
+      if (hostname.includes("github.com")) {
+        return "Github";
+      } else if (
+        hostname.includes("twitter.com") ||
+        hostname.includes("x.com")
+      ) {
+        return "Twitter";
+      } else if (hostname.includes("t.me")) {
+        return "Telegram";
+      } else if (
+        hostname.includes("discord.com") ||
+        hostname.includes("discord.gg")
+      ) {
+        return "Discord";
+      } else {
+        return "Website";
+      }
+    } catch (error) {
+      console.error("Invalid URL:", error);
+      return null;
     }
   }
 }
