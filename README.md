@@ -46,3 +46,13 @@ TAVILY_API_KEY="<Your Tavily API KEY>"
 OPENAI_API_KEY="<Your OpenAI API KEY>"
 GITHUB_BEARER_TOKEN="<Your Github Bearer Token>"
 ```
+
+### Usage
+
+You can run the project using the following command:
+
+#### basic execution
+
+```bash
+bash ./run.sh <TOKEN_ADDRESS>
+```
