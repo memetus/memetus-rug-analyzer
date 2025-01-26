@@ -15,14 +15,10 @@ import { createUmiEndpoint } from "@/src/config/chain";
 interface IAddressChecker {}
 
 export class AddressChecker implements IAddressChecker {
-  address: string;
+  constructor() {}
 
-  constructor(address: string) {
-    this.address = address;
-  }
-
-  public async getTokenAddress(userAddress: string) {
-    const mintAddress = new PublicKey(this.address);
+  public async getTokenAddress(address: string, userAddress: string) {
+    const mintAddress = new PublicKey(address);
     const user = new PublicKey(userAddress);
 
     const tokenAddress = await getAssociatedTokenAddress(
@@ -36,7 +32,7 @@ export class AddressChecker implements IAddressChecker {
     return tokenAddress;
   }
 
-  public isDexAddress(): { isDex: boolean; name?: DexType } {
+  public isDexAddress(address: string): { isDex: boolean; name?: DexType } {
     const dexList = Object.entries(DEX_ADDRESS).map(([key, value]) => {
       return {
         name: key as DexType,
@@ -44,13 +40,13 @@ export class AddressChecker implements IAddressChecker {
       };
     });
 
-    const isDex = dexList.find((dex) => dex.address === this.address);
+    const isDex = dexList.find((dex) => dex.address === address);
     return { isDex: isDex ? true : false, name: isDex?.name };
   }
 
-  public async getAddressType(connection: Connection) {
+  public async getAddressType(address: string, connection: Connection) {
     try {
-      const publicKey = new PublicKey(this.address);
+      const publicKey = new PublicKey(address);
       const accountInfo = await getAccount(connection, publicKey);
 
       return {
@@ -59,7 +55,7 @@ export class AddressChecker implements IAddressChecker {
       };
     } catch (error) {
       try {
-        const publicKey = new PublicKey(this.address);
+        const publicKey = new PublicKey(address);
         const mintInfo = await getMint(connection, publicKey);
 
         return {
@@ -74,13 +70,13 @@ export class AddressChecker implements IAddressChecker {
     }
   }
 
-  public async getMetaplexPda() {
+  public async getMetaplexPda(address: string) {
     try {
       const [metadataPDA] = PublicKey.findProgramAddressSync(
         [
           Buffer.from("metadata"),
           METADATA_PROGRAM_ID.toBuffer(),
-          new PublicKey(this.address).toBuffer(),
+          new PublicKey(address).toBuffer(),
         ],
         METADATA_PROGRAM_ID
       );
@@ -91,13 +87,13 @@ export class AddressChecker implements IAddressChecker {
     }
   }
 
-  public async getTokenMetadata() {
+  public async getTokenMetadata(address: string) {
     try {
       const umi = createUmiEndpoint();
 
       if (umi) {
         const metadata = await fetchMetadataFromSeeds(umi as any, {
-          mint: new PublicKey(this.address) as any,
+          mint: new PublicKey(address) as any,
         });
 
         return metadata;
