@@ -16,6 +16,22 @@ For the purpose of making this repository public, free APIs have been used whene
 
 The data collected and evaluated in this module represents the minimum required to avoid scam projects. The purpose of the module is not to identify projects with high returns but to help avoid scam projects. Please note that a high score does not guarantee high returns.
 
+### Checking Data
+
+#### Holder Data
+
+#### Liquidity Data
+
+#### Github Data
+
+#### Community Data
+
+#### Project Metadata
+
+#### Market Data
+
+#### Website Data
+
 ### Directory Structure
 
 ```text
