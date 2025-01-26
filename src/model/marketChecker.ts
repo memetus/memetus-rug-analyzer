@@ -132,8 +132,8 @@ export class MarketChecker extends BaseChecker implements IMarketChecker {
     }
 
     const growthRates = {
-      h24: calculateGrowthRate(volume.h6, volume.h24) ?? 0,
-      h6: calculateGrowthRate(volume.h1, volume.h6) ?? 0,
+      h24: calculateGrowthRate(volume.m5, volume.h24) ?? 0,
+      h6: calculateGrowthRate(volume.m5, volume.h6) ?? 0,
       h1: calculateGrowthRate(volume.m5, volume.h1) ?? 0,
     };
 
