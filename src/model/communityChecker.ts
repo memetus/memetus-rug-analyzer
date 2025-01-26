@@ -5,6 +5,7 @@ import { TwitterChecker } from "@/src/module/twitterChecker";
 import { CommunityCheckResult } from "../data/result/communityCheckResult";
 import { DiscordChecker } from "@/src/module/discordChecker";
 import { TelegramChecker } from "@/src/module/telegramChecker";
+import { parseTwitterHandle } from "../lib/parseTwitterHandle";
 
 interface ICommunityChecker {}
 
@@ -47,30 +48,33 @@ export class CommunityChecker extends BaseChecker implements ICommunityChecker {
     for (const com of communities) {
       if (com.type === "twitter") {
         const twitter = this.handleTwitter(com.url);
-        baseCommunity.twitter = twitter;
+        baseCommunity.twitter.checker = twitter;
+        baseCommunity.twitter.handle = parseTwitterHandle(com.url);
       } else if (com.type === "discord") {
         const discord = this.handleDiscord(com.url);
-        baseCommunity.discord = discord;
+        baseCommunity.discord.checker = discord;
+        baseCommunity.discord.handle = com.url;
       } else if (com.type === "telegram") {
         const telegram = this.handleTelegram(com.url);
-        baseCommunity.telegram = telegram;
+        baseCommunity.telegram.checker = telegram;
+        baseCommunity.telegram.handle = com.url;
       }
     }
     return baseCommunity;
   }
 
   public handleTwitter(handle: string) {
-    const twitterChecker = new TwitterChecker(handle);
+    const twitterChecker = new TwitterChecker();
     return twitterChecker;
   }
 
   public handleDiscord(handle: string) {
-    const discordChecker = new DiscordChecker(handle);
+    const discordChecker = new DiscordChecker();
     return discordChecker;
   }
 
   public handleTelegram(handle: string) {
-    const telegramChecker = new TelegramChecker(handle);
+    const telegramChecker = new TelegramChecker();
     return telegramChecker;
   }
 }
