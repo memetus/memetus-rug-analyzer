@@ -1,6 +1,7 @@
 import { BaseCheckResult } from "@/src/data/result/baseCheckResult";
 import { BaseCommunity } from "@/src/data/baseCommunity";
 import { timeDifference } from "@/src/utils/time";
+import { parseTwitterHandle } from "@/src/lib/parseTwitterHandle";
 
 interface ICommunityCheckResult {}
 
@@ -48,8 +49,14 @@ export class CommunityCheckResult
     this.isTwitterExist = baseCommunity.twitter ? true : false;
     this.isTelegramExist = baseCommunity.telegram ? true : false;
     this.isDiscordExist = baseCommunity.discord ? true : false;
-    if (baseCommunity.twitter) {
-      const accountInfo = await baseCommunity.twitter.searchUsername();
+    if (
+      baseCommunity.twitter &&
+      baseCommunity.twitter.handle &&
+      baseCommunity.twitter.checker
+    ) {
+      const accountInfo = await baseCommunity.twitter.checker.searchUsername(
+        baseCommunity.twitter.handle
+      );
       this.isTwitterVerified = accountInfo.verified ? true : false;
       this.twitterFollowers = accountInfo.public_metrics?.followers_count || 0;
       this.tweetCount = accountInfo.public_metrics?.tweet_count || 0;
@@ -57,7 +64,7 @@ export class CommunityCheckResult
       this.createdAtPoint = accountInfo.created_at;
 
       if (accountInfo.most_recent_tweet_id) {
-        const lastTweetInfo = await baseCommunity.twitter.getTweet(
+        const lastTweetInfo = await baseCommunity.twitter.checker.getTweet(
           accountInfo.most_recent_tweet_id
         );
         this.lastUpdated = lastTweetInfo.created_at ?? undefined;
