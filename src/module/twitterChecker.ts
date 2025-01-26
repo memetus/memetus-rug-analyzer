@@ -13,17 +13,15 @@ interface ITwitterChecker {}
  */
 
 export class TwitterChecker implements ITwitterChecker {
-  account: string;
   client: TwitterApi;
 
-  constructor(account: string) {
-    this.account = parseTwitterHandle(account);
+  constructor() {
     this.client = createTwitterClient();
   }
 
-  public async searchUsername(username?: string) {
+  public async searchUsername(username: string) {
     try {
-      const account = username || this.account;
+      const account = username;
       const user = await this.client.v2.userByUsername(account, {
         "user.fields": [
           "created_at",
@@ -120,8 +118,8 @@ export class TwitterChecker implements ITwitterChecker {
     return mentionList;
   }
 
-  public async getUserTweets(username?: string) {
-    const account = username || this.account;
+  public async getUserTweets(username: string) {
+    const account = username;
     const tweets = await this.client.v2.userTimeline(account, {});
 
     return tweets;
