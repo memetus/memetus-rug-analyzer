@@ -1,8 +1,8 @@
-### Homo Memetus Rug Analyzer Module
+## Homo Memetus Rug Analyzer Module
 
 > This repository is part of the Homo-Memetus system and serves the purpose of analyzing the potential for rug pulls in memecoin launched in solana blockchain.
 
-#### Repository Description
+### Repository Description
 
 > This project analyzes the on-chain data (holders, liquidity, market), metadata, social data, and GitHub data of memecoins in the Solana ecosystem (following the SPL standard) to assess the risk of the given memecoin. The return value ranges from -100 to 100, where values closer to -100 indicate higher risk and values closer to 100 indicate greater safety.
 
@@ -12,7 +12,11 @@
 | Below 50 to above -50 | Caution |
 | -50 and below         | Risky   |
 
-#### Directory Structure
+For the purpose of making this repository public, free APIs have been used whenever possible to allow other developers to test it.
+
+The data collected and evaluated in this module represents the minimum required to avoid scam projects. The purpose of the module is not to identify projects with high returns but to help avoid scam projects. Please note that a high score does not guarantee high returns.
+
+### Directory Structure
 
 ```text
 .
@@ -29,4 +33,16 @@
 | └── utils / # This is the code defined utility function in the project.
 ├── test / # test directoty.
 └── package.json # application dependencies
+```
+
+### Environment Setting
+
+```text
+HELIUS_API_KEY="<Your Helius API KEY>"
+IPINFO_API_KEY="<Your IpInfo API KEY>"
+TWITTER_BEARER_TOKEN="<Your Twitter Bearer Token>"
+MODEL_ID="<gpt-4o>" # Our finetuned rug checker agent is private
+TAVILY_API_KEY="<Your Tavily API KEY>"
+OPENAI_API_KEY="<Your OpenAI API KEY>"
+GITHUB_BEARER_TOKEN="<Your Github Bearer Token>"
 ```
