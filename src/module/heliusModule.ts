@@ -75,7 +75,15 @@ export class HeliusModule implements IHeliusModule {
     }
   }
 
-  async getAllTokens(address: string, cursor?: string) {
+  async getAllTokens({
+    address,
+    cursor,
+    limit,
+  }: {
+    address: string;
+    cursor?: string;
+    limit?: number;
+  }) {
     try {
       if (!cursor) {
         const res = await axios.post(
@@ -85,8 +93,9 @@ export class HeliusModule implements IHeliusModule {
             id: "text",
             method: "getTokenAccounts",
             params: {
+              limit: limit,
               displayOptions: {
-                showZeroBalance: true,
+                showZeroBalance: false,
               },
               owner: address,
             },
@@ -102,6 +111,7 @@ export class HeliusModule implements IHeliusModule {
           id: "text",
           method: "getTokenAccounts",
           params: {
+            limit: limit,
             displayOptions: {
               showZeroBalance: true,
             },
