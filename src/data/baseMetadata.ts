@@ -6,5 +6,12 @@ export class BaseMetadata {
   author!: string | undefined;
   generator!: string | undefined;
 
-  constructor() {}
+  constructor() {
+    this.name = "";
+    this.description = "";
+    this.keywords = "";
+    this.canonical = "";
+    this.author = "";
+    this.generator = "";
+  }
 }
