@@ -8,9 +8,5 @@ interface ITelegramChecker {}
  */
 
 export class TelegramChecker implements ITelegramChecker {
-  channel: string;
-
-  constructor(channel: string) {
-    this.channel = channel;
-  }
+  constructor() {}
 }
