@@ -15,18 +15,18 @@
 #### Directory Structure
 
 ```text
-	.
-	├── smaple/ # These are the results of executing this module. Rug checks are conducted based on this data.
-	├── src / # application source code
-	│ ├── cli / # This is the CLI-related code for running this project.
-	│ ├── config / # This is the code for some configurations related to the project.
-	| ├── constant / # This is the code defining some constants used in the project.
-	| ├── data / # This is the code defining the data classes used in the project.
-	| ├── lib / # This is the code defining the library used in the project.
-	| ├── model / # This is the code defined core checker class in the project.
-	| ├── module / # This is the code defined module class in the project.
-	| ├── types / # This is the code defined types in the project.
-	| └── utils / # This is the code defined utility function in the project.
-	├── test / # test directoty.
-	└── package.json # application dependencies
+.
+├── smaple/ # These are the results of executing this module. Rug checks are conducted based on this data.
+├── src / # application source code
+│ ├── cli / # This is the CLI-related code for running this project.
+│ ├── config / # This is the code for some configurations related to the project.
+| ├── constant / # This is the code defining some constants used in the project.
+| ├── data / # This is the code defining the data classes used in the project.
+| ├── lib / # This is the code defining the library used in the project.
+| ├── model / # This is the code defined core checker class in the project.
+| ├── module / # This is the code defined module class in the project.
+| ├── types / # This is the code defined types in the project.
+| └── utils / # This is the code defined utility function in the project.
+├── test / # test directoty.
+└── package.json # application dependencies
 ```
