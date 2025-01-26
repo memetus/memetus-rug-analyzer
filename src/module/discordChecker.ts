@@ -8,9 +8,5 @@ interface IDiscordChecker {}
  */
 
 export class DiscordChecker implements IDiscordChecker {
-  channel: string;
-
-  constructor(channel: string) {
-    this.channel = channel;
-  }
+  constructor() {}
 }
