@@ -110,9 +110,9 @@ export class HolderChecker extends BaseChecker implements IHolderChecker {
   }
 
   public async getTokenCreaetionSignature() {
-    const pda = await new AddressChecker(
-      this.address.toBase58()
-    ).getMetaplexPda();
+    const addressChecker = new AddressChecker();
+
+    const pda = await addressChecker.getMetaplexPda(this.address.toBase58());
 
     if (!pda) throw new Error("Failed to get pda");
     const signatures = await this.connection.getSignaturesForAddress(pda, {});
@@ -172,7 +172,7 @@ export class HolderChecker extends BaseChecker implements IHolderChecker {
         const address = (account.value?.data as ParsedAccountData)?.parsed?.info
           ?.owner;
 
-        const isDexAddress = new AddressChecker(address).isDexAddress();
+        const isDexAddress = new AddressChecker().isDexAddress(address);
         if (holder.uiAmount && address && !isDexAddress.isDex) {
           if (index < 10) {
             top10Supplys.push({
