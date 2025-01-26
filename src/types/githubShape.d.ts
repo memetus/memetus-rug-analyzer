@@ -1,0 +1,21 @@
+export type GithubShape = {
+  name: string;
+  url: string;
+  description: string;
+  private: boolean;
+  isFork: boolean;
+  createdAt: string;
+  updatedAt: string;
+  size: number;
+  stargazersCount: number;
+  watchersCount: number;
+  forkCount: number;
+  openIssueCount: number;
+  visibility: string;
+  hasIssues: boolean;
+  hasProjects: boolean;
+  hasDownloads: boolean;
+  hasWiki: boolean;
+  hasPages: boolean;
+  hasDiscussions: boolean;
+};
