@@ -10,7 +10,8 @@ import {
 import { parseTokenAccountData } from "@/src/lib/parseAccount";
 import { logger } from "@/src/config/log";
 import { LockCheckerShape } from "@/src/types/lock";
-import { TransactionChecker } from "@/src/module/transactionChecker";
+import { MetadataCheckResult } from "@/src/data/result/metadataCheckResult";
+import { MetadataShape } from "@/src/types/metadata";
 
 interface IMetadataChecker {}
 
@@ -31,12 +32,35 @@ export class MetadataChecker extends BaseChecker implements IMetadataChecker {
     this.connection = connection;
   }
 
-  public async check() {}
+  public async check() {
+    const baseMetadata = await this.getBaseMetadata();
+    const { address, balance, metaplexPda, signature, token } =
+      await this.getCreatorInfo();
+    const lockInfo = await this.isCreatorLocked({ address, signature, token });
+    const checkResult = new MetadataCheckResult();
+
+    const data: MetadataShape = {
+      name: baseMetadata.name,
+      symbol: baseMetadata.symbol,
+      primarySold: baseMetadata.primarySold,
+      mutability: baseMetadata.mutability,
+      mintbility: baseMetadata.mintability,
+      freezability: baseMetadata.freezability,
+      pumpfun: baseMetadata.pumpfun,
+      creatorAddress: address,
+      metaplexPda: metaplexPda,
+      creatorBalance: balance,
+      isCreatorLocked: lockInfo ? true : false,
+      isCreatorSold: false,
+    };
+    return checkResult.setData({ data }).then(async (result) => {
+      return await checkResult.getScore();
+    });
+  }
 
   public async getTokenCreaetionSignature() {
-    const pda = await new AddressChecker(
-      this.address.toBase58()
-    ).getMetaplexPda();
+    const addressChecker = new AddressChecker();
+    const pda = await addressChecker.getMetaplexPda(this.address.toBase58());
 
     if (!pda) throw new Error("Failed to get pda");
     const signatures = await this.connection.getSignaturesForAddress(pda, {});
@@ -45,11 +69,14 @@ export class MetadataChecker extends BaseChecker implements IMetadataChecker {
       throw new Error("No signatures found");
     }
 
-    return signatures[signatures.length - 1].signature;
+    return {
+      signature: signatures[signatures.length - 1].signature,
+      metaplexPda: pda.toBase58(),
+    };
   }
 
   public async getTokenCreator() {
-    const signature = await this.getTokenCreaetionSignature();
+    const { signature, metaplexPda } = await this.getTokenCreaetionSignature();
 
     const transaction = await this.connection.getParsedTransaction(signature, {
       maxSupportedTransactionVersion: 0,
@@ -60,20 +87,21 @@ export class MetadataChecker extends BaseChecker implements IMetadataChecker {
     const creator =
       transaction.transaction.message.accountKeys[0].pubkey.toBase58();
 
-    return { signature, creator };
+    return { signature, creator, metaplexPda };
   }
 
-  public async isCreatorLocked() {
+  public async isCreatorLocked(creatorInfo: {
+    address: string;
+    signature: string;
+    token: string;
+  }) {
     try {
-      const { token, signature, address } = await this.getCreatorInfo();
       const signatures = await this.connection.getSignaturesForAddress(
-        new PublicKey(token),
+        new PublicKey(creatorInfo.token),
         {
-          until: signature,
+          until: creatorInfo.signature,
         }
       );
-
-      console.log(signatures);
 
       if (!signatures || signatures.length === 0) {
         console.log("No signatures found");
@@ -92,7 +120,7 @@ export class MetadataChecker extends BaseChecker implements IMetadataChecker {
             if (
               instruction.programId.toBase58() === TIMELOCK_ADDRESS.STREAMFLOW
             ) {
-              return this.isStreamFlowLock(address, tx.transaction);
+              return this.isStreamFlowLock(creatorInfo.address, tx.transaction);
             }
           }
         }
@@ -113,18 +141,18 @@ export class MetadataChecker extends BaseChecker implements IMetadataChecker {
       }
     );
 
-    console.log(address);
-    console.log(token);
-    console.log(signature);
     if (!signatures || signatures.length === 0) {
       console.log("No signatures found");
       logger.error("No signatures found");
       throw new Error("No signatures found");
     }
 
+    const transfers = [];
+
     const sigs = signatures.map((sig) => sig.signature);
     const txDetails = await this.connection.getParsedTransactions(sigs, {
       maxSupportedTransactionVersion: 0,
+      commitment: "confirmed",
     });
 
     if (!txDetails) {
@@ -133,10 +161,92 @@ export class MetadataChecker extends BaseChecker implements IMetadataChecker {
       throw new Error("Failed to get transaction details");
     }
 
-    const transactionChecker = new TransactionChecker();
-    const transfers = transactionChecker.parseTransfer(txDetails, address);
-
-    return [];
+    for (const tx of txDetails) {
+      if (tx?.meta?.logMessages?.toString().includes("TransferChecked")) {
+        const ins = tx.transaction.message.instructions;
+        for (const item of ins) {
+          if (
+            "parsed" in item &&
+            item.parsed &&
+            item.parsed.type == "transferChecked"
+          ) {
+            const { destination, source, tokenAmount } = item.parsed.info;
+            const amount = tokenAmount.uiAmount;
+            if (destination.toString() == token.toString()) {
+              const account = await this.connection.getParsedAccountInfo(
+                new PublicKey(source)
+              );
+              // @ts-ignore
+              const owner = account.value?.data?.parsed?.info.owner;
+              if (owner) {
+                transfers.push({
+                  type: "receive",
+                  from: owner,
+                  to: address,
+                  amount,
+                });
+              }
+            } else if (source.toString() == token.toString()) {
+              const account = await this.connection.getParsedAccountInfo(
+                new PublicKey(destination)
+              );
+              // @ts-ignore
+              const owner = account.value?.data?.parsed?.info.owner;
+              if (owner) {
+                transfers.push({
+                  type: "send",
+                  from: address,
+                  to: owner,
+                  amount,
+                });
+              }
+            }
+          }
+        }
+      } else if (tx?.meta?.logMessages?.toString().includes("Transfer")) {
+        const ins = tx.transaction.message.instructions;
+        for (const item of ins) {
+          if (
+            "parsed" in item &&
+            item.parsed &&
+            item.parsed.type == "transfer"
+          ) {
+            const { destination, source, tokenAmount } = item.parsed.info;
+            const amount = tokenAmount.uiAmount;
+            if (destination.toString() == token.toString()) {
+              const account = await this.connection.getParsedAccountInfo(
+                new PublicKey(source)
+              );
+              // @ts-ignore
+              const owner = account.value?.data?.parsed?.info.owner;
+              if (owner) {
+                transfers.push({
+                  type: "receive",
+                  from: owner,
+                  to: address,
+                  amount,
+                });
+              }
+            } else if (source.toString() == token.toString()) {
+              const account = await this.connection.getParsedAccountInfo(
+                new PublicKey(destination)
+              );
+              // @ts-ignore
+              const owner = account.value?.data?.parsed?.info.owner;
+              if (owner) {
+                transfers.push({
+                  type: "send",
+                  from: address,
+                  to: owner,
+                  amount,
+                });
+              }
+            }
+          }
+        }
+      }
+    }
+    return transfers;
   }
 
   public async isStreamFlowLock(creator: string, tx: ParsedTransaction) {
@@ -177,7 +287,7 @@ export class MetadataChecker extends BaseChecker implements IMetadataChecker {
   }
 
   public async getCreatorInfo() {
-    const { signature, creator } = await this.getTokenCreator();
+    const { signature, creator, metaplexPda } = await this.getTokenCreator();
 
     const tokenInfo = await this.connection.getTokenAccountsByOwner(
       new PublicKey(creator),
@@ -198,14 +308,17 @@ export class MetadataChecker extends BaseChecker implements IMetadataChecker {
       mint: this.address.toBase58(),
       token: tokenInfo.value[0].pubkey.toBase58(),
       balance: parseFloat(parsed.amount.toString().slice(0, -6)),
+      metaplexPda: metaplexPda,
     };
   }
 
   public async getBaseMetadata() {
     try {
-      const metadata = await new AddressChecker(
+      const addressChecker = new AddressChecker();
+      const metadata = await addressChecker.getTokenMetadata(
         this.address.toBase58()
-      ).getTokenMetadata();
+      );
+
       const mintInfo = await getMint(
         this.connection,
         new PublicKey(this.address)
