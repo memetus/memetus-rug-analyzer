@@ -1,4 +1,5 @@
 import { BaseCheckResult } from "@/src/data/result/baseCheckResult";
+import { MetadataShape } from "@/src/types/metadata";
 
 interface IMetadataCheckResult {}
 
@@ -27,7 +28,7 @@ export class MetadataCheckResult
   isCreatorSold: boolean;
 
   constructor() {
-    const score = 0;
+    const score = 50;
     super(score);
     this.name = undefined;
     this.symbol = undefined;
@@ -41,5 +42,53 @@ export class MetadataCheckResult
     this.creatorBalance = 0;
     this.isCreatorLocked = false;
     this.isCreatorSold = false;
+  }
+
+  public async setData({ data }: { data: MetadataShape }) {
+    this.name = data.name;
+    this.symbol = data.symbol;
+    this.primarySold = data.primarySold;
+    this.mutability = data.mutability;
+    this.mintbility = data.mintbility;
+    this.freezability = data.freezability;
+    this.pumpfun = data.pumpfun;
+    this.metaplexPda = data.metaplexPda;
+    this.creatorAddress = data.creatorAddress;
+    this.creatorBalance = data.creatorBalance;
+    this.isCreatorLocked = data.isCreatorLocked;
+    this.isCreatorSold = data.isCreatorSold;
+  }
+
+  public async getScore() {
+    if (this.primarySold) {
+      this.score -= 10;
+    }
+    if (this.mutability) {
+      this.score -= 10;
+    }
+    if (this.mintbility) {
+      this.score -= 10;
+    }
+    if (this.freezability) {
+      this.score -= 10;
+    }
+    if (this.creatorBalance === 0) {
+      this.score -= 10;
+    }
+    if (this.isCreatorLocked) {
+      this.score += 20;
+    } else {
+      this.score -= 20;
+    }
+    if (this.isCreatorSold) {
+      this.score -= 50;
+    }
+
+    if (this.score < -100) {
+      return -100;
+    } else if (this.score > 100) {
+      return 100;
+    }
+    return this.score;
   }
 }
