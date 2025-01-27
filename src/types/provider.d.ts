@@ -32,7 +32,6 @@ export type ProviderMetadataShape = {
   symbol: string;
   address: string;
   totalSupply: number;
-  primarySold: boolean;
   mutability: boolean;
   mintability: boolean;
   freezability: boolean;
@@ -91,7 +90,6 @@ export type CheckData = {
   address: string;
   totalSupply: number;
   initialized: boolean;
-  primarySold: boolean;
   mutability: boolean;
   mintability: boolean;
   freezability: boolean;

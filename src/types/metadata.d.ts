@@ -1,7 +1,6 @@
 export type MetadataShape = {
   name: string | undefined;
   symbol: string | undefined;
-  primarySold: boolean;
   mutability: boolean;
   mintbility: boolean;
   freezability: boolean;
@@ -10,5 +9,11 @@ export type MetadataShape = {
   creatorAddress: string | undefined;
   creatorBalance: number;
   isCreatorLocked: boolean;
-  isCreatorSold: boolean;
+  creatorTransfer: {
+    type: "send" | "receive";
+    from: string;
+    to: string;
+    amount: number;
+  }[] = [];
+  creatorSellCount: number = 0;
 };

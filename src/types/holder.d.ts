@@ -12,14 +12,6 @@ export type HolderData = {
     percentage: number;
     holders: TopHolderSupplyShape[];
   };
-  top20: {
-    percentage: number;
-    holders: TopHolderSupplyShape[];
-  };
-  top50: {
-    percentage: number;
-    holders: TopHolderSupplyShape[];
-  };
   creatorBalance: number;
   creatorPercentage: number;
   dexSupplys: DexSupplyShape[];
