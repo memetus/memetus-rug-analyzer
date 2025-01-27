@@ -215,3 +215,9 @@ bash ./run.sh <TOKEN_ADDRESS> --market #or -m
 ```bash
 bash ./run.sh <TOKEN_ADDRESS> --website #or -w
 ```
+
+### Notification
+
+1. Tokens that are either outdated or newly generated may not function properly.
+2. This repository is designed to provide data using free APIs available for public use. There may be slight differences compared to the checkers used in our system.
+3. If you have any bugs or suggestions, please leave an issue.
