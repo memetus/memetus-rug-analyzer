@@ -87,77 +87,126 @@ export class MarketCheckResult
   }
 
   public async getScore() {
+    if (this.m5Txns.buy > this.m5Txns.sell) {
+      this.score += 5;
+    } else {
+      this.score -= 5;
+    }
+
+    if (this.h1Txns.buy > this.h1Txns.sell) {
+      this.score += 5;
+    } else {
+      this.score -= 5;
+    }
+    if (this.h6Txns.buy > this.h6Txns.sell) {
+      this.score += 5;
+    } else {
+      this.score -= 5;
+    }
+    if (this.h24Txns.buy > this.h24Txns.sell) {
+      this.score += 5;
+    } else {
+      this.score -= 5;
+    }
+
+    if (Math.abs(this.volumeChange.h24 - this.volumeChange.h6) > 1000) {
+      this.score -= 20;
+    } else if (Math.abs(this.volumeChange.h24 - this.volumeChange.h6) > 500) {
+      this.score -= 10;
+    } else if (Math.abs(this.volumeChange.h24 - this.volumeChange.h6) < 250) {
+      this.score += 20;
+    } else if (Math.abs(this.volumeChange.h24 - this.volumeChange.h6) <= 500) {
+      this.score += 10;
+    }
+
+    if (Math.abs(this.volumeChange.h6 - this.volumeChange.h1) > 1000) {
+      this.score -= 20;
+    } else if (Math.abs(this.volumeChange.h6 - this.volumeChange.h1) > 500) {
+      this.score -= 10;
+    } else if (Math.abs(this.volumeChange.h6 - this.volumeChange.h1) < 250) {
+      this.score += 20;
+    } else if (Math.abs(this.volumeChange.h6 - this.volumeChange.h1) <= 500) {
+      this.score += 10;
+    }
+
+    if (Math.abs(this.priceChange.h24 - this.priceChange.h6) > 1000) {
+      this.score -= 20;
+    } else if (Math.abs(this.priceChange.h24 - this.priceChange.h6) > 500) {
+      this.score -= 10;
+    } else if (Math.abs(this.priceChange.h24 - this.priceChange.h6) < 250) {
+      this.score += 20;
+    } else if (Math.abs(this.priceChange.h24 - this.priceChange.h6) <= 500) {
+      this.score += 10;
+    }
+
+    if (Math.abs(this.priceChange.h6 - this.priceChange.h1) > 1000) {
+      this.score -= 20;
+    } else if (Math.abs(this.priceChange.h6 - this.priceChange.h1) > 500) {
+      this.score -= 10;
+    } else if (Math.abs(this.priceChange.h6 - this.priceChange.h1) < 250) {
+      this.score += 20;
+    } else if (Math.abs(this.priceChange.h6 - this.priceChange.h1) <= 500) {
+      this.score += 10;
+    }
+
     if (
+      this.h24Txns.buy > this.h24Txns.sell * 1.5 &&
+      this.h6Txns.buy > this.h6Txns.sell * 1.5 &&
+      this.h1Txns.buy > this.h1Txns.sell * 1.5
+    ) {
+      this.score += 20;
+    } else if (
+      this.h24Txns.buy * 1.5 < this.h24Txns.sell &&
+      this.h6Txns.buy * 1.5 < this.h6Txns.sell &&
+      this.h1Txns.buy * 1.5 < this.h1Txns.sell
+    ) {
+      this.score -= 20;
+    } else if (
       this.h24Txns.buy > this.h24Txns.sell &&
       this.h6Txns.buy > this.h6Txns.sell &&
       this.h1Txns.buy > this.h1Txns.sell
     ) {
       this.score += 10;
-      if (this.h24Txns.buy > this.h24Txns.sell * 1.5) {
-        this.score += 10;
-      }
-      if (this.h24Txns.buy < this.h6Txns.buy) {
-        this.score += 10;
-      }
-      if (this.h6Txns.buy < this.h1Txns.buy) {
-        this.score += 10;
-      }
     } else if (
       this.h24Txns.buy < this.h24Txns.sell &&
       this.h6Txns.buy < this.h6Txns.sell &&
       this.h1Txns.buy < this.h1Txns.sell
     ) {
       this.score -= 10;
-      if (this.h24Txns.buy * 1.5 < this.h24Txns.sell) {
-        this.score -= 10;
-      }
-      if (this.h24Txns.sell < this.h6Txns.sell) {
-        this.score -= 10;
-      }
-      if (this.h6Txns.sell < this.h1Txns.sell) {
-        this.score -= 10;
-      }
     }
 
-    if (this.volume.h24 > this.volume.h6 && this.volume.h6 > this.volume.h1) {
+    if (Math.abs(this.priceChange.h24 - this.volumeChange.h24) > 100) {
       this.score -= 10;
-      if (this.volume.h24 > this.volume.h6 * 1.5) {
-        this.score -= 10;
-      }
-      if (this.volume.h6 > this.volume.h1 * 1.5) {
-        this.score -= 10;
-      }
-    } else if (
-      this.volume.h24 < this.volume.h6 &&
-      this.volume.h6 < this.volume.h1
-    ) {
+    } else if (Math.abs(this.priceChange.h24 - this.volumeChange.h24) >= 50) {
+      this.score -= 5;
+    } else if (Math.abs(this.priceChange.h24 - this.volumeChange.h24) < 25) {
       this.score += 10;
-      if (this.volume.h24 * 1.5 < this.volume.h6) {
-        this.score += 10;
-      }
-      if (this.volume.h6 * 1.5 < this.volume.h1) {
-        this.score += 10;
-      }
+    } else if (Math.abs(this.priceChange.h24 - this.volumeChange.h24) < 50) {
+      this.score += 5;
     }
 
-    if (this.priceChange.h24 > 0) {
-      if (this.priceChange.h24 < this.priceChange.h6) {
-        this.score += 10;
-      }
-      if (this.priceChange.h6 < this.priceChange.h1) {
-        this.score += 10;
-      }
-    } else if (this.priceChange.h24 < 0) {
-      if (this.priceChange.h24 > this.priceChange.h6) {
-        this.score -= 10;
-      }
-      if (this.priceChange.h6 > this.priceChange.h1) {
-        this.score -= 10;
-      }
+    if (Math.abs(this.priceChange.h6 - this.volumeChange.h6) > 100) {
+      this.score -= 10;
+    } else if (Math.abs(this.priceChange.h6 - this.volumeChange.h6) >= 50) {
+      this.score -= 5;
+    } else if (Math.abs(this.priceChange.h6 - this.volumeChange.h6) < 25) {
+      this.score += 10;
+    } else if (Math.abs(this.priceChange.h6 - this.volumeChange.h6) < 50) {
+      this.score += 5;
     }
 
-    if (this.score > 100) return 100;
-    else if (this.score < -100) return -100;
+    if (Math.abs(this.priceChange.h1 - this.volumeChange.h1) > 100) {
+      this.score -= 10;
+    } else if (Math.abs(this.priceChange.h1 - this.volumeChange.h1) >= 50) {
+      this.score -= 5;
+    } else if (Math.abs(this.priceChange.h1 - this.volumeChange.h1) < 25) {
+      this.score += 10;
+    } else if (Math.abs(this.priceChange.h1 - this.volumeChange.h1) < 50) {
+      this.score += 5;
+    }
+
+    if (this.score >= 100) return 100;
+    else if (this.score <= -100) return -100;
     return this.score;
   }
 }

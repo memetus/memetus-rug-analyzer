@@ -57,72 +57,82 @@ export class CommunityCheckResult
       const accountInfo = await baseCommunity.twitter.checker.searchUsername(
         baseCommunity.twitter.handle
       );
-      this.isTwitterVerified = accountInfo.verified ? true : false;
-      this.twitterFollowers = accountInfo.public_metrics?.followers_count || 0;
-      this.tweetCount = accountInfo.public_metrics?.tweet_count || 0;
-      this.mediaCount = accountInfo.public_metrics?.media_count || 0;
-      this.createdAtPoint = accountInfo.created_at;
+      if (accountInfo) {
+        this.isTwitterVerified = accountInfo.verified ? true : false;
+        this.twitterFollowers =
+          accountInfo.public_metrics?.followers_count || 0;
+        this.tweetCount = accountInfo.public_metrics?.tweet_count || 0;
+        this.mediaCount = accountInfo.public_metrics?.media_count || 0;
+        this.createdAtPoint = accountInfo.created_at;
 
-      if (accountInfo.most_recent_tweet_id) {
-        const lastTweetInfo = await baseCommunity.twitter.checker.getTweet(
-          accountInfo.most_recent_tweet_id
-        );
-        this.lastUpdated = lastTweetInfo.created_at ?? undefined;
-      }
-      if (accountInfo.entities?.description) {
-        let point = accountInfo.entities.description.cashtags?.length || 0;
-        point += accountInfo.entities.description.hashtags?.length || 0;
-        point += accountInfo.entities.description.mentions?.length || 0;
-        this.descriptionPoint = point;
-      }
+        if (accountInfo.most_recent_tweet_id) {
+          const lastTweetInfo = await baseCommunity.twitter.checker.getTweet(
+            accountInfo.most_recent_tweet_id
+          );
+          if (lastTweetInfo) {
+            this.lastUpdated = lastTweetInfo.created_at ?? undefined;
+          }
+        }
+        if (accountInfo.entities?.description) {
+          let point = accountInfo.entities.description.cashtags?.length || 0;
+          point += accountInfo.entities.description.hashtags?.length || 0;
+          point += accountInfo.entities.description.mentions?.length || 0;
+          this.descriptionPoint = point;
+        }
 
-      if (accountInfo.url) {
-        this.urlPoint.push({ url: accountInfo.url });
+        if (accountInfo.url) {
+          this.urlPoint.push({ url: accountInfo.url });
+        }
       }
     }
   }
 
   public async getScore() {
-    this.score += this.isTwitterExist ? 10 : -50;
-    this.score += !this.isTelegramExist && !this.isDiscordExist ? -50 : 10;
-    if (this.score === -100) return this._getScore();
+    if (this.isTwitterExist) {
+      this.score += 10;
+    } else {
+      this.score -= 50;
+    }
 
-    this.score += this.isTwitterVerified ? 20 : -20;
-    this.score +=
-      this.twitterFollowers > 10000
-        ? 20
-        : this.twitterFollowers > 5000
-        ? 15
-        : this.twitterFollowers > 1000
-        ? 10
-        : this.twitterFollowers > 500
-        ? 5
-        : 0;
-    this.score +=
-      this.tweetCount > 1000
-        ? 20
-        : this.tweetCount > 500
-        ? 15
-        : this.tweetCount > 300
-        ? 10
-        : this.tweetCount > 100
-        ? 5
-        : 0;
+    if (this.isTelegramExist || this.isDiscordExist) {
+      this.score += 10;
+    } else {
+      this.score -= 50;
+    }
 
-    this.score +=
-      this.mediaCount > 100
-        ? 20
-        : this.mediaCount > 50
-        ? 15
-        : this.mediaCount > 20
-        ? 10
-        : this.mediaCount > 10
-        ? 5
-        : 0;
+    if (this.score === -100) return -100;
 
-    this.score +=
-      this.descriptionPoint > 5 ? 5 : this.descriptionPoint > 3 ? 3 : 0;
-    this.score += this.urlPoint.length > 0 ? 5 : 0;
+    if (this.isTwitterVerified) {
+      this.score += 20;
+    } else {
+      this.score -= 20;
+    }
+
+    if (this.twitterFollowers > 10000) {
+      this.score += 20;
+    } else if (this.twitterFollowers > 5000) {
+      this.score += 15;
+    } else if (this.twitterFollowers > 1000) {
+      this.score += 10;
+    } else if (this.twitterFollowers > 500) {
+      this.score += 5;
+    }
+
+    if (this.tweetCount > 1000) {
+      this.score += 20;
+    } else if (this.tweetCount > 500) {
+      this.score += 15;
+    } else if (this.tweetCount > 300) {
+      this.score += 10;
+    } else if (this.tweetCount > 100) {
+      this.score += 5;
+    }
+
+    if (this.mediaCount > 100) {
+      this.score += 10;
+    } else if (this.mediaCount > 50) {
+      this.score += 5;
+    }
 
     if (this.lastUpdated) {
       const dateDiff = timeDifference(
@@ -132,18 +142,18 @@ export class CommunityCheckResult
       );
 
       if (parseInt(dateDiff) > 24) {
-        this.score -= 5;
+        this.score -= 10;
       } else if (parseInt(dateDiff) > 12) {
-        this.score -= 3;
+        this.score -= 5;
       } else if (parseInt(dateDiff) > 6) {
-        this.score += 3;
-      } else if (parseInt(dateDiff) <= 3) {
         this.score += 5;
+      } else if (parseInt(dateDiff) <= 3) {
+        this.score += 10;
       }
     }
-    const score = await this._getScore();
-    if (score > 100) return 100;
-    else if (score < -100) return -100;
-    return score;
+
+    if (this.score >= 100) return 100;
+    else if (this.score <= -100) return -100;
+    return this.score;
   }
 }

@@ -29,27 +29,23 @@ export class WebsiteCheckResult
   }
 
   public async getScore() {
-    if (this.total === 0) {
-      return -100;
-    } else {
-      this.score += this.total * 10;
-    }
+    if (this.total === 0) return -100;
 
-    for (const url of this.urls) {
-      if (url.name !== "") {
+    for (const website of this.urls) {
+      if (website.ip) {
         this.score += 10;
-      }
-      if (url.description !== "") {
-        this.score += 10;
-      }
-      if (url.author !== "") {
-        this.score += 10;
-      }
-      if (url.keywords !== "") {
-        this.score += 10;
-      }
-      if (url.url !== "") {
-        this.score += 10;
+        if (website.name && website.name !== "") {
+          this.score += 5;
+        }
+        if (website.description && website.description === "") {
+          this.score += 5;
+        }
+        if (website.author && website.author !== "") {
+          this.score += 5;
+        }
+        if (website.keywords && website.keywords !== "") {
+          this.score += 5;
+        }
       }
     }
     if (this.score > 100) {

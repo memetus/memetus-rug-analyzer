@@ -67,45 +67,43 @@ export class LiquidityCheckResult
   }
 
   public async getScore() {
-    if (this.totalLpCount >= 5) {
+    if (this.marketCap / 20 < this.totalLiquidity) {
       this.score += 20;
-    } else if (this.totalLpCount === 4) {
+    } else if (this.marketCap / 15 < this.totalLiquidity) {
       this.score += 15;
-    } else if (this.totalLpCount === 3) {
+    } else if (this.marketCap / 10 < this.totalLiquidity) {
       this.score += 10;
-    } else if (this.totalLpCount === 2) {
-      this.score += 5;
-    } else {
-      this.score += -10;
+    } else if (this.marketCap / 5 < this.totalLiquidity) {
+      this.score -= 10;
+    } else if (this.marketCap / 5 > this.totalLiquidity) {
+      this.score -= 15;
     }
 
-    if (this.marketCap / 40 > this.totalLiquidity) {
-      this.score -= 30;
-    } else if (this.marketCap / 30 > this.totalLiquidity) {
-      this.score -= 20;
-    } else if (this.marketCap / 20 > this.totalLiquidity) {
-      this.score -= 10;
-    } else if (this.marketCap / 10 > this.totalLiquidity) {
+    if (this.totalLpCount >= 5) {
+      this.score += 15;
+    } else if (this.totalLpCount >= 4) {
       this.score += 10;
-    } else if (this.marketCap / 5 > this.totalLiquidity) {
-      this.score += 20;
-    } else {
-      this.score += 30;
+    } else if (this.totalLpCount >= 3) {
+      this.score += 5;
+    } else if (this.totalLpCount >= 2) {
+      this.score -= 5;
+    } else if (this.totalLpCount < 2) {
+      this.score -= 10;
     }
 
     if (this.largestLp) {
       if (this.largestLp.lpPercentage > 90) {
-        this.score -= 20;
-      } else if (this.largestLp.lpPercentage > 80) {
         this.score -= 15;
-      } else if (this.largestLp.lpPercentage > 70) {
+      } else if (this.largestLp.lpPercentage > 85) {
         this.score -= 10;
-      } else if (this.largestLp.lpPercentage > 60) {
-        this.score += 10;
+      } else if (this.largestLp.lpPercentage > 80) {
+        this.score -= 5;
       } else if (this.largestLp.lpPercentage < 50) {
+        this.score += 5;
+      } else if (this.largestLp.lpPercentage < 55) {
+        this.score += 10;
+      } else if (this.largestLp.lpPercentage < 60) {
         this.score += 15;
-      } else if (this.largestLp.lpPercentage < 40) {
-        this.score += 20;
       }
     }
 

@@ -16,7 +16,6 @@ export class MetadataCheckResult
 {
   name: string | undefined;
   symbol: string | undefined;
-  primarySold: boolean;
   mutability: boolean;
   mintbility: boolean;
   freezability: boolean;
@@ -25,14 +24,19 @@ export class MetadataCheckResult
   creatorAddress: string | undefined;
   creatorBalance: number;
   isCreatorLocked: boolean;
-  isCreatorSold: boolean;
+  creatorTransfer: {
+    type: "send" | "receive";
+    from: string;
+    to: string;
+    amount: number;
+  }[] = [];
+  creatorSellCount: number = 0;
 
   constructor() {
     const score = 50;
     super(score);
     this.name = undefined;
     this.symbol = undefined;
-    this.primarySold = false;
     this.mutability = false;
     this.mintbility = false;
     this.freezability = false;
@@ -41,13 +45,11 @@ export class MetadataCheckResult
     this.creatorAddress = undefined;
     this.creatorBalance = 0;
     this.isCreatorLocked = false;
-    this.isCreatorSold = false;
   }
 
   public async setData({ data }: { data: MetadataShape }) {
     this.name = data.name;
     this.symbol = data.symbol;
-    this.primarySold = data.primarySold;
     this.mutability = data.mutability;
     this.mintbility = data.mintbility;
     this.freezability = data.freezability;
@@ -56,39 +58,40 @@ export class MetadataCheckResult
     this.creatorAddress = data.creatorAddress;
     this.creatorBalance = data.creatorBalance;
     this.isCreatorLocked = data.isCreatorLocked;
-    this.isCreatorSold = data.isCreatorSold;
   }
 
   public async getScore() {
-    if (this.primarySold) {
-      this.score -= 10;
-    }
     if (this.mutability) {
       this.score -= 10;
+    } else {
+      this.score += 10;
     }
+
     if (this.mintbility) {
       this.score -= 10;
+    } else {
+      this.score += 10;
     }
+
     if (this.freezability) {
-      this.score -= 10;
+      this.score += 10;
+    } else {
+      this.score += 10;
     }
-    if (this.creatorBalance === 0) {
-      this.score -= 10;
-    }
+
     if (this.isCreatorLocked) {
       this.score += 20;
-    } else {
-      this.score -= 20;
     }
-    if (this.isCreatorSold) {
+
+    if (this.creatorTransfer.length > 0) {
+      this.score -= 50;
+    }
+    if (this.creatorSellCount > 0) {
       this.score -= 50;
     }
 
-    if (this.score < -100) {
-      return -100;
-    } else if (this.score > 100) {
-      return 100;
-    }
+    if (this.score >= 100) return 100;
+    else if (this.score <= -100) return -100;
     return this.score;
   }
 }
