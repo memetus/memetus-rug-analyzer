@@ -1,4 +1,4 @@
-## Homo Memetus Rug Analyzer Module
+## Homo Memetus Rug Analyzer Mo
 
 > This repository is part of the Homo-Memetus system and serves the purpose of analyzing the potential for rug pulls in memecoin launched in solana blockchain.
 
