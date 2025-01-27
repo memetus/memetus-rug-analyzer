@@ -42,9 +42,8 @@ export class TwitterChecker implements ITwitterChecker {
 
       return user.data;
     } catch (error) {
-      console.log(error);
       logger.error("Failed to get user data", error);
-      throw new Error("Failed to get user data");
+      return null;
     }
   }
 
@@ -74,9 +73,8 @@ export class TwitterChecker implements ITwitterChecker {
 
       return tweet.data;
     } catch (error) {
-      console.log(error);
       logger.error("Failed to get tweet", error);
-      throw new Error("Failed to get tweet");
+      return null;
     }
   }
 
