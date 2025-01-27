@@ -172,8 +172,46 @@ You can run the project using the following command:
 bash ./run.sh <TOKEN_ADDRESS>
 ```
 
-#### generate data used to analyze
+#### executtion with generate <address>.json file
 
 ```bash
 bash ./run.sh <TOKEN_ADDRESS> --gen #or -g
+```
+
+#### execution single checker
+
+##### holder
+
+```bash
+bash ./run.sh <TOKEN_ADDRESS> --holder #or -h
+```
+
+##### liquidity
+
+```bash
+bash ./run.sh <TOKEN_ADDRESS> --liquidity #or -l
+```
+
+##### community
+
+```bash
+bash ./run.sh <TOKEN_ADDRESS> --community #or -c
+```
+
+##### metadata
+
+```bash
+bash ./run.sh <TOKEN_ADDRESS> --metadata #or -md
+```
+
+##### market
+
+```bash
+bash ./run.sh <TOKEN_ADDRESS> --market #or -m
+```
+
+##### website
+
+```bash
+bash ./run.sh <TOKEN_ADDRESS> --website #or -w
 ```
