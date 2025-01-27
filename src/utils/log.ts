@@ -1,4 +1,4 @@
-import { logger } from "@/main";
+import { logger } from "@/src/config/log";
 
 export const logInfo = (log: string) => {
   logger.info(log);
