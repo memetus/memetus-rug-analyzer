@@ -24,24 +24,88 @@ The data collected and evaluated in this module represents the minimum required 
 
 #### Holder Data
 
-| Data Field        | Desctiption                                                                                |
-| ----------------- | ------------------------------------------------------------------------------------------ |
-| totalHolder       | Total holder count of given token address                                                  |
-| topHolder         | Top 10, 20, 50 (maximum) holders' addresses, balances, and percentages list of given token |
-| top10Validation   | Top 10 holders own other tokens or only hold of given token.                               |
-| creatorPercentage | The percentage of the token creator. If locked, it includes the locked amount.             |
+| Data Field        | Desctiption                                                                                 |
+| ----------------- | ------------------------------------------------------------------------------------------- |
+| totalHolder       | Total holder count of given token address.                                                  |
+| topHolder         | Top 10, 20, 50 (maximum) holders' addresses, balances, and percentages list of given token. |
+| top10Validation   | Top 10 holders own other tokens or only hold of given token.                                |
+| creatorPercentage | The percentage of the token creator. If locked, it includes the locked amount.              |
 
 #### Liquidity Data
 
+| Data Field          | Desctiption                                                      |
+| ------------------- | ---------------------------------------------------------------- |
+| totalLiquidity      | Total liquidity size of given token.                             |
+| liquidityRatio      | The ratio of total liquidity to total market cap of given token. |
+| totalLpCount        | The total number of liquidity pool of given token.               |
+| largestLp           | The largest LP among the various LPs for the given token.        |
+| largestLpPercentage | The proportion of the largest LP for the given token.            |
+
 #### Github Data
+
+| Data Field      | Desctiption                                          |
+| --------------- | ---------------------------------------------------- |
+| githubList      | The number of GitHub links related with given token. |
+| stargazersCount | The number of stars on the repository.               |
+| watchersCount   | The number of watchers on the repository.            |
+| forkCount       | The number of forks on the repository.               |
+| openIssueCount  | The number of open issue count on the repository.    |
+| hasWiki         | Whether the repository has a wiki.                   |
+| hasPages        | Whether the repository has a pages.                  |
+| hasProjects     | Whether the repository has a project.                |
+| hasDiscussions  | Whether the repository has a discussion.             |
+| hasIssues       | Whether the repository has a issues.                 |
+| hasDownloads    | Whether the repository has a download.               |
+| visibility      | The visibility of the repository                     |
 
 #### Community Data
 
+| Data Field      | Desctiption                                          |
+| --------------- | ---------------------------------------------------- |
+| githubList      | The number of GitHub links related with given token. |
+| stargazersCount | The number of stars on the repository.               |
+| watchersCount   | The number of watchers on the repository.            |
+| forkCount       | The number of forks on the repository.               |
+| openIssueCount  | The number of open issue count on the repository.    |
+| hasWiki         | Whether the repository has a wiki.                   |
+| hasPages        | Whether the repository has a pages.                  |
+| hasProjects     | Whether the repository has a project.                |
+| hasDiscussions  | Whether the repository has a discussion.             |
+| hasIssues       | Whether the repository has a issues.                 |
+| hasDownloads    | Whether the repository has a download.               |
+| visibility      | The visibility of the repository                     |
+
 #### Project Metadata
 
-#### Market Data
+| Data Field       | Desctiption                                                                                                      |
+| ---------------- | ---------------------------------------------------------------------------------------------------------------- |
+| creatorAddress   | The wallet account that create a given token.                                                                    |
+| creatorSignature | The signature used when creating the given token.                                                                |
+| creatorBalance   | The balance of the token creator. If locked, it includes the locked amount.                                      |
+| creatorLocked    | The information about the token lock by the creator, including the addresses of locked tokens and their amounts. |
+| creatorTransfer  | The information about the token transfered by the creator, it includes send and receive both.                    |
+| creatorSold      | The information about the token sold count by the creator                                                        |
+| mintability      | The information on whether the creator can mint additional tokens.                                               |
+| mutability       | The information on whether the token data can be modified.                                                       |
+| freezability     | The information on whether token transactions can be frozen.                                                     |
 
 #### Website Data
+
+| Data Field  | Desctiption                                           |
+| ----------- | ----------------------------------------------------- |
+| totalUrl    | The number of website links related with given token. |
+| label       | The type of url it include documents or websites.     |
+| ip          | The IP address hosting the url.                       |
+| city        | The city name corresponding to the IP address.        |
+| region      | The region corresponding to the IP address.           |
+| country     | The country corresponding to the IP address.          |
+| location    | The location corresponding to the IP address.         |
+| postal      | The postal code corresponding to the IP address.      |
+| timezone    | The timezone corresponding to the IP address.         |
+| name        | The name of metadata about given link.                |
+| description | The description of metadata about given link.         |
+| keywords    | The keywords of metadata about given link.            |
+| autor       | The autor of metadata about given link.               |
 
 ### Directory Structure
 
