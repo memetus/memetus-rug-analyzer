@@ -49,6 +49,9 @@ export class UrlChecker implements IUrlChecker {
   public async getUrlInfo(url: string) {
     const address = await this.getIpAddress(url);
     const apiKey = getEnv("IPINFO_API_KEY");
+    if (!this.checkValidUrl(url)) {
+      return null;
+    }
 
     if (!apiKey) {
       throw new Error("IPINFO API key not found");
@@ -60,7 +63,7 @@ export class UrlChecker implements IUrlChecker {
 
       return res.data;
     } catch (error) {
-      throw new Error("Failed to get IP info");
+      return null;
     }
   }
 
@@ -78,7 +81,7 @@ export class UrlChecker implements IUrlChecker {
   public async getUrlMetadata(url: string) {
     const isValidUrl = this.checkValidUrl(url);
     if (!isValidUrl) {
-      throw new Error("Invalid URL");
+      return null;
     }
 
     const baseMetadata = new BaseMetadata();
@@ -99,7 +102,7 @@ export class UrlChecker implements IUrlChecker {
 
       return baseMetadata;
     } catch (err) {
-      throw new Error("Invalid URL");
+      return null;
     }
   }
 
