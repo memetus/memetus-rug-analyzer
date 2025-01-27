@@ -24,6 +24,10 @@ The data collected and evaluated in this module represents the minimum required 
 
 #### Holder Data
 
+```bash
+./src/model/holderChecker.ts
+```
+
 | Data Field        | Desctiption                                                                                 |
 | ----------------- | ------------------------------------------------------------------------------------------- |
 | totalHolder       | Total holder count of given token address.                                                  |
@@ -32,6 +36,10 @@ The data collected and evaluated in this module represents the minimum required 
 | creatorPercentage | The percentage of the token creator. If locked, it includes the locked amount.              |
 
 #### Liquidity Data
+
+```bash
+./src/model/liquidityChecker.ts
+```
 
 | Data Field          | Desctiption                                                      |
 | ------------------- | ---------------------------------------------------------------- |
@@ -42,6 +50,10 @@ The data collected and evaluated in this module represents the minimum required 
 | largestLpPercentage | The proportion of the largest LP for the given token.            |
 
 #### Github Data
+
+```bash
+./src/model/githubChecker.ts
+```
 
 | Data Field      | Desctiption                                          |
 | --------------- | ---------------------------------------------------- |
@@ -60,6 +72,10 @@ The data collected and evaluated in this module represents the minimum required 
 
 #### Community Data
 
+```bash
+./src/model/communityChecker.ts
+```
+
 | Data Field      | Desctiption                                          |
 | --------------- | ---------------------------------------------------- |
 | githubList      | The number of GitHub links related with given token. |
@@ -77,6 +93,10 @@ The data collected and evaluated in this module represents the minimum required 
 
 #### Project Metadata
 
+```bash
+./src/model/metadataChecker.ts
+```
+
 | Data Field       | Desctiption                                                                                                      |
 | ---------------- | ---------------------------------------------------------------------------------------------------------------- |
 | creatorAddress   | The wallet account that create a given token.                                                                    |
@@ -90,6 +110,10 @@ The data collected and evaluated in this module represents the minimum required 
 | freezability     | The information on whether token transactions can be frozen.                                                     |
 
 #### Website Data
+
+```bash
+./src/model/websiteChecker.ts
+```
 
 | Data Field  | Desctiption                                           |
 | ----------- | ----------------------------------------------------- |
