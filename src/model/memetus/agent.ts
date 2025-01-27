@@ -66,15 +66,12 @@ export class MemetusRugAgent implements IMemetusRugAgent {
       const modelId = getEnv("MODEL_ID");
 
       const response = await createModel({ modelId }).invoke(messages);
-      console.log("response", response);
 
       return {
         messages: [new AIMessage(response.content.toString())],
       };
     } catch (error) {
-      console.error(error);
       logger.error(error);
-      throw new Error(`Failed to search ${error as string}`);
     }
   }
 }

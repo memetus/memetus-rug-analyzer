@@ -4,7 +4,7 @@ import { UrlChecker } from "@/src/module/urlChecker";
 import { WebsiteCheckResult } from "@/src/data/result/websiteCheckResult";
 import { UrlPair, WebsiteShape } from "@/src/types/website";
 import { logger } from "@/src/config/log";
-import { BaseMetadata } from "@/src/data/baseMetadata";
+import { RED } from "@/src/cli";
 
 interface IWebsiteChecker {}
 
@@ -54,21 +54,17 @@ export class WebsiteChecker extends BaseChecker implements IWebsiteChecker {
       for (const ref of datas) {
         const urlChecker = new UrlChecker();
 
-        const urlInfo = await urlChecker.getUrlInfo(ref.url);
         if (ref.label === "Docs" || ref.label === "Whitepaper") {
+          const urlInfo = await urlChecker.getUrlInfo(ref.url);
           const urlMetadata = await urlChecker.getUrlMetadata(ref.url);
-          results.push({
-            ...ref,
-            ...urlInfo,
-            ...urlMetadata,
-          });
-        } else {
-          const empty = new BaseMetadata();
-          results.push({
-            ...ref,
-            ...urlInfo,
-            ...empty,
-          });
+
+          if (urlInfo && urlMetadata) {
+            results.push({
+              ...ref,
+              ...urlInfo,
+              ...urlMetadata,
+            });
+          }
         }
       }
 
@@ -96,10 +92,16 @@ export class WebsiteChecker extends BaseChecker implements IWebsiteChecker {
     for (const ref of datas) {
       const urlChecker = new UrlChecker();
       const urlInfo = await urlChecker.getUrlInfo(ref.url);
-      results.push({
-        ...ref,
-        urlInfo,
-      });
+      if (urlInfo) {
+        results.push({
+          ...ref,
+          urlInfo,
+        });
+      } else {
+        console.log(
+          `${RED}Caution! The registered URL cannot be accessed. While it does not affect the score, it is likely a rug pull\n`
+        );
+      }
     }
 
     return results;
@@ -115,10 +117,12 @@ export class WebsiteChecker extends BaseChecker implements IWebsiteChecker {
       if (ref.label === "Docs" || ref.label === "Whitepaper") {
         const urlChecker = new UrlChecker();
         const urlMetadata = await urlChecker.getUrlMetadata(ref.url);
-        results.push({
-          ...ref,
-          urlMetadata,
-        });
+        if (urlMetadata) {
+          results.push({
+            ...ref,
+            urlMetadata,
+          });
+        }
       }
     }
 

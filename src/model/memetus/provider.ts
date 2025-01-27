@@ -31,6 +31,7 @@ import { parseTokenAccountData } from "@/src/lib/parseAccount";
 import { LockCheckerShape } from "@/src/types/lock";
 import { GithubShape } from "@/src/types/githubShape";
 import { GithubChecker } from "@/src/module/githubChecker";
+import { RED } from "@/src/cli";
 
 interface IDataProvider {}
 
@@ -78,7 +79,6 @@ export class DataProvider implements IDataProvider {
   tokenAddress!: string;
   totalSupply!: number;
   initialized!: boolean;
-  primarySold!: boolean;
   mutability!: boolean;
   mintability!: boolean;
   freezability!: boolean;
@@ -383,7 +383,6 @@ export class DataProvider implements IDataProvider {
     if (metadata) {
       this.tokenName = metadata.name;
       this.tokenSymbol = metadata.symbol;
-      this.primarySold = metadata.primarySaleHappened;
       this.mutability = metadata.isMutable;
       this.pumpfun = metadata.updateAuthority === PUMPFUN_MINT_AUTHORITY;
     }
@@ -592,15 +591,25 @@ export class DataProvider implements IDataProvider {
           this.githubShape.push({
             ...githubData,
           });
+        } else {
+          console.log(
+            `${RED}Caution! The registered Github repository cannot be accessed. While it does not affect the score, it is likely a rug pull\n`
+          );
         }
       } else {
         const urlInfo = await this.urlModule.getUrlInfo(url.url);
         const urlMetadata = await this.urlModule.getUrlMetadata(url.url);
-        this.websiteShape.push({
-          ...url,
-          ...urlInfo,
-          ...urlMetadata,
-        });
+        if (urlMetadata && urlInfo) {
+          this.websiteShape.push({
+            ...url,
+            ...urlInfo,
+            ...urlMetadata,
+          });
+        } else {
+          console.log(
+            `${RED}Caution! The registered URL cannot be accessed. While it does not affect the score, it is likely a rug pull\n`
+          );
+        }
       }
     }
   }
@@ -627,56 +636,66 @@ export class DataProvider implements IDataProvider {
         const twitterData = await baseCommunity.twitter.checker.searchUsername(
           baseCommunity.twitter.handle
         );
-        this.isTwitterExist = true;
-        this.isTwitterVerified = twitterData.verified ? true : false;
-        this.twitterFollowers =
-          twitterData.public_metrics?.followers_count || 0;
-        this.tweetCount = twitterData.public_metrics?.tweet_count || 0;
-        this.mediaCount = twitterData.public_metrics?.media_count || 0;
-        this.twitterHashTags = twitterData.entities?.description.hashtags || [];
-        this.twitterCashTags = twitterData.entities?.description.cashtags || [];
-        this.twitterMentions = twitterData.entities?.description.mentions || [];
-        if (twitterData.entities?.url?.urls) {
-          const urls = twitterData.entities?.url?.urls
-            .map((url) => {
-              const label = this.urlModule.getUrlType(url.url);
-              if (label) {
-                return {
-                  label: label,
-                  url: url.url,
-                };
-              }
-              return null;
-            })
-            .filter((v) => v && v) as UrlPair[];
+        if (twitterData) {
+          this.isTwitterExist = true;
+          this.isTwitterVerified = twitterData.verified ? true : false;
+          this.twitterFollowers =
+            twitterData.public_metrics?.followers_count || 0;
+          this.tweetCount = twitterData.public_metrics?.tweet_count || 0;
+          this.mediaCount = twitterData.public_metrics?.media_count || 0;
+          this.twitterHashTags =
+            twitterData.entities?.description?.hashtags || [];
+          this.twitterCashTags =
+            twitterData.entities?.description?.cashtags || [];
+          this.twitterMentions =
+            twitterData.entities?.description?.mentions || [];
+          if (twitterData.entities?.url?.urls) {
+            const urls = twitterData.entities?.url?.urls
+              .map((url) => {
+                const label = this.urlModule.getUrlType(url.url);
+                if (label) {
+                  return {
+                    label: label,
+                    url: url.url,
+                  };
+                }
+                return null;
+              })
+              .filter((v) => v && v) as UrlPair[];
 
-          this.urls = [...this.urls, ...urls];
-        }
-
-        if (twitterData.url) {
-          const label = this.urlModule.getUrlType(twitterData.url);
-          if (label) {
-            this.urls = [
-              ...this.urls,
-              {
-                label: label,
-                url: twitterData.url,
-              },
-            ];
+            this.urls = [...this.urls, ...urls];
           }
-        }
-        this.createTwitterAccountAt = twitterData.created_at;
-        if (twitterData.most_recent_tweet_id) {
-          const lastTweetInfo = await baseCommunity.twitter.checker.getTweet(
-            twitterData.most_recent_tweet_id
+
+          if (twitterData.url) {
+            const label = this.urlModule.getUrlType(twitterData.url);
+            if (label) {
+              this.urls = [
+                ...this.urls,
+                {
+                  label: label,
+                  url: twitterData.url,
+                },
+              ];
+            }
+          }
+          this.createTwitterAccountAt = twitterData.created_at;
+          if (twitterData.most_recent_tweet_id) {
+            const lastTweetInfo = await baseCommunity.twitter.checker.getTweet(
+              twitterData.most_recent_tweet_id
+            );
+            if (lastTweetInfo) {
+              this.twitterLastUpdated = lastTweetInfo.created_at ?? undefined;
+            }
+          }
+        } else {
+          console.log(
+            `${RED}Caution! The registered Twitter account cannot be accessed. While it does not affect the score, it is likely a rug pull\n`
           );
-          this.twitterLastUpdated = lastTweetInfo.created_at ?? undefined;
+          this.isTwitterExist = false;
         }
-      } else {
-        this.isTwitterExist = false;
+        this.isTelegramExist = baseCommunity.telegram.checker ? true : false;
+        this.isDiscordExist = baseCommunity.discord.checker ? true : false;
       }
-      this.isTelegramExist = baseCommunity.telegram.checker ? true : false;
-      this.isDiscordExist = baseCommunity.discord.checker ? true : false;
     }
   }
 
@@ -694,7 +713,6 @@ export class DataProvider implements IDataProvider {
       tokenSymbol: this.tokenSymbol,
       totalSupply: this.totalSupply,
       initialized: this.initialized,
-      primarySold: this.primarySold,
       mutability: this.mutability,
       mintability: this.mintability,
       freezability: this.freezability,

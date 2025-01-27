@@ -37,12 +37,13 @@ export class MetadataChecker extends BaseChecker implements IMetadataChecker {
     const { address, balance, metaplexPda, signature, token } =
       await this.getCreatorInfo();
     const lockInfo = await this.isCreatorLocked({ address, signature, token });
+    const { transfers, sellCount } = await this.getCreatorTransaction();
+
     const checkResult = new MetadataCheckResult();
 
     const data: MetadataShape = {
       name: baseMetadata.name,
       symbol: baseMetadata.symbol,
-      primarySold: baseMetadata.primarySold,
       mutability: baseMetadata.mutability,
       mintbility: baseMetadata.mintability,
       freezability: baseMetadata.freezability,
@@ -51,7 +52,8 @@ export class MetadataChecker extends BaseChecker implements IMetadataChecker {
       metaplexPda: metaplexPda,
       creatorBalance: balance,
       isCreatorLocked: lockInfo ? true : false,
-      isCreatorSold: false,
+      creatorSellCount: sellCount,
+      creatorTransfer: transfers as any,
     };
     return checkResult.setData({ data }).then(async (result) => {
       return await checkResult.getScore();
@@ -148,6 +150,7 @@ export class MetadataChecker extends BaseChecker implements IMetadataChecker {
     }
 
     const transfers = [];
+    let sellCount = 0;
 
     const sigs = signatures.map((sig) => sig.signature);
     const txDetails = await this.connection.getParsedTransactions(sigs, {
@@ -162,6 +165,9 @@ export class MetadataChecker extends BaseChecker implements IMetadataChecker {
     }
 
     for (const tx of txDetails) {
+      if (tx?.meta?.logMessages?.toString().includes("Sell")) {
+        sellCount += 1;
+      }
       if (tx?.meta?.logMessages?.toString().includes("TransferChecked")) {
         const ins = tx.transaction.message.instructions;
         for (const item of ins) {
@@ -246,7 +252,10 @@ export class MetadataChecker extends BaseChecker implements IMetadataChecker {
         }
       }
     }
-    return transfers;
+    return {
+      transfers,
+      sellCount,
+    };
   }
 
   public async isStreamFlowLock(creator: string, tx: ParsedTransaction) {
@@ -329,7 +338,6 @@ export class MetadataChecker extends BaseChecker implements IMetadataChecker {
         name: metadata.name,
         symbol: metadata.symbol,
         address: this.address,
-        primarySold: metadata.primarySaleHappened,
         initialized: mintInfo.isInitialized,
         mutability: metadata.isMutable,
         mintability: mintInfo.mintAuthority === null ? false : true,
