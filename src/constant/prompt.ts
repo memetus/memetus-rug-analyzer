@@ -19,4 +19,6 @@ export const SYSTEM_PROMPT = `
   13. memorial
 
   Do not add any additional words or sentences before or after, and return only the categories listed above exactly as they are.
+
+  If none of these apply, make sure to return undefined
 `;
