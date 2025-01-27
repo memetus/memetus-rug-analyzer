@@ -2,7 +2,7 @@ import { DynamicStructuredTool, tool } from "@langchain/core/tools";
 import { z } from "zod";
 import { tavily } from "@tavily/core";
 import { getEnv } from "@/src/utils/env";
-import { BaseMessage, HumanMessage } from "@langchain/core/messages";
+import { HumanMessage } from "@langchain/core/messages";
 
 export const getSearchTool = new DynamicStructuredTool({
   name: "search-tool",
