@@ -108,14 +108,11 @@ export class CommunityCheckResult
       this.score -= 20;
     }
 
-    if (this.twitterFollowers > 10000) {
-      this.score += 20;
-    } else if (this.twitterFollowers > 5000) {
-      this.score += 15;
-    } else if (this.twitterFollowers > 1000) {
-      this.score += 10;
-    } else if (this.twitterFollowers > 500) {
-      this.score += 5;
+    if (this.twitterFollowers < 1000) {
+      this.score -= 10;
+    } else {
+      const score = this.twitterFollowers / 100;
+      this.score += score;
     }
 
     if (this.tweetCount > 1000) {
