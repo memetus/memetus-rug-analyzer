@@ -39,18 +39,11 @@ export class HolderCheckResult
   }
 
   public async getScore() {
-    if (this.holderCount >= 10000) {
-      this.score += 20;
-    } else if (this.holderCount >= 5000) {
-      this.score += 15;
-    } else if (this.holderCount >= 1000) {
-      this.score += 10;
-    } else if (this.holderCount >= 500) {
-      this.score += 5;
-    } else if (this.holderCount >= 100) {
-      this.score -= 5;
-    } else if (this.holderCount < 100) {
+    if (this.holderCount < 1000) {
       this.score -= 10;
+    } else {
+      const score = this.holderCount / 100;
+      this.score += score;
     }
 
     if (this.top10Percentage > 30) {
