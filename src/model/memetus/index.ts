@@ -46,7 +46,7 @@ export class MemetusRugChecker implements IMemetusRugChecker {
   public getScore() {
     const holderScore = this.getHolderScore();
     const liquidityScore = this.getLiquidityScore();
-    const marketScore = this.getMarketScore();
+    // const marketScore = this.getMarketScore();
     const metadataScore = this.getMetadataScore();
     const websiteScore = this.getWebsiteScore();
     const githubScore = this.getGithubScore();
@@ -54,7 +54,7 @@ export class MemetusRugChecker implements IMemetusRugChecker {
 
     console.log(`${GREEN}Holder score complated!`);
     console.log(`${GREEN}Liquidity score complated!`);
-    console.log(`${GREEN}Market score complated!`);
+    // console.log(`${GREEN}Market score complated!`);
     console.log(`${GREEN}Metadata score complated!`);
     console.log(`${GREEN}Website score complated!`);
     console.log(`${GREEN}Community score complated!`);
@@ -66,40 +66,38 @@ export class MemetusRugChecker implements IMemetusRugChecker {
     ) {
       console.log(`${GREEN}Github score complated!`);
 
-      return (
-        holderScore * 0.1 +
-        liquidityScore * 0.1 +
-        marketScore * 0.1 +
-        metadataScore * 0.1 +
-        websiteScore * 0.1 +
-        githubScore * 0.2 +
-        communityScore * 0.15
+      return parseFloat(
+        (
+          (holderScore +
+            liquidityScore +
+            // marketScore * 0.1 +
+            metadataScore +
+            websiteScore +
+            githubScore * 2 +
+            communityScore * 1.5) /
+          6
+        ).toFixed(2)
       );
     }
 
-    return (
-      holderScore * 0.1 +
-      liquidityScore * 0.1 +
-      marketScore * 0.1 +
-      metadataScore * 0.1 +
-      websiteScore * 0.1 +
-      communityScore * 0.1
+    return parseFloat(
+      (
+        (holderScore +
+          liquidityScore +
+          metadataScore +
+          websiteScore +
+          communityScore) /
+        5
+      ).toFixed(2)
     );
   }
 
   public getHolderScore() {
-    if (this.data.totalHolder >= 10000) {
-      this.holderScore += 20;
-    } else if (this.data.totalHolder >= 5000) {
-      this.holderScore += 15;
-    } else if (this.data.totalHolder >= 1000) {
-      this.holderScore += 10;
-    } else if (this.data.totalHolder >= 500) {
-      this.holderScore += 5;
-    } else if (this.data.totalHolder >= 100) {
-      this.holderScore -= 5;
-    } else if (this.data.totalHolder < 100) {
+    if (this.data.totalHolder < 1000) {
       this.holderScore -= 10;
+    } else {
+      const score = this.data.totalHolder / 100;
+      this.holderScore += score;
     }
 
     let top10Percentage = 0;
@@ -235,14 +233,11 @@ export class MemetusRugChecker implements IMemetusRugChecker {
       this.communityScore -= 20;
     }
 
-    if (this.data.twitterFollowers > 10000) {
-      this.communityScore += 20;
-    } else if (this.data.twitterFollowers > 5000) {
-      this.communityScore += 15;
-    } else if (this.data.twitterFollowers > 1000) {
-      this.communityScore += 10;
-    } else if (this.data.twitterFollowers > 500) {
-      this.communityScore += 5;
+    if (this.data.twitterFollowers < 1000) {
+      this.communityScore -= 10;
+    } else {
+      const score = this.data.twitterFollowers / 100;
+      this.communityScore += score;
     }
 
     if (this.data.tweetCount > 1000) {
